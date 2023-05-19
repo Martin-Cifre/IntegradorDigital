@@ -37,6 +37,7 @@ Algunas de las páginas web en las que nos basamos para desarrollar Game Quest S
   Soy Joaquin Masquere, tengo 24 años, vivo en Buenos Aires, trabaje en varios comercios en la parte administrativa.  Actualmente estoy estudiando en DH y mis hobby son: Jugar a los videos juegos, jugar al fútbol y entrenar en él gimnasio.
 
  - Roberti , Martin
+ - 
  Soy Martin Roberti , tengo 32 años , vivo en Rosario, Santa fe, trabaje varios años en rubros gastronomicos , en parte administrativa como en capacitacion de personal. Actualmente estudio en DH. Mis hobbys son muy claros, videojuegos , mucho rap y disfrutar a mis amigos.
 
 - Russo, Ariel
