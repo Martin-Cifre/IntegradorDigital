@@ -40,10 +40,8 @@ Algunas de las páginas web en las que nos basamos para desarrollar Game Quest S
  - Soy Martin Roberti , tengo 32 años , vivo en Rosario, Santa fe, trabaje varios años en rubros gastronomicos , en parte administrativa como en capacitacion de personal. Actualmente estudio en DH. Mis hobbys son muy claros, videojuegos , mucho rap y disfrutar a mis amigos.
 
 - Russo, Ariel
-  - Rol: 
-  - Experiencia: 
-  - Responsabilidades: 
-  - Intereses: 
+- Tengo 32 años,vivo en Loma Hermosa,provincia de buenos aires, trabajo como suporte tecnico en un hospital.Mis hobbys son, el futbol y los video juegos.
+Esta en mi primera experiencia como programador.
 
 - Tan Wing, Franco Leonardo
   - Rol: 
