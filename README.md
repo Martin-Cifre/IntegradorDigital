@@ -36,10 +36,8 @@ Algunas de las páginas web en las que nos basamos para desarrollar Game Quest S
   - Intereses: 
 
 - Masquere, Joaquin Hernan
-  - Rol: 
-  - Experiencia: 
-  - Responsabilidades: 
-  - Intereses: 
+  
+  Soy Joaquin Masquere, tengo 24 años, vivo en Buenos Aires, trabaje en varios comercios en la parte administrativa.  Actualmente estoy estudiando en DH y mis hobby son: Jugar a los videos juegos, jugar al fútbol y entrenar en él gimnasio.
 
 - Roberti, Martin
   - Rol: 
