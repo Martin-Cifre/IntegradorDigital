@@ -31,20 +31,24 @@ Algunas de las páginas web en las que nos basamos para desarrollar Game Quest S
 
 - Masquere, Joaquin Hernan
   
-  Soy Joaquin Masquere, tengo 24 años, vivo en Buenos Aires, trabaje en varios comercios en la parte administrativa.  Actualmente estoy estudiando en DH y mis hobby son: Jugar a los videos juegos, jugar al fútbol y entrenar en él gimnasio.
+  - Soy Joaquin Masquere, tengo 24 años, vivo en Buenos Aires, trabaje en varios comercios en la parte administrativa.  Actualmente estoy estudiando en DH y mis hobby son: Jugar a los videos juegos, jugar al fútbol y entrenar en él gimnasio.
 
  - Roberti , Martin
- - Soy Martin Roberti , tengo 32 años , vivo en Rosario, Santa fe, trabaje varios años en rubros gastronomicos , en parte administrativa como en capacitacion de personal. Actualmente estudio en DH. Mis hobbys son muy claros, videojuegos , mucho rap y disfrutar a mis amigos.
+  - Soy Martin Roberti , tengo 32 años , vivo en Rosario, Santa fe, trabaje varios años en rubros gastronomicos , en parte administrativa como en capacitacion de personal. Actualmente estudio en DH. Mis hobbys son muy claros, videojuegos , mucho rap y disfrutar a mis amigos.
 
 - Russo, Ariel
-- Tengo 32 años,vivo en Loma Hermosa,provincia de buenos aires, trabajo como suporte tecnico en un hospital.Mis hobbys son, el futbol y los video juegos.
+  - Tengo 32 años,vivo en Loma Hermosa,provincia de buenos aires, trabajo como suporte tecnico en un hospital.Mis hobbys son, el futbol y los video juegos.
 Esta en mi primera experiencia como programador.
 
 - Tan Wing, Franco Leonardo
-  - Rol: 
-  - Experiencia: 
-  - Responsabilidades: 
-  - Intereses: 
-
+    - LOADING...
 ## Tablero de Trabajo
 Puedes seguir nuestro progreso en el desarrollo de Game Quest Store en nuestro Trello: https://trello.com/b/cVJMrFh3/gamequest-store y en nuestro repositorio de GitHub: https://github.com/Martin-Cifre/IntegradorDigital.
+
+## Mockups
+1. [Home](https://i.ibb.co/cC5XzNR/mockup-web-home.jpg)
+2. [Home - Celular](https://i.ibb.co/K9qyHy1/mockup-cel.jpg)
+3. [Sign in](https://i.ibb.co/wBYPGJc/mockup-web-registro.jpg)
+4. [Log in](https://i.ibb.co/tBJ6Kr7/mockup-web-login.jpg)
+5. [Producto](https://i.ibb.co/G99sKxz/mockup-web-compra.jpg)
+6. [Carrito](https://i.ibb.co/fC6xKXM/mockup-web-carrito.jpg)
