@@ -24,10 +24,7 @@ Algunas de las páginas web en las que nos basamos para desarrollar Game Quest S
   - Intereses: 
 
 - Cifre, Martin
-  - Rol: 
-  - Experiencia: 
-  - Responsabilidades: 
-  - Intereses: 
+  Soy Martin Cifre, tengo 33 años, vivo en la Zona Sur de Buenos Aires, trabaje en diversos rubros, desde Diseño Grafico, Doblaje, gerente en hoteleria y trabajos administrativos.  Actualmente estoy estudiando en Digital Huuse y mis hobby son: Jugar a los videos juegos, ir al gimnasio, leer manga y mirar partidos de la NBA.
 
 - Manso, Javier
   - Rol: 
