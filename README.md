@@ -27,10 +27,7 @@ Algunas de las páginas web en las que nos basamos para desarrollar Game Quest S
   - Soy Martin Cifre, tengo 33 años, vivo en la Zona Sur de Buenos Aires, trabaje en diversos rubros, desde Diseño Grafico, Doblaje, gerente en hoteleria y trabajos administrativos.  Actualmente estoy estudiando en Digital Huuse y mis hobby son: Jugar a los videos juegos, ir al gimnasio, leer manga y mirar partidos de la NBA.
 
 - Manso, Javier
-  - Rol: 
-  - Experiencia: 
-  - Responsabilidades: 
-  - Intereses: 
+  - Soy Brian Javier Manso, tengo 21, vivo en Buenos Aire trabajo como cadete en una fermacia, anteriormente estudiaba ingenieria en sitemas en la UTN. Actualmente estoy estudiando en Digital House, mis hobby son jugar al futbol y jugar videojuegos.
 
 - Masquere, Joaquin Hernan
   
