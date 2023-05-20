@@ -57,12 +57,12 @@ Puedes seguir nuestro progreso en el desarrollo de Game Quest Store en nuestro T
 
 [Logo de Game Quest Store](https://i.ibb.co/qpTrnR0/Logo-GQS.png)
 
-Tipografias:
-  1-The Bold Font
-  2-Segoe UI
-
-Colores:
-amarillo: #edd359
-morado: #8f43ee
-gris: #2f2d2f
-blanco: #ffffff
+- Tipografias
+  - The Bold Font
+  - Segoe UI
+  
+- Colores
+  - Amarillo: #edd359
+  - Morado: #8f43ee
+  - Gris: #2f2d2f
+  - Blanco: #ffffff
