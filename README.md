@@ -18,13 +18,10 @@ Algunas de las páginas web en las que nos basamos para desarrollar Game Quest S
 ## Grupo de Desarrollo
 
 - Cardoso, Ariel
-  - Rol: 
-  - Experiencia: 
-  - Responsabilidades: 
-  - Intereses: 
+  - Soy Ariel Cardoso, tengo 48 años, vivo en Ciudad de Buenos Aires, trabajo como administrador de infraestructura en Medicus y FIUBA. Actualmente estoy finalizando la carrera de Ingrniería en Sistemas de Información en la UTN-FRBA y estudiando la carrera de FULL STACK en Digital Hose. Mis hobbies es: natación y gimnasio. 
 
 - Cifre, Martin:
-  - Soy Martin Cifre, tengo 33 años, vivo en la Zona Sur de Buenos Aires, trabaje en diversos rubros, desde Diseño Grafico, Doblaje, gerente en hoteleria y trabajos administrativos.  Actualmente estoy estudiando en Digital Huuse y mis hobby son: Jugar a los videos juegos, ir al gimnasio, leer manga y mirar partidos de la NBA.
+  - Soy Martin Cifre, tengo 33 años, vivo en la Zona Sur de Buenos Aires, trabaje en diversos rubros, desde Diseño Grafico, Doblaje, gerente en hoteleria y trabajos administrativos.  Actualmente estoy estudiando en Digital House y mis hobby son: Jugar a los videos juegos, ir al gimnasio, leer manga y mirar partidos de la NBA.
 
 - Manso, Brian Javier
   - Soy Brian Javier Manso, tengo 21, vivo en Buenos Aire trabajo como cadete en una fermacia, anteriormente estudiaba ingenieria en sitemas en la UTN. Actualmente estoy estudiando en Digital House, mis hobby son jugar al futbol y jugar videojuegos.
