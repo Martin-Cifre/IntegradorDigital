@@ -52,3 +52,17 @@ Puedes seguir nuestro progreso en el desarrollo de Game Quest Store en nuestro T
 4. [Log in](https://i.ibb.co/tBJ6Kr7/mockup-web-login.jpg)
 5. [Producto](https://i.ibb.co/G99sKxz/mockup-web-compra.jpg)
 6. [Carrito](https://i.ibb.co/fC6xKXM/mockup-web-carrito.jpg)
+
+## Informacion Complementaria:
+
+[Logo de Game Quest Store](https://i.ibb.co/qpTrnR0/Logo-GQS.png)
+
+Tipografias:
+  1-The Bold Font
+  2-Segoe UI
+
+Colores:
+amarillo: #edd359
+morado: #8f43ee
+gris: #2f2d2f
+blanco: #ffffff
