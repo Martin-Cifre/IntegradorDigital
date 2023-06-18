@@ -1,0 +1,295 @@
+@font-face {
+font-family:'The Bold Font', sans-serif;
+src: url(http://martincifre.alwaysdata.net/THEBOLDFONT.ttf) format('truetype');
+
+}
+
+.baseDocu{
+    background-color: #2f2d2f;
+    color: white;
+    font-family: Segoe Ui;
+}
+
+input, textarea {
+    background-color: #2f2d2f ;
+}
+
+.head {
+    margin-top: 10px;
+    margin-bottom: -15px;
+    display: flex;
+    left: 150px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 300px 0px 300px;
+    }
+
+.NaviBar {
+    margin-top: 30px;
+    justify-content: space-evenly;
+   display: flex;
+   height: 60px;
+   background-color: #8f43ee;
+   font-size: 35px;
+   font-family: 'The Bold Font';
+   }
+
+.NaviBar :hover {
+    color: #edd359;
+       
+}
+.linkText {
+    color: white;
+   text-decoration: none;
+   transition: 0.5s;
+}
+
+.linkText2 {
+    color: white;
+   margin-left: 10px;
+}
+
+.linkText3 {
+    color: white;
+   text-decoration: none;
+   transition: 0.5s;
+}
+
+ .margen {
+    width: 800px;
+ }
+
+ .letraTitulos {
+    font-family: 'The Bold Font';
+    font-size: 55px;
+    color: #edd359;
+ }
+
+.letraTitulos2 {
+    font-family: 'segoe ui';
+    font-weight: bold;
+    font-size: 25px;
+    color: white;
+    font-style: normal;
+    
+ }
+
+
+
+
+ .margenes {
+    margin-left: 15vw;
+    margin-right: 15vw;
+    margin-bottom: 2vw;
+    margin-top: 2vw;
+ }
+
+ .ofertaSemanal {
+    display: flex;
+    justify-content: space-evenly;
+    font-family: 'The Bold Font';
+    font-size: 20px;
+    padding: 30px;
+    transition: 1.5s;
+   
+
+ }
+
+ .etqVenta{
+    background-color: #edd359;
+    height: 370px;
+    color:#2f2d2f;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    }
+
+
+.linkText3:hover {
+    position: relative;
+    transform: scale(1.05);
+    z-index: 1;
+    width: auto;
+    box-shadow: 0 0 10px 10px #edd359;
+    border: 1px solid #2f2d2f
+     
+}
+
+.precio{
+    font-size: 40px;
+    color: black;
+    margin-top: -30px;
+}
+
+
+.loginBox {
+    color: black;
+    font-size: 100%;
+    margin:auto;
+    padding: 30px;
+    margin-bottom: 45px;
+    }
+
+    .posicionUser {
+        position: relative;
+        left: 700px;
+        margin-right: 20px;
+        color: white;
+        width: 50%;
+    }
+
+    .posicionPass {
+        position: relative;
+        left: 660px;
+        margin-right: 20px;
+        color: white;
+    }
+
+    .posicionMail {
+        position: relative;
+        left: 735px;
+        margin-right: 20px;
+        color: white;
+    }
+
+    .botonLog {
+        text-align: center;
+        text-decoration: none;
+        color:white;
+    }
+
+    .conect {
+        padding: 10px 0px 50px;
+                
+    }
+
+
+.carrito{
+    position: relative;
+    top: 100px;
+    left: 300px;
+    margin-right: 300px;
+}
+
+.preCompra {
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: 'Segoe UI';
+    font-size: 35px;
+    color: #edd359;
+    margin-bottom: 50px;
+}
+
+.preCompraTitulo {
+    position: relative;
+    left: 200px;
+}
+
+.preCompraPrecio{
+    position: absolute;
+    left: 900px;
+}
+
+.compraTotal{
+    display: flex;
+    justify-content: end;
+    position: relative;
+    right: 500px;
+    font-family: 'Segoe UI';
+    color: #edd359;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.botonCompra {
+    position: relative;
+    left: 900px;
+    height: 50px;
+    width: 200px;
+    font-family: 'segoe UI' !important;
+    font-weight: bold !important;
+    font-size: 25px !important;
+}
+
+.botonCuenta {
+    position: relative;
+    height: 50px;
+    width: 10%;
+    font-family: 'segoe UI' !important;
+    font-weight: bold !important;
+    font-size: 25px !important;
+}
+
+.tituloVenta{
+    display: flex;
+    align-items: center;
+    
+}
+
+.tituloVenta2{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+    
+}
+
+.rating{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    right: 130px;
+}
+
+.generos{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    right: 300px;
+}
+
+.botonCompra2 {
+    position: relative;
+    left: 200px;
+    height: 50px;
+    width: 200px;
+    font-family: 'segoe UI' !important;
+    font-weight: bold !important;
+    font-size: 25px !important;
+}
+
+.productoVenta{
+    width: 1300px;
+    position: relative;
+    left: 300px;
+    margin-bottom: 100px;
+
+}
+
+.textoVenta{
+    font-family: Segoe Ui;
+    font-size: 30px;
+}
+
+.syncFooter {
+    background-color: #edd359;
+    font-family: 'The Bold Font';
+    text-align: center;
+    color: black;
+    font-size: 50px;
+
+}
+
+.syncIcons{
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    position: relative;
+    padding: 0% 50%;
+    
+}
+
+

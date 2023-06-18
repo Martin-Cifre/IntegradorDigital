@@ -1,0 +1,153 @@
+@media only screen and (min-width: 350px) and (max-width: 400px){
+
+.head {
+    height: 50px;
+    margin-left: -300px;
+    justify-content: flex-start;
+
+    }
+
+
+    .iconitos {
+        position: relative;
+        left: 50px;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+.busqueda {
+    display: none;
+}
+
+
+.NaviBar {
+    font-size: 20px;
+    height: 35px;
+}
+
+.letraTitulos {
+
+    font-size: 30px;
+}
+
+.ofertaSemanal {
+     flex-direction: column;
+     margin-bottom: -80px;
+     width: 120%;
+     
+   
+
+ }
+.etqVenta{
+    height: 350px;
+    padding: 10px;
+    margin: 10px;
+    }
+
+.syncFooter {
+    font-size: 20px;
+    position: relative;
+    top: 80px;
+
+}
+
+.syncIcons img{
+    width: 100px;
+
+}
+
+
+.carrito {
+    position: relative;
+    top: 100px;
+    left: 10px;
+    margin-right: 0;
+    
+}
+
+.preCompraTitulo {
+    position: relative;
+    left: 10px;
+    font-size: 20px;
+    
+}
+
+.preCompraPrecio{
+    position: absolute;
+    left: 300px;
+    font-size: 20px;
+}
+
+.compraTotal{
+    justify-content: start;
+    right: -50px;
+    font-size: 25px;
+}
+
+.botonCompra {
+    left: 80px;
+    
+}
+
+ .posicionUser {
+        left: 60px;
+        
+    }
+ .posicionPass {
+        left: 20px;
+        
+    }
+
+ .botonCuenta {
+    width: 40%;
+    
+}
+
+ .posicionMail {
+        left: 95px;
+  }
+ 
+  .productoVenta{
+    width: 350px;
+    left: 25px;
+
+}
+.tituloVenta {
+    position: relative;
+    top: 20px;
+    display: table-row;
+}
+
+.botonCompra2{
+    left: 60px;
+    text-align: center;
+}
+
+.tituloVenta2 {
+    width: 70%;
+    left: 120px;
+    position: relative;
+    top: 20px;
+    display: table-row;
+}
+
+.generos {
+    position: relative;
+    left: -120px;
+    top: 20px;
+    display: table-row;
+}
+
+.textoVenta{
+    font-size: 17px;
+    position: relative;
+    top: 50px;
+
+}
+
+.linkText3:hover {
+    transform: none;
+    box-shadow: none;
+    border: none;
+}
+}
