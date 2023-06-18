@@ -1,6 +1,2 @@
-# Ignorar archivos package-lock.json y package.json
-package-lock.json
-package.json
-
 # Ignorar la carpeta node_modules
 node_modules/
