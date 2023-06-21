@@ -1,6 +1,6 @@
 @font-face {
 font-family:'The Bold Font';
-src: url("../public/THEBOLDFONT.ttf");
+src: url("/THEBOLDFONT.ttf");
 
 }
 
@@ -31,7 +31,7 @@ input, textarea {
    height: 60px;
    background-color: #8f43ee;
    font-size: 35px;
-   font-family: 'THEBOLDFONT';
+   font-family: 'THE BOLD FONT';
    }
 
 .NaviBar :hover {
