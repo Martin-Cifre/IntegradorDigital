@@ -16,32 +16,7 @@
 </head>
 <body class="baseDocu">
    <div class="sticker">
-        <headder class="head" >
-            <nav>
-                <div>
-                    <a href="/">
-                    <img src="http://martincifre.alwaysdata.net/LogoGQS.png" alt="Logo" width="200" height="40">
-                    </a>
-                </div>
-            </nav>
-            
-            <div class="baseDocu busqueda">
-                <input type="search" style="width: 20vw; height: 50px"/>
-                <a href="#">
-                <i class="fa-sharp fa-solid fa-magnifying-glass fa-xl" style="color: #ffffff;"></i>
-                </a>
-
-            </div>
-            
-            <div class="iconitos">
-                <a href="/carrito">
-                <i class="fa-solid fa-cart-shopping fa-xl space" style="color: #ffffff;"></i>
-                </a>
-                <a href="user/login">
-                <i class="fa-solid fa-user fa-xl space" style="color: #ffffff;"></i>
-                </a>
-            </div>
-        </headder>
+    <%- include("partials/header") %>
 
         <nav class="NaviBar sticker">
             <a class="linkText" href="#"><p>Tienda</p></a>
@@ -84,6 +59,9 @@
         </div>
 
     </div>
+
+
+    <%- include("partials/footer") %>
 
 
     
