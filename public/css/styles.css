@@ -1,0 +1,500 @@
+body {
+  background-color: #2f2d2f !important;
+  font-family: Arial, sans-serif;
+
+}
+
+header {
+  background-color: #2f2d2f;
+  width: 100%;
+  height: 8vw;
+}
+
+
+/* NAVBAR */
+#inicio {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1vw;
+}
+
+.imagenInicio {
+  width: 230px;
+  height: 60px;
+}
+
+.searchbar {
+  width: 25vw;
+  text-align: center;
+  color: white;
+  height: auto;
+  font-size: 20px;
+  background-color: #2f2d2f;
+  border-color: white;
+  border-radius: 1.5vw;
+}
+
+.logos-search {
+  text-shadow: -2px -2px 1px #000;
+  padding-left: 1.2vw;
+  padding-right: 1.2vw;
+}
+
+/* TIENDA USADOS DESCUENTOS ONLINE */
+section{
+  padding-top: 8px;
+}
+
+.opciones {
+  background-color: #8f43ee;
+  width: 100%;
+  height: 65px;
+  color: white;
+  font-family: 'Geologica', sans-serif;
+  font-size: 1.5vw;
+}
+
+.posicion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.palabras {
+  text-shadow: -2px -2px 1px #000;
+  padding: 10px 25px 0px 25px;
+  ;
+}
+
+/* NAVBAR */
+.login-box-centrado {
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5vw;
+}
+
+.login-box {
+  background: #111111;
+  color: #fff;
+  box-sizing: border-box;
+  padding: 50px 30px;
+  width: 30vw;
+}
+
+.login-box .avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  top: -50px;
+  left: calc(50% - 50px);
+}
+
+.login-box h2 {
+  margin: 0;
+  padding: 0 0 60px;
+  text-align: center;
+  font-size: 3vw;
+}
+
+.login-box label {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  display: block;
+}
+
+.login-box input {
+  width: 100%;
+  margin-bottom: 2vw;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"],
+.login-box input[type="email"] {
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: #fff;
+  font-size: 16px;
+}
+
+.login-box input[type="submit"] {
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #8f43ee;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+}
+
+.login-box input[type="submit"]:hover {
+  cursor: pointer;
+  background: #ffc107;
+  color: #000;
+}
+
+.login-box a {
+  text-decoration: none;
+  font-size: 0.8vw;
+  line-height: 20px;
+  color: darkgrey;
+}
+
+.login-box a:hover {
+  color: #fff;
+}
+
+/* MAIN */
+main {
+  padding-bottom: 5vw;
+  padding-top: 5vw;
+}
+
+.letraTitulos {
+  display: flex;
+  justify-content: center;
+  font-family: 'Geologica', sans-serif;
+  font-size: 55px;
+  color: #edd359;
+  margin: 0.5vw;
+  padding: 0.5vw;
+  text-shadow: -2px -2px 1px #000;
+}
+
+.letraTitulos2 {
+  font-family: 'segoe ui';
+  font-weight: bold;
+  font-size: 25px;
+  color: white;
+  font-style: normal;
+}
+
+.linkText3 {
+  color: white;
+  text-decoration: none !important;
+  transition: 0.5s;
+}
+
+p {
+  margin: 0px !important;
+}
+
+#articulo {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #2f2d2f;
+  width: 100%;
+  font-size: 20px;
+  padding: 1vw;
+  transition: 1.5s;
+  box-sizing: border-box;
+}
+
+.card-img {
+  width: 15vw;
+  height: auto;
+}
+
+.etqVenta {
+  background-color: #edd359;
+  height: auto;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 2vw;
+  margin-top: 2vw;
+  border: 0.1vw solid rgba(0, 0, 0, 0.8);
+}
+
+.etqVenta:hover {
+  transform: scale(1.05);
+  z-index: 1;
+  width: auto;
+  box-shadow: 0 0 10px 10px #edd359;
+}
+
+.Caja-precio-titulo {
+  display: block;
+  justify-content: center;
+  height: auto;
+  width: auto;
+  margin: 0.5vw;
+}
+
+.titulo-del-precio {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  color: #000;
+  padding-top: 0.5vw;
+  font-size: 1.2vw;
+
+}
+
+.precio {
+  font-size: 2vw;
+  color: black;
+  padding-bottom: 0.4vw;
+  font-weight: bold;
+}
+
+/* MAIN */
+
+/* FOOTER */
+.syncFooter {
+  background-color: #edd359;
+  font-family: 'Geologica', sans-serif;
+  text-align: center;
+  color: black;
+  font-size: 3vw;
+
+}
+
+.syncIcons {
+  display: flex;
+  justify-content: space-around;
+  padding: 0% 50%;
+}
+
+.tamaño-img {
+  height: auto;
+  width: auto;
+}
+
+/* PRUEBA VENTA*/
+
+.letraTitulos3 {
+  display: flex;
+  justify-content: center;
+  font-family: 'Geologica', sans-serif;
+  font-size: 55px;
+  color: #edd359;
+  margin: 0.5vw;
+  padding: 0.5vw;
+  text-shadow: -2px -2px 1px #000;
+}
+
+.tituloVenta{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2vw;
+}
+
+.tituloVenta2{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  
+  
+}
+
+.rating{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.generos{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.botonCompra2 {
+  height: 50px;
+  width: 200px;
+  font-family: 'segoe UI' !important;
+  font-weight: bold !important;
+  font-size: 25px !important;
+}
+
+.productoVenta{
+  width: 1300px;
+  position: relative;
+  left: 300px;
+  margin-bottom: 100px;
+
+}
+
+.textoVenta{
+  padding: 3vw;
+  font-family: Segoe Ui;
+  font-size: 30px;
+  color: white;
+}
+
+.numeroRating {
+  padding-left: 2vw;
+}
+
+.centrado{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5vw;
+}
+
+.etqVentaCompra {
+  z-index: 1;
+  width: auto;
+  box-shadow: 0 0 10px 10px #edd359;
+}
+
+/* PRUEBA */
+
+
+
+
+
+@media (max-width: 767px) {
+
+  /* CELULAR*/
+  body {
+    margin: 0% !important;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  main {
+    padding-top: 5vw;
+  }
+
+  section {
+    padding-top: 10vw;
+  }
+
+  .imagenInicio {
+    width: 30vw;
+    height: 8vw;
+  }
+
+  .opciones {
+    font-size: 3vw;
+    height: 8vw;
+  }
+
+  .letraTitulos {
+    display: flex;
+    justify-content: center;
+    font-size: 5vw;
+  }
+
+  #inicio {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .searchbar {
+    position: static;
+    width: 33vw;
+  }
+
+  .login-box {
+    margin-top: 8vw;
+    width: 50vw;
+  }
+
+  .ofertaSemanal {
+    display: flex;
+    justify-content: space-around;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 20px;
+    padding: 2vw;
+    transition: 1.5s;
+  }
+
+  .etqVenta {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .titulo-del-precio {
+    font-size: 3.5vw;
+
+  }
+
+  .precio {
+    font-size: 3.5vw;
+  }
+
+  .syncFooter {
+    font-size: 5.8vw;
+  }
+
+  .tamaño-img {
+    height: auto;
+    width: 35vw;
+  }
+
+  .letraTitulos3{
+    font-size: 6vw;
+  }
+
+  .rating{
+    font-size: 1vw;
+  }
+
+  .generos{
+    font-size: 1vw ;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 990px) {
+
+  /* TABLET */
+  body {
+    margin: 0% !important;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  main {
+    padding-top: 4vw;
+  }
+
+  section {
+    padding-top: 40px;
+  }
+
+  .imagenInicio {
+    width: 23vw;
+    height: 5vw;
+  }
+
+  .login-box {
+    margin-top: 3vw;
+    width: 45vw;
+  }
+
+  .opciones {
+    height: 7vw;
+  }
+
+  .palabras {
+    font-size: 2.2vw;
+  }
+}
+
+@media (max-width: 1475px) and (min-width: 991px) {
+  
+  section {
+    padding-top: 45px;
+  }
+
+  .palabras {
+    font-size: 2.3vw;
+  }
+
+  .opciones{
+    height: 5vw;
+  }
+}

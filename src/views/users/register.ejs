@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Quest Store</title>
+  <link rel="icon" type="image/x-icon" href="http://martincifre.alwaysdata.net/favicon.ico">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@800&family=Roboto:ital@1&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  
+  <%- include('../partials/header') %>
+
+  <div class="login-box-centrado">
+    <div class="login-box">
+      <h2>REGISTER</h2>
+      <form action="/usersRoutes/register" method="POST">
+        <label for="username">Username</label>
+        <input type="text" name="userName" placeholder="Enter Username">
+        <label for="username">Password</label>
+        <input type="password" name="userPassword" placeholder="Enter Password">
+        <label for="password">Confirm Password</label>
+        <input type="password" name="userPasswordConfirm" placeholder="Enter Password">
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="Enter Email">
+        <input type="submit" value="Enviar">
+      </form>
+    </div>
+  </div>
+  
+  <%- include('../partials/footer') %>
+
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameQuest Store</title>
+    <link rel="icon" type="image/x-icon" href="http://martincifre.alwaysdata.net/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css" >
+    <link rel="stylesheet" href="responsive.css" >
+
+
+
+</head>
+<body>
+    <%- include('../partials/header') %>
+    
+<div class="conteiner">
+    <div class="productoVenta">
+        <div class="tituloVenta">
+            <p class="letraTitulos3">HOGWARTS LEGACY</p>
+        </div>
+        <div class="tituloVenta2">
+            <div class="rating">
+                <img src="http://martincifre.alwaysdata.net/estrellitas.png">
+                <p class="letraTitulos numeroRating">4.63</p>
+            </div>
+            <div class="generos">
+                <i class="letraTitulos2">Generos: </i>
+                <i class="letraTitulos2">
+                    <a class="linkText2" href="#"> Accion</a>, 
+                    <a class="linkText2" href="#"> Aventura</a>, 
+                    <a class="linkText2" href="#"> RPG</a>
+                </i>
+            </div>
+        </div>
+
+        <section class="etqVentaCompra">
+            <div id="carouselExampleIndicators" class="carousel slide ">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="http://martincifre.alwaysdata.net/screen01.jpg" class="d-block w-100" alt="screenshot hogwarts legacy 01">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="http://martincifre.alwaysdata.net/screen02.jpg" class="d-block w-100" alt="screenshot hogwarts legacy 02">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="http://martincifre.alwaysdata.net/screen03.jpg" class="d-block w-100" alt="screenshot hogwarts legacy 03">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            
+            <div class="textoVenta">
+                <p>Hogwarts Legacy es un RPG de acción inmersivo de mundo abierto ambientado en el mundo presentado por primera vez en los libros de Harry Potter. Ahora puedes tomar el control de la acción y estar en el centro de tu propia aventura en el mundo de los magos. Tu legado es lo que haces de él. Vive lo no escrito.</p>
+                <br>
+                <p>EXPLORA UN MUNDO ABIERTO</p>
+                <p> mundo de la magia te espera. Recorre libremente Hogwarts, Hogsmeade, el Bosque Prohibido y los alrededores del Área Terrestre.</p>
+                <br>
+                <p>SÉ EL BRUJO O LA BRUJA QUE QUIERAS SER</p>
+                <p>Aprende hechizos, prepara pociones, cultiva plantas y cuida de criaturas mágicas a lo largo de tu viaje. Clasifícate en tu casa, forja relaciones y domina habilidades para convertirte en el brujo o la bruja que quieras ser.
+                <br>
+                <br>
+                <p> UNA NUEVA HISTORIA DEL MUNDO DE LA MAGIA</p>
+                <p>Vive el mundo de la magia en una era olvidada para descubrir una verdad oculta de su pasado. Lucha contra trolls, magos oscuros, duendes y más mientras te enfrentas a un peligroso villano que amenaza el destino del mundo mágico."</p>
+                <br>
+                <br>
+            </div>
+            <div class="centrado"> <button type="button" class="btn btn-light botonCompra2">COMPRAR</button>  </div>
+        </section>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
+
+    
+<script src="js/addons/rating.js"></script>
+<script src="https://kit.fontawesome.com/06e87440fe.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
