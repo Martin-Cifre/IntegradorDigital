@@ -1,36 +1,20 @@
-const path = require('path');
+const fs = require('fs');
+const path= require('path');
+const gamesPath= path.join(__dirname, "../data/datosJuegos.json");
 
-const controlador = {
-    producto: (req,res) => {
-        let game = [
-          {
-            id: 1,
-            nombre: 'Elden Ring',
-            precio: 38.50,
-            imagenJuego: "http://martincifre.alwaysdata.net/Juego-EldenRing.png"
-          },
-          {
-            id: 2,
-            nombre: 'MARIO KART 8',
-            precio: 25.00,
-            imagenJuego: "http://martincifre.alwaysdata.net/Juego-MarioKart.png"
-          },
-          {
-            id: 3,
-            nombre: 'COD: MW2',
-            precio: 29.50,
-            imagenJuego: "http://martincifre.alwaysdata.net/Juego-COD.png"
-          },
-          {
-            id: 4,
-            nombre: 'DEAD BY DAYLIGHT',
-            precio: 15.50,
-            imagenJuego: "http://martincifre.alwaysdata.net/Juego-DBD.png"
-          },
-      ];
+const productosController = {
+    productosDetalle: (req,res) => {
+        const id = req.params.id
+        const datosJuegos = JSON.parse(fs.readFileSync(gamesPath, "utf-8"));
+        const game = datosJuegos.find(game => game.id == id)
         
-        res.render('prueba', {datosDeLosJuegos: game});
+        console.log('el juego es' + game);
+        res.render('users/producto', {game});
+    },
+
+    detalleProducto: (req,res) => {
+      res.render('users/productosDetalle')
     }
 };
 
-module.exports = controlador;
+module.exports = productosController;

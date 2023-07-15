@@ -1,5 +1,6 @@
 const usersRoutes = require('./routes/usersRoutes.js')
 const productosRoutes = require('./routes/productosRoutes.js')
+const mainRoutes = require('./routes/mainRoutes.js')
 
 const express = require('express');
 const path = require('path');
@@ -11,7 +12,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.use('/', usersRoutes);
+app.use('/', mainRoutes);
 app.use('/product', productosRoutes);
 
 app.use('*', function(req,res){
@@ -21,8 +22,8 @@ app.use('*', function(req,res){
 app.set('view engine', 'ejs');
 app.set('views', './src/views');
 
-app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(methodOverride('_method'));
 

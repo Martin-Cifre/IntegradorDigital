@@ -43,7 +43,7 @@ header {
 
 /* TIENDA USADOS DESCUENTOS ONLINE */
 section{
-  padding-top: 8px;
+  padding-top: 0px;
 }
 
 .opciones {
@@ -125,7 +125,7 @@ section{
   font-size: 16px;
 }
 
-.login-box input[type="submit"] {
+ .login-box input[type="submit"] {
   border: none;
   outline: none;
   height: 40px;
@@ -158,6 +158,23 @@ main {
   padding-top: 5vw;
 }
 
+#articulo {
+  display: inline-block;
+  background-color: #2f2d2f;
+  width: 100%;
+  font-size: 20px;
+  padding: 1vw;
+  transition: 1.5s;
+  box-sizing: border-box;
+}
+
+.container-card {
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  width: 25vw;
+}
+
 .letraTitulos {
   display: flex;
   justify-content: center;
@@ -185,19 +202,6 @@ main {
 
 p {
   margin: 0px !important;
-}
-
-#articulo {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-around;
-  background-color: #2f2d2f;
-  width: 100%;
-  font-size: 20px;
-  padding: 1vw;
-  transition: 1.5s;
-  box-sizing: border-box;
 }
 
 .card-img {

@@ -1,14 +1,11 @@
 const path = require('path');
+const fs = require('fs');
 
 const controlador = {
-    index: (req,res) => {
-        res.render("home");
-    },
-
     login: (req,res) => {
         res.render("users/login");
     },
-
+    
     register: (req,res) => {
         res.render("users/register");
     },
@@ -29,6 +26,7 @@ const controlador = {
     },
 
     create: (req,res) => {
+        
         let usuario = {
             userName: req.body.userName,
             userPassword: req.body.userPassword,

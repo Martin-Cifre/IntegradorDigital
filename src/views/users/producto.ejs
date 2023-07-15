@@ -16,20 +16,23 @@
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body>
-    <h3>HOLA</h3>
-    
-    <article class="ofertaSemanal">
-            <div class="etqVenta">
-                <% for(let i=0;i<datosDeLosJuegos.length;i++) {%>
-                    <img src='<%= datosDeLosJuegos[i].imagenJuego %>' class="card-img-top card-img">
-                    <div class="card-body Caja-precio-titulo">
-                            <H3><%= datosDeLosJuegos[i].imagenJuego %></H3>
-                            <H3><%= datosDeLosJuegos[i].nombre %></H3>
-                            <H3><%= datosDeLosJuegos[i].precio %></H3>
-                        <% } %>
-                    </div>
+
+  <main>
+    <h3 class="letraTitulos">OFERTAS DE LA SEMANA</h3>
+    <div id="articulo">
+      <div class="container-card ofertaSemanal">
+        <a class="linkText3" href="hogwarts-legacy">
+          <div class="etqVenta">
+            <img src='<%= game.imagenJuego %>' class="card-img-top card-img">
+            <div class="card-body Caja-precio-titulo">
+              <p class="titulo-del-precio"><%= game.nombre %></p>
+              <p class="precio">$<%= game.precio %></p>
             </div>
-    </article>
-    
+          </div>
+        </a>
+      </div>
+    </div>
+  </main>
+ 
 </body>
 </html>

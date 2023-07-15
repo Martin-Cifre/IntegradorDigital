@@ -3,8 +3,6 @@ const usersController = require('./../controllers/usersController.js');
  const express = require('express');
  const router = express.Router();
 
- router.get('/', usersController.index);
-
  router.get('/login', usersController.login);
 
  router.get('/register', usersController.register);
@@ -12,8 +10,6 @@ const usersController = require('./../controllers/usersController.js');
  router.post('/register', usersController.create);
 
  router.get('/search', usersController.search);
-
- router.get('/productosDetalle', usersController.productosDetalle);
 
  router.get('/edit/:idProductoJuegos', usersController.edit)
  

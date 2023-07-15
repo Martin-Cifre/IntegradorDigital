@@ -1,9 +1,12 @@
 [
     {
-    "userName": "joa",
-    "userPassword": "joa",
-    "userPasswordConfirm": "joa",
-    "email": "jo"
-}
-
-]
+      "userName": "usuario1",
+      "userPassword": "contrasena1",
+      "email": "usuario1@example.com"
+    },
+    {
+      "userName": "usuario2",
+      "userPassword": "contrasena2",
+      "email": "usuario2@example.com"
+    }
+  ]
