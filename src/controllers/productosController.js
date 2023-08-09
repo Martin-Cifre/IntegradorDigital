@@ -24,9 +24,6 @@ const controlador = {
   productosDetalle: (req, res) => {
     res.render("users/productosDetalle");
   },
-  productosDetalle: (req, res) => {
-    res.render("users/productosDetalle");
-  },
   search: (req, res) => {
     let buscarJuego = req.query.search;
     res.send(buscarJuego);
