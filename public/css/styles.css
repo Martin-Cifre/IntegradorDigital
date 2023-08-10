@@ -191,13 +191,17 @@ p {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   background-color: #2f2d2f;
   width: 100%;
   font-size: 20px;
-  padding: 1vw;
+  padding: 1vw 8vw 0 8vw ;
   transition: 1.5s;
   box-sizing: border-box;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 200px;
+  grid-row-gap: 50px;
+ 
 }
 
 .card-img {
@@ -498,3 +502,4 @@ p {
     height: 5vw;
   }
 }
+
