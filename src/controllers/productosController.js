@@ -22,7 +22,13 @@ const controlador = {
     res.render("productosEditar", { productoEdit: productoEdit });
   },
   productosDetalle: (req, res) => {
-    res.render("users/productosDetalle");
+    const datosJuegos = JSON.parse(fs.readFileSync(juegosFilePath, "utf-8"));
+    const juegoEncontrado = datosJuegos.find(juegoEncontrado => juegoEncontrado.id == req.params.id);
+    if (juegoEncontrado) {
+        res.render("users/details", {juegoEncontrado} );
+    } else {
+          /* Hay que agregar lo que mostraria si no encuentra el juego */
+    }
   },
   search: (req, res) => {
     let buscarJuego = req.query.search;

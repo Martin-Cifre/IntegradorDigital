@@ -3,25 +3,98 @@
     {
       "id": 1,
       "nombre": "Elden Ring",
+      "genero": "Acción-aventura / RPG (juego de rol) / Mundo abierto.",
+      "img1carrousel": "http://martincifre.alwaysdata.net/eldring01.jpg",
+      "img2carrousel": "http://martincifre.alwaysdata.net/eldring02.jpg",
+      "img3carrousel": "http://martincifre.alwaysdata.net/eldring03.jpg",
       "precio": 38.50,
-      "imagenJuego": "http://martincifre.alwaysdata.net/Juego-EldenRing.png"
+      "rating": 4.60,
+      "imagenJuego": "http://martincifre.alwaysdata.net/Juego-EldenRing.png",
+      "descripcion": "Elden Ring tiene lugar en las Tierras Intermedias, un continente ficticio gobernado por diferentes semidioses. Anteriormente estaba gobernado por la Reina Marika la Eterna, la cual actuaba como guardiana del Círculo de Elden, una poderosa fuerza que se manifiesta como el concepto físico del orden."
     },
     {
       "id": 2,
       "nombre": "MARIO KART 8",
+      "genero": "Carreras / Arcade.",
+      "img1carrousel": "http://martincifre.alwaysdata.net/Mario01.jpg",
+      "img2carrousel": "http://martincifre.alwaysdata.net/Mario02.jpg",
+      "img3carrousel": "http://martincifre.alwaysdata.net/Mario03.jpg",
       "precio": 25.00,
-      "imagenJuego": "http://martincifre.alwaysdata.net/Juego-MarioKart.png"
+      "rating": 4.50,
+      "imagenJuego": "http://martincifre.alwaysdata.net/Juego-MarioKart.png",
+      "descripcion": "Experimenta la emoción de la velocidad y la diversión desenfrenada con Mario Kart 8 para PC. Únete a tus personajes favoritos del mundo de Mario en emocionantes carreras llenas de giros, vueltas y obstáculos emocionantes. Domina las pistas únicas y descubre atajos secretos mientras compites en karts que pueden desafiar la gravedad, permitiéndote correr por paredes y techos."
     },
     {
       "id": 3,
       "nombre": "COD: MW2",
+      "genero": "Disparos en primera persona / Acción.",
+      "img1carrousel": "http://martincifre.alwaysdata.net/CODMW01.jpg",
+      "img2carrousel": "http://martincifre.alwaysdata.net/CODMW02.jpg",
+      "img3carrousel": "http://martincifre.alwaysdata.net/CODMW03.jpg",
       "precio": 29.50,
-      "imagenJuego": "http://martincifre.alwaysdata.net/Juego-COD.png"
+      "rating": 4,
+      "imagenJuego": "http://martincifre.alwaysdata.net/Juego-COD.png",
+      "descripcion": "Call of Duty: Modern Warfare 2 (COD: MW2) es un intenso juego de disparos en primera persona que presenta una emocionante campaña global contra el terrorismo y un trepidante modo multijugador con personalización de clases y armas. Destaca por su narrativa impactante y acción constante en un entorno moderno y realista."
     },
     {
       "id": 4,
       "nombre": "DEAD BY DAYLIGHT",
+      "genero": "Horror asimétrico / Supervivencia.",
+      "img1carrousel": "http://martincifre.alwaysdata.net/dbd01.png",
+      "img2carrousel": "http://martincifre.alwaysdata.net/dbd02.png",
+      "img3carrousel": "http://martincifre.alwaysdata.net/dbd03.png",
       "precio": 15.50,
-      "imagenJuego": "http://martincifre.alwaysdata.net/Juego-DBD.png"
+      "rating": 4,
+      "imagenJuego": "http://martincifre.alwaysdata.net/Juego-DBD.png",
+      "descripcion": "Dead by Daylight es un juego de horror asimétrico en el que los jugadores pueden asumir el papel de supervivientes tratando de escapar de un asesino despiadado o ser el asesino que persigue a los supervivientes. El juego se desarrolla en escenarios variados y ofrece una experiencia intensa en línea."
+    },
+    {
+      "id": 5,
+      "nombre": "HOGWARTS LEGACY",
+      "genero": "Acción-aventura / RPG (juego de rol) / Mundo abierto.",
+      "img1carrousel": "http://martincifre.alwaysdata.net/screen01.jpg",
+      "img2carrousel": "http://martincifre.alwaysdata.net/screen02.jpg",
+      "img3carrousel": "http://martincifre.alwaysdata.net/screen03.jpg",
+      "precio": 45.90,
+      "rating": 4.50,
+      "imagenJuego": "http://martincifre.alwaysdata.net/Juego-HogwartsLegacy.png",
+      "descripcion": "Hogwarts Legacy es un RPG de acción en un mundo abierto ambientado en el universo de los libros de Harry Potter. Por primera vez, disfruta de Hogwarts en el siglo XIX. Tu personaje es un estudiante que tiene la clave de un antiguo secreto que amenaza con destruir el mundo mágico. Ahora puedes tomar el control de la acción y ser el centro de tu propia aventura en el mundo mágico. La leyenda de Hogwarts es tuya. Crea tu propio legado."
+
+    },
+    {
+      "id": 6,
+      "nombre": "LAST OF US: P.1",
+      "genero": "Acción-aventura / Supervivencia.",
+      "img1carrousel": "http://martincifre.alwaysdata.net/LOU01.jpg",
+      "img2carrousel": "http://martincifre.alwaysdata.net/LOU02.jpg",
+      "img3carrousel": "http://martincifre.alwaysdata.net/LOU03.jpg",
+      "precio": 9.90,
+      "rating": 4.30,
+      "imagenJuego": "http://martincifre.alwaysdata.net/Juego-HogwartsLegacy.png",
+      "descripcion": "The Last of Us: Parte 1 es un juego de acción y supervivencia que sigue a Joel y Ellie, dos personajes en un mundo postapocalíptico devastado por una infección fúngica. Los jugadores deben navegar por peligros y desafíos mortales mientras desarrollan un vínculo emocional. La narrativa rica y los elementos de juego furtivo lo convierten en una experiencia inmersiva y conmovedora."
+    },
+    {
+      "id": 7,
+      "nombre": "MINECRAFT",
+      "genero": " Construcción / Aventura / Mundo abierto.",
+      "img1carrousel": "http://martincifre.alwaysdata.net/Mine01.png",
+      "img2carrousel": "http://martincifre.alwaysdata.net/mine02.png",
+      "img3carrousel": "http://martincifre.alwaysdata.net/mine03.jpg",
+      "precio": 12.25,
+      "rating": 4.00,
+      "imagenJuego": "http://martincifre.alwaysdata.net/Juego-HogwartsLegacy.png",
+      "descripcion": "Minecraft es un juego de construcción y aventuras en un mundo abierto. Los jugadores pueden explorar, recolectar recursos, construir estructuras y enfrentar desafíos. Su estilo visual pixelado y su creatividad ilimitada lo han convertido en un fenómeno cultural, permitiendo a los jugadores crear su propio mundo virtual único."
+    },
+    {
+      "id": 8,
+      "nombre": "GTA: V",
+      "genero": "Acción-aventura / Mundo abierto.",
+      "img1carrousel": "http://martincifre.alwaysdata.net/GTA01.jpg",
+      "img2carrousel": "http://martincifre.alwaysdata.net/GTA02.jpg",
+      "img3carrousel": "http://martincifre.alwaysdata.net/GTA03.jpg",
+      "precio": 9.90,
+      "rating": 4.70,
+      "imagenJuego": "http://martincifre.alwaysdata.net/Juego-HogwartsLegacy.png",
+      "descripcion": "Grand Theft Auto V (GTA V) es un juego de mundo abierto que combina acción, conducción y elementos de rol. Los jugadores pueden explorar la ficticia ciudad de Los Santos, realizar misiones, robar vehículos y participar en actividades diversas. Su narrativa compleja y su detallado entorno hacen que sea una experiencia envolvente con una mezcla única de jugabilidad y libertad."
     }
 ]

@@ -7,7 +7,7 @@ const productosController = require('../controllers/productosController.js');
 
  router.get('/search', productosController.search);
 
- router.get('/productos/detalle/:id', productosController.productosDetalle);
+ router.get('/detalle/:id', productosController.productosDetalle);
 
  router.get('/edit/:idProductoJuegos', productosController.edit)
  
