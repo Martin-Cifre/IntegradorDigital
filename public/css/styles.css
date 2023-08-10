@@ -252,6 +252,10 @@ p {
 
 /* MAIN */
 
+.center {
+  text-align: center;
+}
+
 /* FOOTER */
 .syncFooter {
   background-color: #edd359;

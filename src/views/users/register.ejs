@@ -24,16 +24,27 @@
   <div class="login-box-centrado">
     <div class="login-box">
       <h2>REGISTER</h2>
-      <form action="/usersRoutes/register" method="POST">
+      <% if (locals.errors) {
+         errors.forEach(error => { %>
+          <p class=" center"><%= error.msg %></p>
+        <% }) 
+         } 
+         %>
+         <br>
+
+      <form action="/register" method="POST">
         <label for="username">Username</label>
-        <input type="text" name="userName" placeholder="Enter Username">
+        <input type="text" name="userName" id="userName" value="<%= locals.old && old.userName ? old.userName : ''%>" placeholder="Enter Username">
         <label for="username">Password</label>
         <input type="password" name="userPassword" placeholder="Enter Password">
         <label for="password">Confirm Password</label>
         <input type="password" name="userPasswordConfirm" placeholder="Enter Password">
         <label for="email">Email</label>
-        <input type="email" name="email" placeholder="Enter Email">
+        <input type="email" name="email" id="email" value="<%= locals.old && old.email ? old.email : '' %>" placeholder="Enter Email">
+        <label for="imagenPerfil" class="form-label">Imagen perfil</label>
+                <input class="form-control" type="file" id="imagenPerfil">
         <input type="submit" value="Enviar">
+        
       </form>
     </div>
   </div>

@@ -1,3 +1,4 @@
+const { validationResult } = require('express-validator');
 const fs = require('fs');
 const path = require('path');
 const juegosFilePath = path.join(__dirname, '../data/datosJuegos.json');
@@ -16,7 +17,21 @@ const controlador = {
         res.render("users/register");
     },
     create: (req,res) => {
-        let usuario = {
+        let errors = validationResult(req);
+        if (errors.isEmpty()) {
+            let user = req.body;
+
+            userId = usersModel.create(user);
+
+            res.redirect('/users/' + userId);
+        } else {
+             res.render('users/register', { 
+                errors: errors.array(), 
+                old: req.body
+            });
+        }
+
+      /*   let usuario = {
             userName: req.body.userName,
             userPassword: req.body.userPassword,
             userPasswordConfirm: req.body.userPasswordConfirm,
@@ -26,7 +41,7 @@ const controlador = {
         let usuarioJSON = JSON.stringify(usuario);
         writeFileSync('usuarios.json', usuarioJSON);
 
-        res.redirect("/");
+        res.redirect("/"); */
     }
 
     
