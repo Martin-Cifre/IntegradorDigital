@@ -20,8 +20,8 @@ header {
 }
 
 .imagenInicio {
-  width: 230px;
-  height: 60px;
+  width: 200px;
+  height: 40px;
 }
 
 .searchbar {
@@ -351,6 +351,12 @@ p {
   z-index: 1;
   width: auto;
   box-shadow: 0 0 10px 10px #edd359;
+}
+
+.error404 {
+  text-align: center;
+  padding: 5vw;
+
 }
 
 /* PRUEBA */
