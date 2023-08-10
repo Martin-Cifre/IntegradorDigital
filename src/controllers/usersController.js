@@ -1,8 +1,11 @@
+const fs = require('fs');
 const path = require('path');
+const juegosFilePath = path.join(__dirname, '../data/datosJuegos.json');
 
 const controlador = {
     index: (req,res) => {
-        res.render("home");
+        const datosJuegos = JSON.parse(fs.readFileSync(juegosFilePath, "utf-8"));
+        res.render("home", {datosJuegos});
     },
 
     login: (req,res) => {

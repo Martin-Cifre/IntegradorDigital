@@ -70,7 +70,7 @@
       "img3carrousel": "http://martincifre.alwaysdata.net/LOU03.jpg",
       "precio": 9.90,
       "rating": 4.30,
-      "imagenJuego": "http://martincifre.alwaysdata.net/Juego-HogwartsLegacy.png",
+      "imagenJuego": "http://martincifre.alwaysdata.net/Juego-LOU.png",
       "descripcion": "The Last of Us: Parte 1 es un juego de acción y supervivencia que sigue a Joel y Ellie, dos personajes en un mundo postapocalíptico devastado por una infección fúngica. Los jugadores deben navegar por peligros y desafíos mortales mientras desarrollan un vínculo emocional. La narrativa rica y los elementos de juego furtivo lo convierten en una experiencia inmersiva y conmovedora."
     },
     {
@@ -82,7 +82,7 @@
       "img3carrousel": "http://martincifre.alwaysdata.net/mine03.jpg",
       "precio": 12.25,
       "rating": 4.00,
-      "imagenJuego": "http://martincifre.alwaysdata.net/Juego-HogwartsLegacy.png",
+      "imagenJuego": "http://martincifre.alwaysdata.net/Juego-Minecraft.png",
       "descripcion": "Minecraft es un juego de construcción y aventuras en un mundo abierto. Los jugadores pueden explorar, recolectar recursos, construir estructuras y enfrentar desafíos. Su estilo visual pixelado y su creatividad ilimitada lo han convertido en un fenómeno cultural, permitiendo a los jugadores crear su propio mundo virtual único."
     },
     {
@@ -94,7 +94,7 @@
       "img3carrousel": "http://martincifre.alwaysdata.net/GTA03.jpg",
       "precio": 9.90,
       "rating": 4.70,
-      "imagenJuego": "http://martincifre.alwaysdata.net/Juego-HogwartsLegacy.png",
+      "imagenJuego": "http://martincifre.alwaysdata.net/Juego-GTAV.png",
       "descripcion": "Grand Theft Auto V (GTA V) es un juego de mundo abierto que combina acción, conducción y elementos de rol. Los jugadores pueden explorar la ficticia ciudad de Los Santos, realizar misiones, robar vehículos y participar en actividades diversas. Su narrativa compleja y su detallado entorno hacen que sea una experiencia envolvente con una mezcla única de jugabilidad y libertad."
     }
 ]

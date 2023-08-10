@@ -2,17 +2,13 @@ const fs = require('fs');
 const path = require('path');
 
 const juegosFilePath = path.join(__dirname, '../data/datosJuegos.json');
-const game = JSON.parse(fs.readFileSync(juegosFilePath, 'utf-8'));
+const datosJuegos = JSON.parse(fs.readFileSync(juegosFilePath, 'utf-8'));
 
 
 // Abrir json de  juegos
 
 
 const controlador = {
-  producto: (req, res) => {
-    res.render('prueba', { datosDeLosJuegos: game });
-  },
-
   edit: (req, res) => {
     let idProductoJuegos = req.params.idProductoJuegos;
     res.send(idProductoJuegos)
@@ -20,6 +16,27 @@ const controlador = {
     let productoEdit = productosJuegos[idProductoJuegos];
 
     res.render("productosEditar", { productoEdit: productoEdit });
+  },
+  getCreateForm: (req, res) => {
+    res.render("users/create")
+    
+  },
+  postCreateForm: (req,res) => {
+    const datosJuegos = JSON.parse(fs.readFileSync(juegosFilePath, "utf-8"));
+    newGame = {
+      id: Math.random() + 1,
+      nombre: req.body.nombre,
+      genero: req.body.genero,
+      precio: req.body.precio,
+      rating: req.body.rating,
+      imagenJuego: req.file.imagenJuego,
+      descripcion: req.body.descripcion
+    };
+    datosJuegos.push(newGame);
+    const juegoJSON = JSON.stringify(datosJuegos, null, ' ');
+    fs.writeFileSync(juegosFilePath, juegoJSON);
+    console.log('esta todo listo')
+    res.redirect('/')
   },
   productosDetalle: (req, res) => {
     const datosJuegos = JSON.parse(fs.readFileSync(juegosFilePath, "utf-8"));

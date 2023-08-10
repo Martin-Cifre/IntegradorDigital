@@ -16,14 +16,13 @@ app.use('/', usersRoutes);
 app.use('/product', productosRoutes);
 app.use('/user', usersRoutes);
 
-app.use('*', function(req,res){
+/* app.use('*', function(req,res){
     res.send("Ruta Erronea");
-});
+}); */
 
 app.set('view engine', 'ejs');
 app.set('views', './src/views');
 
-// app.use(express.urlencoded({ extended: false}));
 app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
 
