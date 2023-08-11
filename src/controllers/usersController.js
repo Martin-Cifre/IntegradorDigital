@@ -2,6 +2,8 @@ const { validationResult } = require('express-validator');
 const fs = require('fs');
 const path = require('path');
 const juegosFilePath = path.join(__dirname, '../data/datosJuegos.json');
+const usersFilePath = path.join(__dirname, '../data/usuarios.json');
+const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 
 const controlador = {
     index: (req,res) => {
@@ -18,30 +20,36 @@ const controlador = {
     },
     create: (req,res) => {
         let errors = validationResult(req);
+        
         if (errors.isEmpty()) {
-            let user = req.body;
+            idNuevo=0;
 
-            userId = usersModel.create(user);
-
-            res.redirect('/users/' + userId);
-        } else {
-             res.render('users/register', { 
-                errors: errors.array(), 
-                old: req.body
-            });
+		for (let s of users){
+			if (idNuevo<s.id){
+				idNuevo=s.id;
+			}
         }
+            idNuevo++;
 
-      /*   let usuario = {
+        let usuarioNuevo = {
+            id: idNuevo,
             userName: req.body.userName,
             userPassword: req.body.userPassword,
             userPasswordConfirm: req.body.userPasswordConfirm,
             email: req.body.email,
+            /* image: 'vacio.jpg' */
+        };
+
+        users.push(usuarioNuevo);
+
+		fs.writeFileSync(usersFilePath, JSON.stringify(users,null,' '));
+
+		res.redirect('/');
+        
         }
-
-        let usuarioJSON = JSON.stringify(usuario);
-        writeFileSync('usuarios.json', usuarioJSON);
-
-        res.redirect("/"); */
+        else {
+           res.render('users/register', {errors: errors.array(), old: req.body } ); 
+		}
     }
 
     

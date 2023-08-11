@@ -2,14 +2,14 @@ const usersController = require('./../controllers/usersController.js');
  
  const express = require('express');
  const router = express.Router();
- const { body } = require('express-validator');
+ const { check } = require('express-validator');
 
 
     const validateCreateForm = [
-        body('first_name').notEmpty().withMessage('Debes completar el campo de nombre'),
-        body('password').notEmpty().withMessage('Debes ingresar una contraseña con 8 digitos minimo'),
-        body('confirmPassword').notEmpty().withMessage('La contraseña deben coincidir'),
-        body('email').isEmail().withMessage('Debes completar con un email valido')
+        check('first_name').notEmpty().withMessage('Debes completar el campo de nombre'),
+        check('password').notEmpty().withMessage('Debes ingresar una contraseña con 8 digitos minimo'),
+        check('confirmPassword').notEmpty().withMessage('La contraseña deben coincidir'),
+        check('email').isEmail().withMessage('Debes completar con un email valido')
 
     ]
 
