@@ -18,8 +18,34 @@ const controlador = {
     register: (req,res) => {
         res.render("users/register");
     },
-    create: (req,res) => {
-        let errors = validationResult(req);
+    create: async (req, res) => {
+        try {
+          const resultValidation = validationResult(req); 
+      
+          if (resultValidation.errors.length > 0) {
+            return res.render('users/register', {
+                errors: resultValidation.mapped(),
+                oldData: req.body
+            });
+          }
+          
+          const userToCreate = {
+            ...req.body,
+            contrasena: bcryptjs.hashSync(req.body.contrasena, 10),
+            avatar: 'be', 
+          };
+      
+          await User.crearUsuarioEnBD(userToCreate);
+      
+          res.render("login");
+        } catch (error) {
+          console.error('Error:', error);
+          
+        }
+    }
+
+
+        /* let errors = validationResult(req);
         
         if (errors.isEmpty()) {
             idNuevo=0;
@@ -37,7 +63,7 @@ const controlador = {
             userPassword: req.body.userPassword,
             userPasswordConfirm: req.body.userPasswordConfirm,
             email: req.body.email,
-            /* image: 'vacio.jpg' */
+            image: 'vacio.jpg'
         };
 
         users.push(usuarioNuevo);
@@ -50,10 +76,9 @@ const controlador = {
         else {
            res.render('users/register', {errors: errors.array(), old: req.body } ); 
 		}
+ */
     }
-
-    
-};
+ 
 
 
 

@@ -256,6 +256,9 @@ p {
   text-align: center;
 }
 
+.text-danger {
+  color: red
+}
 /* FOOTER */
 .syncFooter {
   background-color: #edd359;
