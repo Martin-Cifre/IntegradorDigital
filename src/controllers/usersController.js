@@ -4,6 +4,8 @@ const path = require('path');
 const juegosFilePath = path.join(__dirname, '../data/datosJuegos.json');
 const usersFilePath = path.join(__dirname, '../data/usuarios.json');
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+const bcryptjs = require('bcryptjs');
+const { Console } = require('console');
 
 const controlador = {
     index: (req,res) => {
@@ -19,7 +21,33 @@ const controlador = {
         res.render("users/register");
     },
     create: async (req, res) => {
-        try {
+
+        for (let s of users){
+			if (idNuevo<s.id){
+				idNuevo=s.id;
+			}
+		}
+
+		idNuevo++;
+
+        let user = {
+
+        id: idNuevo,
+        userName: req.body.userName,
+        userPassword: req.body.userPassword,
+        email: req.body.email,
+        avatar: req.body.avatar
+        };
+
+        users = users.push(user)
+
+         
+         fs.writeFileSync(usersFilePath, JSON.stringify(users, null, '')); 
+
+         return res.send('Usuario creado')
+    
+    }
+      /*   try {
           const resultValidation = validationResult(req); 
       
           if (resultValidation.errors.length > 0) {
@@ -31,11 +59,11 @@ const controlador = {
           
           const userToCreate = {
             ...req.body,
-            contrasena: bcryptjs.hashSync(req.body.contrasena, 10),
+            userPassword: bcryptjs.hashSync(req.body.userPassword, 10),
             avatar: 'be', 
           };
       
-          await User.crearUsuarioEnBD(userToCreate);
+          await usuario.usuario(userToCreate);
       
           res.render("login");
         } catch (error) {
@@ -45,23 +73,10 @@ const controlador = {
     }
 
 
-        /* let errors = validationResult(req);
-        
-        if (errors.isEmpty()) {
-            idNuevo=0;
-
-		for (let s of users){
-			if (idNuevo<s.id){
-				idNuevo=s.id;
-			}
-        }
-            idNuevo++;
-
         let usuarioNuevo = {
             id: idNuevo,
             userName: req.body.userName,
             userPassword: req.body.userPassword,
-            userPasswordConfirm: req.body.userPasswordConfirm,
             email: req.body.email,
             image: 'vacio.jpg'
         };
@@ -76,10 +91,7 @@ const controlador = {
         else {
            res.render('users/register', {errors: errors.array(), old: req.body } ); 
 		}
- */
-    }
- 
-
-
+   */
+} 
 
 module.exports = controlador;

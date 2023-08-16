@@ -23,7 +23,7 @@ const usersController = require('./../controllers/usersController.js');
  const validateCreateForm = [
     body('userName').notEmpty().withMessage('Debes completar el campo de nombre'),
     body('email')
-        .notEmpty().withMessage('Debes completar con un email valido').bail()
+        .notEmpty().withMessage('Debes completar con un email valido')
         .isEmail().withMessage('Debes escribir un formato de correo válido'),
     body('password').notEmpty().withMessage('Debes ingresar una contraseña con 8 dígitos mínimo'),
     body('avatar').custom((value, { req }) => {
