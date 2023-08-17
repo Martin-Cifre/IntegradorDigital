@@ -18,7 +18,7 @@ const productosController = require('../controllers/productosController.js');
   const upload = multer({ storage: storage })
 //  router.get('/prueba', productosController.producto);
 
- router.get('/search', productosController.search);
+router.get('/search', productosController.search);
 
  router.get('/detalle/:id', productosController.productosDetalle);
 
@@ -30,8 +30,7 @@ const productosController = require('../controllers/productosController.js');
 
  router.post('/guardar', productosController.guardar)
 
- router.get('/create', productosController.getCreateForm)
-
- router.get('/create', upload.single('imagenJuego'), productosController.postCreateForm)
+ router.get('/create', productosController.getCreateForm);
+ router.post('/create', upload.single('imagenJuego'), productosController.postCreateForm);
 
  module.exports = router; 

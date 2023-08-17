@@ -1,9 +1,20 @@
 const { validationResult } = require('express-validator');
 const fs = require('fs');
 const path = require('path');
+const cloudinary = require('cloudinary').v2;
+const streamifier = require('streamifier')
+
+cloudinary.config({
+    cloud_name: 'ddczp5dbb',
+    api_key: '745942551174111',
+    api_secret: 'Isu49y1h_cdXGXrPx5WgJ1SxA5w',
+    debug: true
+})
+
 const juegosFilePath = path.join(__dirname, '../data/datosJuegos.json');
 const usersFilePath = path.join(__dirname, '../data/usuarios.json');
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+
 const bcryptjs = require('bcryptjs');
 const { Console } = require('console');
 
@@ -22,6 +33,24 @@ const controlador = {
     },
     create: async (req, res) => {
 
+    const imageBuffer = req.file.buffer;
+    const customFileName =  'Pepe2';
+
+    const stream = cloudinary.uploader.upload_stream({ resource_type: 'image', public_id: customFileName}, (error, result) => {
+    });
+
+    streamifier.createReadStream(imageBuffer).pipe(stream);
+
+    res.send("lesto")
+
+        let users = [];
+        
+            const usersData = fs.readFileSync(usersFilePath, 'utf-8');
+                    users = JSON.parse(usersData);
+           
+
+        idNuevo=0;
+
         for (let s of users){
 			if (idNuevo<s.id){
 				idNuevo=s.id;
@@ -34,64 +63,22 @@ const controlador = {
 
         id: idNuevo,
         userName: req.body.userName,
-        userPassword: req.body.userPassword,
+        userPassword: bcryptjs.hashSync(req.body.userPassword, 10),
         email: req.body.email,
-        avatar: req.body.avatar
+        avatar: req.file ? req.file.filename : 'vacio.jpg'
         };
 
-        users = users.push(user)
+         users.push(user)
 
          
-         fs.writeFileSync(usersFilePath, JSON.stringify(users, null, '')); 
+         fs.writeFileSync(usersFilePath, JSON.stringify(users,null,' '));
 
-         return res.send('Usuario creado')
+        res.redirect('users/login')
     
+    },
+    perfil: (req,res) => {
+        res.render('users/perfil')
     }
-      /*   try {
-          const resultValidation = validationResult(req); 
-      
-          if (resultValidation.errors.length > 0) {
-            return res.render('users/register', {
-                errors: resultValidation.mapped(),
-                oldData: req.body
-            });
-          }
-          
-          const userToCreate = {
-            ...req.body,
-            userPassword: bcryptjs.hashSync(req.body.userPassword, 10),
-            avatar: 'be', 
-          };
-      
-          await usuario.usuario(userToCreate);
-      
-          res.render("login");
-        } catch (error) {
-          console.error('Error:', error);
-          
-        }
-    }
-
-
-        let usuarioNuevo = {
-            id: idNuevo,
-            userName: req.body.userName,
-            userPassword: req.body.userPassword,
-            email: req.body.email,
-            image: 'vacio.jpg'
-        };
-
-        users.push(usuarioNuevo);
-
-		fs.writeFileSync(usersFilePath, JSON.stringify(users,null,' '));
-
-		res.redirect('/');
-        
-        }
-        else {
-           res.render('users/register', {errors: errors.array(), old: req.body } ); 
-		}
-   */
 } 
 
 module.exports = controlador;

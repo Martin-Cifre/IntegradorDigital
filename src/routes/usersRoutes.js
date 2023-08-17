@@ -52,8 +52,10 @@ const usersController = require('./../controllers/usersController.js');
 
  router.post('/register', uploadFile.single('avatar'), validateCreateForm, usersController.create);
 
+ router.get('/perfil', usersController.perfil);
 
- /* router.get('/detalleProducto/:id', productosController.productoDetalle);
+
+ /*  
 
  router.get('/carritoCompra', productosController.carritoCompra);
 

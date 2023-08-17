@@ -1,5 +1,14 @@
 const fs = require('fs');
 const path = require('path');
+const cloudinary = require('cloudinary').v2;
+const streamifier = require('streamifier')
+
+cloudinary.config({
+    cloud_name: 'ddczp5dbb',
+    api_key: '745942551174111',
+    api_secret: 'Isu49y1h_cdXGXrPx5WgJ1SxA5w',
+    debug: true
+})
 
 const juegosFilePath = path.join(__dirname, '../data/datosJuegos.json');
 
@@ -20,21 +29,34 @@ const controlador = {
     
   },
   postCreateForm: (req,res) => {
+    const imageBuffer = req.file.buffer;
+    const customFileName = 'random'
+
+    const stream = cloudinary.uploader.upload_stream({ resource_type: 'image', public_id: customFileName}, (error, result) => {
+    });
+
+    streamifier.createReadStream(imageBuffer).pipe(stream);
+
+    res.send("lesto")
+
     const datosJuegos = JSON.parse(fs.readFileSync(juegosFilePath, "utf-8"));
-    newGame = {
-      id: Math.random() + 1,
-      nombre: req.body.nombre,
-      genero: req.body.genero,
-      precio: req.body.precio,
-      rating: req.body.rating,
-      imagenJuego: req.file.imagenJuego,
-      descripcion: req.body.descripcion
-    };
+    
+      newGame = {
+        id: Math.random() + 1,
+        nombre: req.body.nombre,
+        genero: req.body.genero,
+        precio: req.body.precio,
+        rating: req.body.rating,
+        imagenJuego: result.secure_url, 
+        descripcion: req.body.descripcion
+      };
+
     datosJuegos.push(newGame);
     const juegoJSON = JSON.stringify(datosJuegos, null, ' ');
     fs.writeFileSync(juegosFilePath, juegoJSON);
-    console.log('esta todo listo')
-    res.redirect('/')
+
+  
+    res.send('Juego cargado');
   },
   productosDetalle: (req, res) => {
     const datosJuegos = JSON.parse(fs.readFileSync(juegosFilePath, "utf-8"));
@@ -42,21 +64,16 @@ const controlador = {
     if (juegoEncontrado) {
         res.render("users/details", {juegoEncontrado} );
     } else {
-          /* Hay que agregar lo que mostraria si no encuentra el juego */
+          res.render('not-found')
     }
   },
   search: (req, res) => {
-    let buscarJuego = req.query.search;
-    res.send(buscarJuego);
-
-    let resultadoJuegos = [];
-
-    for (let i = 0; i > resultadoJuegos.length; i++) {
-      if (ProductosJuegos[i].name.include(buscarJuego)) {
-        resultadoJuegos.push(ProductosJuegos[i]);
-      }
-    }
-
+    const buscarJuego = req.query.search.toLowerCase();
+  
+    const datosJuegos = JSON.parse(fs.readFileSync(juegosFilePath, "utf-8"));
+    
+    const resultadoJuegos = datosJuegos.filter(juego => juego.nombre.toLowerCase().includes(buscarJuego));
+    
     res.render('resultadoJuego', { resultadoJuegos: resultadoJuegos });
   },
   alta: (req, res) => {

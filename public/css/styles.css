@@ -110,7 +110,7 @@ section{
 
 .login-box input {
   width: 100%;
-  margin-bottom: 2vw;
+  margin-bottom: 1.5vw;
 }
 
 .login-box input[type="text"],
@@ -150,6 +150,11 @@ section{
 
 .login-box a:hover {
   color: #fff;
+}
+
+.checkBox {
+  width: 1vw !important;
+  height: 1vw !important;
 }
 
 /* MAIN */
@@ -364,6 +369,29 @@ p {
   text-align: center;
   padding: 5vw;
 
+}
+
+
+/* PERFIL */
+
+.profile-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 20px;
+  display: block;
+}
+.profile-info {
+  text-align: center;
 }
 
 /* PRUEBA */
