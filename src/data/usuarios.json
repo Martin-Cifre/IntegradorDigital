@@ -12,5 +12,19 @@
   "userPassword": "password2",
   "email": "correo2@example.com",
   "avatar": "vacio.jpg"
+ },
+ {
+  "id": 3,
+  "userName": " Joako",
+  "userPassword": "$2a$10$1Gg11HFi9Y25b.RQxRESlOGTRzSITm2ukorXRPZ2KecklZkky1wxq",
+  "email": "joako@gmail.com",
+  "avatar": "1692923499045_img.PNG"
+ },
+ {
+  "id": 4,
+  "userName": " Joaquin",
+  "userPassword": "$2a$10$2o7nceZNwlGARDuCr1kp1uLTLNoXQ/FrAmo65.SqHLS/VaTehJst2",
+  "email": "joakomas@gmail.com",
+  "avatar": "1692923902853_img.PNG"
  }
 ]

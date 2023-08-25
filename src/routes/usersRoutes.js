@@ -48,6 +48,8 @@ const usersController = require('./../controllers/usersController.js');
 
  router.get('/login', usersController.login);
 
+ router.post('/login', usersController.loginStart);
+
  router.get('/register', usersController.register);
 
  router.post('/register', uploadFile.single('avatar'), validateCreateForm, usersController.create);
