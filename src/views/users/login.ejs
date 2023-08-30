@@ -30,8 +30,20 @@
         <div class="login-text">
           <label for="email">Email</label>
           <input type="text" name="email" placeholder="Enter Email">
+          <% if (locals.errors && errors.email) { %>
+            <div class="text-danger">
+              <%= errors.email.msg %>
+            </div>
+            <% } %>
+            <br>
           <label for="password">Password</label>
           <input type="password" name="userPassword" placeholder="Enter Password">
+          <% if (locals.errors && errors.password) { %>
+            <div class="text-danger">
+              <%= errors.password.msg %>
+            </div>
+            <% } %>
+            <br>
           <input type="submit" value="Log in">
       </div>
         <div>

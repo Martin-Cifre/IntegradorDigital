@@ -16,7 +16,8 @@ cloudinary.config({
     debug: true
 });
 
-const { Console } = require('console');
+const { Console, error } = require('console');
+const { validationResult } = require('express-validator');
 
 const controlador = {
     index: (req,res) => {
@@ -28,16 +29,35 @@ const controlador = {
         res.render("users/login");
     },
 
-    loginStart: (req,res) => {
-        const { email, password } = req.query;
-        const user = users.find((u) => u.email === email && bcryptjs.compareSync(password, u.userPassword));
+    processLogin: (req, res) => {
+        let errors = validationResult(req);
 
-        if (user) {
-            res.send('Inicio de sesión exitoso');
+        if (errors.isEmpty()) {
+            const usersData = fs.readFileSync(usersFilePath, 'utf-8');
+            let users = JSON.parse(usersData);
+            let usuarioALoguearse;
+
+            for (let i = 0; i < users.length; i++) {
+                if (users[i].email === req.body.email) {
+                    if (bcryptjs.compareSync(req.body.userPassword, users[i].userPassword)) {
+                        usuarioALoguearse = users[i];
+                        break;
+                    }
+                }
+            }
+
+            if (usuarioALoguearse === undefined) {
+                return res.render('users/login', {
+                    errors: [{ msg: 'Credenciales inválidas' }]
+                });
+            }
+
+            req.session.usuarioLogeado = usuarioALoguearse;
+            
+            return res.send('Inicio de sesión exitoso') /* res.redirect('/'); */
         } else {
-            res.send('Credenciales inválidas');
+            return res.render('users/login', { errors: errors.array() });
         }
-
     },
 
     register: (req,res) => {
