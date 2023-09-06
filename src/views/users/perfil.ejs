@@ -20,15 +20,27 @@
 <body>
     <%- include('../partials/header') %>
     
-    <div class="profile-container">
-        <img class="profile-picture" src="ruta_de_la_imagen.jpg" alt="Mi Foto de Perfil">
-        <div class="profile-info">
-            <h1>Nombre de Usuario</h1>
-            <p>Correo Electrónico: usuario@example.com</p>
-            <p>Ubicación: Ciudad, País</p>
-            <p>Descripción: ¡Hola! Soy un usuario feliz.</p>
-        </div>
-    </div>
+    <h1>Lista de Usuarios</h1>
+
+    <% if (usuarios && usuarios.length > 0) { %>
+        <ul>
+            <% usuarios.forEach(function(usuario) { %>
+                <li>
+                    <div class="profile-container">
+                        <img class="profile-picture" src="ruta_de_la_imagen.jpg" alt="Foto de Perfil de <%= usuario.nombre %>">
+                        <div class="profile-info">
+                            <h2><%= usuario.nombre %></h2>
+                            <p>Correo Electrónico: <%= usuario.correo %></p>
+                            <p>Ubicación: <%= usuario.ubicacion %></p>
+                            <p>Descripción: <%= usuario.descripcion %></p>
+                        </div>
+                    </div>
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>No hay usuarios disponibles.</p>
+    <% } %>
 
     <%- include('../partials/footer') %>
 </body>

@@ -31,6 +31,7 @@ router.get('/search', productosController.search);
  router.post('/guardar', productosController.guardar)
 
  router.get('/create', productosController.getCreateForm);
+ 
  router.post('/create', upload.single('imagenJuego'), productosController.postCreateForm);
 
  module.exports = router; 

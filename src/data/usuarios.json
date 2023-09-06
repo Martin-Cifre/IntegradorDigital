@@ -26,5 +26,26 @@
   "userPassword": "$2a$10$2o7nceZNwlGARDuCr1kp1uLTLNoXQ/FrAmo65.SqHLS/VaTehJst2",
   "email": "joakomas@gmail.com",
   "avatar": "1692923902853_img.PNG"
+ },
+ {
+  "id": 5,
+  "userName": " joaquin",
+  "userPassword": "$2a$10$SSQlKTYRUohRE/qqYzvtuuI5RUTq6Y1WBlJbXFSysH0jNCwDPf7N6",
+  "email": "joakosmasqueresss@gmail.com",
+  "avatar": "1693532899849_img.png"
+ },
+ {
+  "id": 6,
+  "userName": " Joaquin22",
+  "userPassword": "$2a$10$xRQzG/SZPTys0GExNhFKFeGPNn30mLu1RWYjHpNW149E4GQ9rQBXe",
+  "email": "joakosmasqueressss@gmail.com",
+  "avatar": "1693607632589_img.jpg"
+ },
+ {
+  "id": 7,
+  "userName": " Joako",
+  "userPassword": "$2a$10$ZI35vgpai4h1e0510Yjp4uzDmJ0U6ELGstVO.TlQMymyVXILXhim.",
+  "email": "joakosmasquere@gmail.com",
+  "avatar": "1693607790464_img.jpg"
  }
 ]

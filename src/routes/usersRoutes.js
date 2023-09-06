@@ -55,7 +55,7 @@ const validateLogin = [
 
  router.get('/login', usersController.login);
 
- router.post('/login', validateLogin, usersController.processLogin);
+ router.post('/login', /* validateLogin, */ usersController.processLogin);
 
  router.get('/register', usersController.register);
 

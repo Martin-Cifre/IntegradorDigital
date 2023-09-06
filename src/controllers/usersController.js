@@ -4,10 +4,14 @@ const path = require('path');
 const bcryptjs = require('bcryptjs');
 const cloudinary = require('cloudinary').v2;
 const streamifier = require('streamifier');
+const userModels = require('../modelos/usersModel');
 
 const juegosFilePath = path.join(__dirname, '../data/datosJuegos.json');
 const usersFilePath = path.join(__dirname, '../data/usuarios.json');
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+
+const { Console, error } = require('console');
+const { validationResult } = require('express-validator');
 
 cloudinary.config({
     cloud_name: 'ddczp5dbb',
@@ -16,8 +20,18 @@ cloudinary.config({
     debug: true
 });
 
-const { Console, error } = require('console');
-const { validationResult } = require('express-validator');
+function findByField(fieldName, value) {
+
+    for (const user of users) {
+      if (user[fieldName] === value) {
+        return user; 
+      }
+    }
+    
+    return null;
+  }
+
+
 
 const controlador = {
     index: (req,res) => {
@@ -30,23 +44,72 @@ const controlador = {
     },
 
     processLogin: (req, res) => {
-        let errors = validationResult(req);
+        // Busca un usuario en función del campo "email" proporcionado en la solicitud POST (req.body.email)
+        let userToLogin = findByField('email', req.body.email);
+      
+        if (userToLogin) {
+          // Verifica la contraseña solo si se encontró un usuario
+          let correctPassword = bcryptjs.compareSync(req.body.userPassword, userToLogin.userPassword);
+      
+          if (correctPassword) {
+            delete userToLogin.userPassword;
+            req.session.userLogged = userToLogin;
+      
+            if (req.body.remember) {
+              res.cookie('userEmail', req.body.email, { maxAge: (((1000 * 60) * 60) * 24) }); // cookie de 24 hs
+            }
+      
+            return res.redirect('profile');
+          } else {
+            return res.render('users/login', {
+              errors: {
+                password: {
+                  msg: 'Contraseña incorrecta'
+                }
+              },
+              old: req.body
+            });
+          }
+        } else {
+          // Maneja el caso en el que no se encontró un usuario con el correo electrónico proporcionado
+          return res.render('users/login', {
+            errors: {
+              email: {
+                msg: 'El email con el que intenta ingresar no existe'
+              }
+            },
+            old: req.body
+          });
+        }
+    
+            
 
-        if (errors.isEmpty()) {
-            const usersData = fs.readFileSync(usersFilePath, 'utf-8');
+        /* let errors = validationResult(req); */
+
+       /*  if (errors.isEmpty()) { */
+            /* const usersData = fs.readFileSync(usersFilePath, 'utf-8');
             let users = JSON.parse(usersData);
             let usuarioALoguearse;
+            
 
             for (let i = 0; i < users.length; i++) {
                 if (users[i].email === req.body.email) {
-                    if (bcryptjs.compareSync(req.body.userPassword, users[i].userPassword)) {
-                        usuarioALoguearse = users[i];
-                        break;
-                    }
+                   let usuarioALoguearse = users[i];
+                    break;
                 }
             }
 
-            if (usuarioALoguearse === undefined) {
+            let passwordCorrecto =  bcryptjs.compareSync(req.body.userPassword, usuarioALoguearse.userPassword) 
+            if  (passwordCorrecto){ 
+                delete usuarioALoguearse.password
+                req.session.usarioLogueado = usuarioALoguearse
+                return res.send('pasaste') 
+            } else {
+                return res.send('Password Incorrecto')
+            }  */
+                    
+
+             /* if (usuarioALoguearse === undefined) {
                 return res.render('users/login', {
                     errors: [{ msg: 'Credenciales inválidas' }]
                 });
@@ -54,10 +117,10 @@ const controlador = {
 
             req.session.usuarioLogeado = usuarioALoguearse;
             
-            return res.send('Inicio de sesión exitoso') /* res.redirect('/'); */
+            return res.send('Inicio de sesión exitoso') /* res.redirect('/'); 
         } else {
             return res.render('users/login', { errors: errors.array() });
-        }
+        }  */
     },
 
     register: (req,res) => {
@@ -105,11 +168,21 @@ const controlador = {
          
          fs.writeFileSync(usersFilePath, JSON.stringify(users,null,' '));
 
-        res.redirect('users/login')
+        res.redirect('login')
     
     },
     perfil: (req,res) => {
-        res.render('users/perfil')
+        fs.readFile('usuarios.json', 'utf8', (err, data) => {
+            if (err) {
+                console.error('Error al leer el archivo JSON:', err);
+                return res.status(500).send('Error interno del servidor');
+            }
+    
+            const usuario = JSON.parse(data);
+    
+            
+            res.render('users/perfil', { usuario });
+        });
     }
 } 
 
