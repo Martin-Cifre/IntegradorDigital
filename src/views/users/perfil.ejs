@@ -19,7 +19,7 @@
       </head>
 <body>
     <%- include('../partials/header') %>
-    
+    <form action="/perfil" method="GET">
     <h1>Lista de Usuarios</h1>
 
     <% if (usuarios && usuarios.length > 0) { %>
@@ -31,8 +31,6 @@
                         <div class="profile-info">
                             <h2><%= usuario.nombre %></h2>
                             <p>Correo Electrónico: <%= usuario.correo %></p>
-                            <p>Ubicación: <%= usuario.ubicacion %></p>
-                            <p>Descripción: <%= usuario.descripcion %></p>
                         </div>
                     </div>
                 </li>
@@ -41,7 +39,8 @@
     <% } else { %>
         <p>No hay usuarios disponibles.</p>
     <% } %>
-
+    </form>
+    
     <%- include('../partials/footer') %>
 </body>
 </html>

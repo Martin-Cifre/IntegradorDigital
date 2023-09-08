@@ -64,8 +64,7 @@ const validateLogin = [
  router.get('/perfil', usersController.perfil);
 
 
- /*  
-
+ /*
  router.get('/carritoCompra', productosController.carritoCompra);
 
  router.post('/newGame')

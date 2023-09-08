@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const cloudinary = require('cloudinary').v2;
 const streamifier = require('streamifier')
+const multer = require('multer');
 
 cloudinary.config({
     cloud_name: 'ddczp5dbb',
@@ -90,9 +91,55 @@ const controlador = {
   },
   guardar: (req, res) => {
     console.log(req.body);
-    res.render('altaproducto');
-  }
 
+    /* const stream = cloudinary.uploader.upload_stream(
+      { resource_type: 'image', public_id: customFileName },
+      (error, result) => {
+        if (error) {
+          console.error('Error al cargar la imagen a Cloudinary:', error);
+          return res.status(500).json({ error: 'Error al cargar la imagen' });
+        }
+      }
+    ); */
+      // La carga de la imagen fue exitosa, ahora puedes crear el nuevo juego y guardar los datos en el JSON
+
+      let productsGames = [];
+
+      const datosJuegos = fs.readFileSync(juegosFilePath, 'utf-8');
+                    productsGames = JSON.parse(datosJuegos);
+           
+
+        idNuevo=0;
+
+        for (let s of productsGames){
+			if (idNuevo<s.id){
+				idNuevo=s.id;
+			}
+		}
+
+		idNuevo++;
+
+      const newGame = {
+          id: idNuevo,
+          nombre: req.body.nombre,
+          genero: req.body.genero,
+          precio: req.body.precio,
+          rating: req.body.rating,
+          imagenJuego: req.file ? req.file.filename : 'vacio0.jpg',
+          descripcion: req.body.descripcion,
+          img1carrousel : req.file ? req.file.filename : 'vacio.jpg',
+          img2carrousel : req.file ? req.file.filename2 : 'vacio2.jpg',
+          img3carrousel : req.file ? req.file.filename3 : 'vacio3.jpg',
+      };
+
+      productsGames.push(newGame);
+
+      fs.writeFileSync(juegosFilePath, JSON.stringify(productsGames,null,' '));
+
+      console.log('Juego cargado');
+      res.status(200).json({ message: 'Juego cargado correctamente' });
+
+    }
 };
 
 module.exports = controlador;

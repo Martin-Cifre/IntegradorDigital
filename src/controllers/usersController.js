@@ -42,7 +42,6 @@ const controlador = {
     login: (req,res) => {
         res.render("users/login");
     },
-
     processLogin: (req, res) => {
         // Busca un usuario en función del campo "email" proporcionado en la solicitud POST (req.body.email)
         let userToLogin = findByField('email', req.body.email);
@@ -56,10 +55,10 @@ const controlador = {
             req.session.userLogged = userToLogin;
       
             if (req.body.remember) {
-              res.cookie('userEmail', req.body.email, { maxAge: (((1000 * 60) * 60) * 24) }); // cookie de 24 hs
+              res.cookie('email', req.body.email, { maxAge: (((1000 * 60) * 60) * 24) }); // cookie de 24 hs
             }
       
-            return res.redirect('profile');
+            return res.redirect('perfil');
           } else {
             return res.render('users/login', {
               errors: {
@@ -135,8 +134,6 @@ const controlador = {
     });
 
     streamifier.createReadStream(imageBuffer).pipe(stream);
-
-    res.send("lesto")
 
         let users = [];
         

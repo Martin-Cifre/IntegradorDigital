@@ -47,5 +47,19 @@
   "userPassword": "$2a$10$ZI35vgpai4h1e0510Yjp4uzDmJ0U6ELGstVO.TlQMymyVXILXhim.",
   "email": "joakosmasquere@gmail.com",
   "avatar": "1693607790464_img.jpg"
+ },
+ {
+  "id": 8,
+  "userName": " pepito",
+  "userPassword": "$2a$10$Spv0KnYnaEzKDLfardz2KeRuxPssU5NMRuC7A6kkZhgiI4h8aL6N2",
+  "email": "lahermanadebrian@gmail.com",
+  "avatar": "1693962569947_img.jpg"
+ },
+ {
+  "id": 9,
+  "userName": " pepito",
+  "userPassword": "$2a$10$BZmRwz0y3jfEmB7yoab7S.gQ4N8E/zIFr87.puM8WY8QC2G/o8aQG",
+  "email": "lahermanadebrian2@gmail.com",
+  "avatar": "1693962644473_img.jpg"
  }
 ]

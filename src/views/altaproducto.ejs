@@ -23,14 +23,28 @@
           <!-- Action: donde se va a enviar la informacion
              method: por que metodo voy a enviar la informacion 
              -->
-          <form action="/product/guardar" method="POST">
+          <form action="/product/guardar" method="POST" enctype="multipart/form-data">
 
-            <label for="gamename">Nombre de juego</label>
-            <input type="text" name="gameName" placeholder="Enter game">
-            <label for="descripcion">Descripcion del producto</label>
-            <input type="text" name="gameDescripcion" placeholder="Descripcion del juego">
-            <label for="precio">Precio del juego</label>
-            <input type="number" name="precio" placeholder="Item Price">
+            <label for="nombre">Name Game</label>
+              <input type="text" name="nombre" placeholder="Name Game">
+              <label for="precio">Price</label>
+              <input type="text" name="precio" placeholder="precio">
+              <label for="genero">Genero</label>
+              <input type="text" name="genero" placeholder="Genero">
+              <label for="descripcion">Descripcion</label>
+              <input type="text" name="descripcion" placeholder="Descripcion">
+              <label for="rating">Rating</label>
+              <input type="text" name="rating" placeholder="Rating">
+              <div class="mb-3">
+                <label for="imagenJuego" class="form-label">Imagen principal</label>
+                <input class="form-control" type="file" id="imagenJuego">
+                <label for="img1carrousel" class="form-label">Imagen 1 Carrousel</label>
+                <input class="form-control" type="file" name="img1carrousel" id="img1carrousel">
+                <label for="img2carrousel" class="form-label">Imagen 2 Carrousel</label>
+                <input class="form-control" type="file" name="img2carrousel" id="img2carrousel">
+                <label for="img3carrousel" class="form-label">Imagen 3 Carrousel</label>
+                <input class="form-control" type="file" name="img3carrousel" id="img3carrousel">
+              </div>
 
             <input type="submit" value="Aceptar">
           </form>
