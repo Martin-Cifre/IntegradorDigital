@@ -5,6 +5,7 @@ const bcryptjs = require('bcryptjs');
 const cloudinary = require('cloudinary').v2;
 const streamifier = require('streamifier');
 const userModels = require('../modelos/usersModel');
+const db = require('../database/models');
 
 const juegosFilePath = path.join(__dirname, '../data/datosJuegos.json');
 const usersFilePath = path.join(__dirname, '../data/usuarios.json');

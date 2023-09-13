@@ -92,7 +92,7 @@ const controlador = {
   guardar: (req, res) => {
     console.log(req.body);
 
-    /* const stream = cloudinary.uploader.upload_stream(
+     const stream = cloudinary.uploader.upload_stream(
       { resource_type: 'image', public_id: customFileName },
       (error, result) => {
         if (error) {
@@ -100,7 +100,7 @@ const controlador = {
           return res.status(500).json({ error: 'Error al cargar la imagen' });
         }
       }
-    ); */
+    ); 
       // La carga de la imagen fue exitosa, ahora puedes crear el nuevo juego y guardar los datos en el JSON
 
       let productsGames = [];

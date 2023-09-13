@@ -1,0 +1,78 @@
+USE gamequestore;
+
+-- Create table Usuario
+CREATE TABLE Usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    clave VARCHAR(255) NOT NULL,
+    avatar VARCHAR(255) NULL,
+    rol ENUM ('Creador', 'Admin', 'Usuario') NOT NULL,
+    puntos VARCHAR(4) NOT NULL,
+    dni CHAR(8) NULL,
+    fecha_alta DATE NOT NULL,
+    fecha_baja DATE NULL 
+) ENGINE=InnoDB;
+
+-- Create table Registro_Venta
+CREATE TABLE Registro_Venta (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    medio_pago ENUM('Debito','Credito', 'Puntos') NOT NULL,
+    numero_factura INT NOT NULL,
+    comprador_id INT NOT NULL
+    
+) ENGINE=InnoDB;
+
+-- Create table Calificacion
+CREATE TABLE Calificacion (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    puntuacion CHAR(1) NOT NULL,
+    comentario VARCHAR(255) NULL,
+    usuario_id INT NOT NULL,
+    juego_id INT NOT NULL
+) ENGINE=InnoDB;
+
+-- Create table Venta
+CREATE TABLE Venta (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cantidad CHAR(2) NOT NULL,
+    monto_unidad DECIMAL(10, 2) NOT NULL,
+    juego_id INT NOT NULL,
+    registro_venta_id INT NOT NULL
+) ENGINE=InnoDB;
+
+-- Create table Juego
+CREATE TABLE Juego (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    fecha_alta DATE NOT NULL,
+    fecha_baja DATE NULL,
+    descripccion VARCHAR(255) NOT NULL,
+    precio DECIMAL NOT NULL,
+    descuento VARCHAR(3) NOT NULL,
+    administrador_id INT NOT NULL,
+    categoria_id INT NOT NULL,
+    plataforma_id INT NOT NULL
+) ENGINE=InnoDB;
+
+-- Create table Imagen
+CREATE TABLE Imagen (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    url_imagen VARCHAR(255) NOT NULL,
+    juego_id INT NOT NULL
+) ENGINE=InnoDB;
+
+-- Create table Categoria
+CREATE TABLE Categoria (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    imagen VARCHAR(255) NOT NULL
+) ENGINE=InnoDB;
+
+-- Create table Plataforma
+CREATE TABLE Plataforma (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    imagen VARCHAR(255) NOT NULL
+) ENGINE=InnoDB;
