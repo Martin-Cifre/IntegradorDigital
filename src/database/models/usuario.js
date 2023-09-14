@@ -23,4 +23,4 @@ function usuarioData (sequelize, Datatypes) {
 
 }
 
-module.exports = usuarioData
+module.exports = usuarioData;

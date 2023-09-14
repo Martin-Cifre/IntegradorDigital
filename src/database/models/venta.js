@@ -17,4 +17,4 @@ function ventaData (sequelize, Datatypes) {
 
 }
 
-module.exports = ventaData
+module.exports = ventaData;

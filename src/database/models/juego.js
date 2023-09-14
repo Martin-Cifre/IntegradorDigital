@@ -22,4 +22,4 @@
     return juegos
 }
 
-module.exports = juegoData 
+module.exports = juegoData;
