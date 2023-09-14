@@ -1,14 +1,17 @@
-function juegoData (sequelize, Datatypes){
+ function juegoData (sequelize, Datatypes){
     let a = "juego";
 
     let campos = {
         id:{type: Datatypes.INTEGER, primaryKey: true, autoIncrement: true},
-        nombre: {type: Datatypes.VARCHAR},
+        nombre: {type: Datatypes.STRING},
         fecha_alta: {type: Datatypes.DATE},
         fecha_baja: {type: Datatypes.DATE},
-        descripcion: {type: Datatypes.VARCHAR},
+        descripcion: {type: Datatypes.STRING},
         precio: {type: Datatypes.DECIMAL},
-        descuento: {type: Datatypes.VARCHAR}
+        descuento: {type: Datatypes.STRING},
+        administrador_id: {type: Datatypes.INTEGER},
+        categoria_id: {type: Datatypes.INTEGER},
+        plataforma_id: {type: Datatypes.INTEGER}
 
     }
 
@@ -19,4 +22,4 @@ function juegoData (sequelize, Datatypes){
     return juegos
 }
 
-module.exports = juegoData
+module.exports = juegoData 

@@ -7,10 +7,6 @@ const streamifier = require('streamifier');
 const userModels = require('../modelos/usersModel');
 const db = require('../database/models');
 
-const juegosFilePath = path.join(__dirname, '../data/datosJuegos.json');
-const usersFilePath = path.join(__dirname, '../data/usuarios.json');
-const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
-
 const { Console, error } = require('console');
 const { validationResult } = require('express-validator');
 
@@ -20,6 +16,10 @@ cloudinary.config({
     api_secret: 'Isu49y1h_cdXGXrPx5WgJ1SxA5w',
     debug: true
 });
+
+const juegosFilePath = path.join(__dirname, '../data/datosJuegos.json');
+const usersFilePath = path.join(__dirname, '../data/usuarios.json');
+const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 
 function findByField(fieldName, value) {
 
@@ -128,13 +128,15 @@ const controlador = {
     },
     create: async (req, res) => {
 
-    const imageBuffer = req.file.buffer;
-    const customFileName =  'Pepe2';
+      const imageBuffer = req.file.buffer;
+      const customFileName = "avatarUsuarios/Usuario1";
 
-    const stream = cloudinary.uploader.upload_stream({ resource_type: 'image', public_id: customFileName}, (error, result) => {
-    });
+      const stream = cloudinary.uploader.upload_stream({ resource_type: 'image', public_id: customFileName }, (error, result) => {
+      });
 
-    streamifier.createReadStream(imageBuffer).pipe(stream);
+      streamifier.createReadStream(imageBuffer).pipe(stream);
+
+      res.send('listo')
 
         let users = [];
         

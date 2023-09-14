@@ -7,7 +7,9 @@ const usersController = require('./../controllers/usersController.js');
  const path = require('path');
 
 
- const storage = multer.diskStorage({
+
+
+ /* const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, './public/img/avatar');
     },
@@ -17,8 +19,8 @@ const usersController = require('./../controllers/usersController.js');
 
     }
  })
-
- const uploadFile = multer({ storage });
+ */
+ const uploadFile = multer();
 
  const validateCreateForm = [
     body('userName').notEmpty().withMessage('Debes completar el campo de nombre'),
