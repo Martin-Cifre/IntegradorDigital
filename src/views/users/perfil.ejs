@@ -21,25 +21,20 @@
     <%- include('../partials/header') %>
     <form action="/perfil" method="GET">
     
-        <h1>Lista de Usuarios</h1>
+        <h1>Perfil de Usuario</h1>
 
-    <% if (usuarios && usuarios.length > 0) { %>
-        <ul>
-            <% usuarios.forEach(function(usuario) { %>
-                <li>
-                    <div class="profile-container">
-                        <img class="profile-picture" src="ruta_de_la_imagen.jpg" alt="Foto de Perfil de <%= usuario.nombre %>">
-                        <div class="profile-info">
-                            <h2><%= usuario.nombre %></h2>
-                            <p>Correo Electrónico: <%= usuario.correo %></p>
-                        </div>
-                    </div>
-                </li>
-            <% }); %>
-        </ul>
+    <% if (usuario) { %>
+        <div class="profile-container">
+            <img class="profile-picture" src="<%= usuario.avatar %>" alt="Avatar de <%= usuario.nombre %>">
+            <div class="profile-info">
+                <h2><%= usuario.nombre %> <%= usuario.apellido %></h2>
+                <p>Correo Electrónico: <%= usuario.email %></p>
+            </div>
+        </div>
     <% } else { %>
-        <p>No hay usuarios disponibles.</p>
+        <p>No se encontró información del usuario.</p>
     <% } %>
+
     </form>
     
     <%- include('../partials/footer') %>

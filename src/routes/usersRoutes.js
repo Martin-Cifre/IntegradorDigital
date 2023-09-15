@@ -33,6 +33,16 @@
   
   const upload = multer();
 
+  const isAuthenticated = (req, res, next) => {
+    if (req.session.userLogged) {
+      // Si el usuario está autenticado, continúa con la solicitud
+      next();
+    } else {
+      // Si el usuario no está autenticado, redirige a la página de inicio de sesión
+      res.redirect('/login');
+    }
+  };
+
  const validateCreateForm = [
     body('userName').notEmpty().withMessage('Debes completar el campo de nombre'),
     body('apellido').notEmpty().withMessage('Debes completar el campo de apellido'),
@@ -60,7 +70,7 @@ const validateLogin = [
 
  router.post('/register', upload.single('avatar'), validateCreateForm, usersController.create);
 
- router.get('/perfil', usersController.perfil);
+ router.get('/perfil', isAuthenticated, usersController.perfil);
 
 
  /*

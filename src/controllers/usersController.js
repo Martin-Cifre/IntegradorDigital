@@ -63,7 +63,7 @@ processLogin: async (req, res) => {
     // Aquí debes obtener la lista de usuarios de tu base de datos
     const usuarios = await db.Usuario.findAll();
 
-    return res.render('users/perfil', { usuarios }); // Pasar usuarios al contexto de la vista
+    return res.render('users/perfil', { usuarios, userLogged: req.session.userLogged });
   } catch (error) {
     console.error('Error al procesar el inicio de sesión:', error);
     return res.status(500).send('Error interno del servidor');
@@ -134,7 +134,8 @@ processLogin: async (req, res) => {
         return res.status(404).send('Usuario no encontrado');
       }
   
-      res.render('users/perfil', { usuario });
+      // Pasa la variable 'usuario' a la vista 'perfil.ejs'
+      res.render('users/perfil', { usuario: usuario });
     } catch (error) {
       console.error('Error al cargar el perfil del usuario:', error);
       return res.status(500).send('Error interno del servidor');
