@@ -1,5 +1,5 @@
 function calificacionData(sequelize, Datatypes) {
-  let a = "calificacion";
+  let a = "Calificacion";
 
   let campos = {
     id: { type: Datatypes.INTEGER, primaryKey: true, autoIncrement: true },

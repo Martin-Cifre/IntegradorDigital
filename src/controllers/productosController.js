@@ -39,43 +39,46 @@ const controlador = {
     res.render("product/create")
     
   },
-  postCreateForm: (req, res) => {
-    const imageBuffer = req.file.buffer;
-    const customFileName = 'random';
+  postCreateForm: async (req, res) => {
+    try {
+      const oldProduct = await db.Juego.findOne({ where: { nombre: req.body.nombre } });
+      
+      if (!oldProduct) {
+        let imageUrl = null; // Variable para almacenar la URL de la imagen en Cloudinary
 
-    const stream = cloudinary.uploader.upload_stream({ resource_type: 'image', public_id: customFileName }, (error, result) => {
-        if (error) {
-            // Manejo de errores si la carga de la imagen falla
-            console.error('Error al cargar la imagen a Cloudinary:', error);
-            return res.status(500).json({ error: 'Error al cargar la imagen' });
+        // Verifica si se cargó una imagen
+        if (req.file) {
+          // Carga la imagen en Cloudinary y obtén la URL
+          const result = await cloudinary.uploader.upload(req.file.path, {
+            resource_type: 'imageProducto',
+          });
+          imageUrl = result.secure_url;
         }
+        
+        await db.Juego.create ({
+          nombre: req.body.nombre,
+          genero: req.body.genero,
+          precio: req.body.precio,
+          rating: req.body.rating,
+          imagenJuego: result.secure_url,
+          descripcion: req.body.descripcion,
+          fecha_alta: req.body.fecha_alta,
+          fecha_baja: req.body.fecha_baja,
+          descuento: req.body.descuento
+      });
 
-        // La carga de la imagen fue exitosa, ahora puedes crear el nuevo juego y guardar los datos en el JSON
-        const datosJuegos = JSON.parse(fs.readFileSync(juegosFilePath, "utf-8"));
-
-        const newGame = {
-            id: Math.random() + 1,
-            nombre: req.body.nombre,
-            genero: req.body.genero,
-            precio: req.body.precio,
-            rating: req.body.rating,
-            imagenJuego: result.secure_url,
-            descripcion: req.body.descripcion
-        };
-
-        datosJuegos.push(newGame);
-        const juegoJSON = JSON.stringify(datosJuegos, null, ' ');
-
-        fs.writeFileSync(juegosFilePath, juegoJSON);
-
-        console.log('Juego cargado');
-        res.status(200).json({ message: 'Juego cargado correctamente' });
-    });
-
-    streamifier.createReadStream(imageBuffer).pipe(stream);
-
-  
+      return res.render('/');
+    } else {
+      
+      return res.status(400).send('El juego ya existe');
+    }
+  } catch (error) {
+    console.error('Error al crear un nuevo producto:', error);
+    res.status(500).send('Error interno del servidor');
+  }
     console.log('Juego cargado');
+      
+    
   },
   productosDetalle: (req, res) => {
     const datosJuegos = JSON.parse(fs.readFileSync(juegosFilePath, "utf-8"));
