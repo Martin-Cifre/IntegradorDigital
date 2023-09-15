@@ -1,5 +1,5 @@
  function juegoData (sequelize, Datatypes){
-    let a = "juego";
+    let a = "Juego";
 
     let campos = {
         id:{type: Datatypes.INTEGER, primaryKey: true, autoIncrement: true},
@@ -15,7 +15,7 @@
 
     }
 
-    let config = {camelCase: false, timestamps: false};
+    let config = { camelCase: false, timestamps: false, tablename: "Juego" };
 
     const juegos = sequelize.define(a,campos,config)
 

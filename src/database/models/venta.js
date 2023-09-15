@@ -1,5 +1,5 @@
 function ventaData (sequelize, Datatypes) {
-    let a = 'venta'
+    let a = 'Venta'
 
     let campoVenta = {
         id:{type: Datatypes.INTEGER, primaryKey: true, autoIncrement: true},
@@ -9,11 +9,11 @@ function ventaData (sequelize, Datatypes) {
         registro_venta_id: {type: Datatypes.INTEGER}
     }
     
-    let config = {camelCase: false, timestamps: false};
+    let config = { camelCase: false, timestamps: false, tablename: "Venta" };
 
-    const juegos = sequelize.define(a,campoVenta,config)
+    const venta = sequelize.define(a,campoVenta,config)
 
-    return juegos
+    return venta
 
 }
 

@@ -1,5 +1,5 @@
 function plataformaData(sequelize, Datatypes) {
-  let a = "plataforma";
+  let a = "Plataforma";
 
   let campos = {
     id: { type: Datatypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -7,7 +7,7 @@ function plataformaData(sequelize, Datatypes) {
     imagen: { type: Datatypes.STRING },
   };
 
-  let config = { camelCase: false, timestamps: false };
+  let config = { camelCase: false, timestamps: false, tablename: "Plataforma" };
 
   const plataforma = sequelize.define(a, campos, config);
 

@@ -1,5 +1,5 @@
 function calificacionData(sequelize, Datatypes) {
-  let a = "calificacion";
+  let a = "Calificacion";
 
   let campos = {
     id: { type: Datatypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -9,7 +9,7 @@ function calificacionData(sequelize, Datatypes) {
     juego_id: { type: Datatypes.INTEGER },
   };
 
-  let config = { camelCase: false, timestamps: false };
+  let config = { camelCase: false, timestamps: false, tablename: "Calificacion" };
 
   const calificacion = sequelize.define(a, campos, config);
 
