@@ -7,14 +7,14 @@
  const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
  const usersController = require('./../controllers/usersController.js');
+  
 
  const cloudinaryConfig = {
-    cloud_name: process.env.CLOUDINARY_NAME,
-    api_key: process.env.CLOUDINARY_KEY,
-    api_secret: process.env.CLOUDINARY_SECRET,
-    debug: true
-  };
-  
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET,
+};
+
   cloudinary.config(cloudinaryConfig);
   
 
@@ -31,7 +31,7 @@
     },
   });
   
-  const upload = multer({ storage: storage });
+  const upload = multer();
 
  const validateCreateForm = [
     body('userName').notEmpty().withMessage('Debes completar el campo de nombre'),

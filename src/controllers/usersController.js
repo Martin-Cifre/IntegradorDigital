@@ -8,6 +8,13 @@ const { validationResult } = require('express-validator');
 const userModels = require('../modelos/usersModel');
 const db = require('../database/models');
 
+const cloudinaryConfig = {
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET,
+};
+
+cloudinary.config(cloudinaryConfig);
 
 /* function findByField(fieldName, value) {
   for (const user of users) {
@@ -65,40 +72,61 @@ const controlador = {
 
   create: async (req, res) => {
     try {
+      let imageBuffer;
+      let customFilename = "";
+    
+      if (!req.file) {
+        imageBuffer = "DefectAvatar.jpg";
+      } else {
+        imageBuffer = req.file.buffer;
+        customFilename = Date.now() + '-avatarUser';
+      }
+    
+      const folderName = 'avatar';
+      const uploadPromise = new Promise((resolve, reject) => {
+        let stream = cloudinary.uploader.upload_stream({ folder: folderName, resource_type: 'image', public_id: customFilename }, (error, result) => {
+          if (error) {
+            console.error('Error upload:', error);
+            reject(error);
+          } else {
+            console.log('Upload ok:', result);
+            resolve(result);
+          }
+        });
+    
+        streamifier.createReadStream(imageBuffer).pipe(stream);
+      });
+    
+      const uploadedImage = await uploadPromise;
+    
       const oldUser = await db.Usuario.findOne({ where: { email: req.body.email } });
-
+    
       if (!oldUser) {
-        let imageUrl = null; // Variable para almacenar la URL de la imagen en Cloudinary
-
-        // Verifica si se cargó una imagen
-        if (req.file) {
-          // Carga la imagen en Cloudinary y obtén la URL
+        let imageUrl = null; 
+    
+       if (req.file) {
           const result = await cloudinary.uploader.upload(req.file.path, {
             resource_type: 'image',
           });
           imageUrl = result.secure_url;
         }
-
+    
         await db.Usuario.create({
           nombre: req.body.nombre,
           apellido: req.body.apellido,
           email: req.body.email,
           clave: bcryptjs.hashSync(req.body.userPassword, 10),
           dni: req.body.dni,
-          avatar: imageUrl,
+          avatar: req.file ? customFilename : imageBuffer,
         });
-      
-
-      return res.render('users/login');
-    } else {
-      
-      return res.status(400).send('El usuario ya existe.');
+        return res.render('users/login');
+      } else {
+        return res.status(400).send('El usuario ya existe.');
+      }
+    } catch (error) {
+      console.error('Error al crear un nuevo usuario:', error);
+      res.status(500).send('Error interno del servidor');
     }
-  } catch (error) {
-    console.error('Error al crear un nuevo usuario:', error);
-    res.status(500).send('Error interno del servidor');
-  }
-
   },
 
   perfil: async (req, res) => {
