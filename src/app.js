@@ -19,7 +19,7 @@ app.use(cookieParser());
 }); */
 
 app.set('view engine', 'ejs');
-app.set('views', './src/views');
+app.set('views', './src/views');
 
 app.use(methodOverride('_method'));
 app.use(session ({secret: 'secreto_Quest!!!!', resave: false, saveUninitialized: true}));

@@ -45,13 +45,13 @@ const controlador = {
       let customFilename = "";
     
       if (!req.file) {
-        imageBuffer = "DefectAvatar.jpg";
+        imageBuffer = "DefectProduct.png";
       } else {
         imageBuffer = req.file.buffer;
         customFilename = Date.now() + '-avatarUser';
       }
     
-      const folderName = 'avatar';
+      const folderName = 'productos';
       const uploadPromise = new Promise((resolve, reject) => {
         let stream = cloudinary.uploader.upload_stream({ folder: folderName, resource_type: 'image', public_id: customFilename }, (error, result) => {
           if (error) {
@@ -69,7 +69,7 @@ const controlador = {
       const uploadedImage = await uploadPromise;
 
       if (!oldProduct) {
-          
+
         await db.Juego.create ({
           nombre: req.body.nombre,
           genero: req.body.genero,
@@ -82,7 +82,7 @@ const controlador = {
           descuento: req.body.descuento
       });
 
-      return res.render('/');
+      return res.render('product/create');
     } else {
       
       return res.status(400).send('El juego ya existe');
