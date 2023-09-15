@@ -41,26 +41,41 @@ const controlador = {
   },
   postCreateForm: async (req, res) => {
     try {
-      const oldProduct = await db.Juego.findOne({ where: { nombre: req.body.nombre } });
-      
-      if (!oldProduct) {
-        let imageUrl = null; // Variable para almacenar la URL de la imagen en Cloudinary
+      let imageBuffer;
+      let customFilename = "";
+    
+      if (!req.file) {
+        imageBuffer = "DefectAvatar.jpg";
+      } else {
+        imageBuffer = req.file.buffer;
+        customFilename = Date.now() + '-avatarUser';
+      }
+    
+      const folderName = 'avatar';
+      const uploadPromise = new Promise((resolve, reject) => {
+        let stream = cloudinary.uploader.upload_stream({ folder: folderName, resource_type: 'image', public_id: customFilename }, (error, result) => {
+          if (error) {
+            console.error('Error upload:', error);
+            reject(error);
+          } else {
+            console.log('Upload ok:', result);
+            resolve(result);
+          }
+        });
+    
+        streamifier.createReadStream(imageBuffer).pipe(stream);
+      });
+    
+      const uploadedImage = await uploadPromise;
 
-        // Verifica si se cargó una imagen
-        if (req.file) {
-          // Carga la imagen en Cloudinary y obtén la URL
-          const result = await cloudinary.uploader.upload(req.file.path, {
-            resource_type: 'imageProducto',
-          });
-          imageUrl = result.secure_url;
-        }
-        
+      if (!oldProduct) {
+          
         await db.Juego.create ({
           nombre: req.body.nombre,
           genero: req.body.genero,
           precio: req.body.precio,
           rating: req.body.rating,
-          imagenJuego: result.secure_url,
+          imagenJuego: req.file ? customFilename : imageBuffer,
           descripcion: req.body.descripcion,
           fecha_alta: req.body.fecha_alta,
           fecha_baja: req.body.fecha_baja,

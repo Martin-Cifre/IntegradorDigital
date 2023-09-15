@@ -35,36 +35,40 @@ const controlador = {
     res.render('users/login');
   },
 
-  processLogin: async (req, res) => {
-    try {
-      const userToLogin = await db.Usuario.findOne({
-        where: { email: req.body.email },
-      });
+  // Modifica tu controlador processLogin
+processLogin: async (req, res) => {
+  try {
+    const userToLogin = await db.Usuario.findOne({
+      where: { email: req.body.email },
+    });
 
-      if (userToLogin) {
-        const correctPassword = bcryptjs.compareSync(
-          req.body.userPassword,
-          userToLogin.clave
-        );
+    if (userToLogin) {
+      const correctPassword = bcryptjs.compareSync(
+        req.body.userPassword,
+        userToLogin.clave
+      );
 
-        if (correctPassword) {
-          delete userToLogin.dataValues.clave;
-          req.session.userLogged = userToLogin;
+      if (correctPassword) {
+        delete userToLogin.dataValues.clave;
+        req.session.userLogged = userToLogin;
 
-          if (req.body.remember) {
-            res.cookie('email', req.body.email, {
-              maxAge: 1000 * 60 * 60 * 24, // 24 hours
-            });
-          }
+        if (req.body.remember) {
+          res.cookie('email', req.body.email, {
+            maxAge: 1000 * 60 * 60 * 24, // 24 hours
+          });
         }
       }
-
-      return res.render('users/perfil');
-    } catch (error) {
-      console.error('Error al procesar el inicio de sesión:', error);
-      return res.status(500).send('Error interno del servidor');
     }
-  },
+
+    // Aquí debes obtener la lista de usuarios de tu base de datos
+    const usuarios = await db.Usuario.findAll();
+
+    return res.render('users/perfil', { usuarios }); // Pasar usuarios al contexto de la vista
+  } catch (error) {
+    console.error('Error al procesar el inicio de sesión:', error);
+    return res.status(500).send('Error interno del servidor');
+  }
+},
 
   register: (req, res) => {
     res.render('users/register');
@@ -102,14 +106,6 @@ const controlador = {
       const oldUser = await db.Usuario.findOne({ where: { email: req.body.email } });
     
       if (!oldUser) {
-        let imageUrl = null; 
-    
-       if (req.file) {
-          const result = await cloudinary.uploader.upload(req.file.path, {
-            resource_type: 'image',
-          });
-          imageUrl = result.secure_url;
-        }
     
         await db.Usuario.create({
           nombre: req.body.nombre,
