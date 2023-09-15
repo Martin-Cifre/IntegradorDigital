@@ -1,49 +1,46 @@
-const usersController = require('./../controllers/usersController.js');
- 
  const express = require('express');
  const router = express.Router();
  const { body, check } = require('express-validator');
  const multer = require('multer');
  const path = require('path');
+ const cloudinary = require('cloudinary').v2;
+ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
+ const usersController = require('./../controllers/usersController.js');
 
+ const cloudinaryConfig = {
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_KEY,
+    api_secret: process.env.CLOUDINARY_SECRET,
+    debug: true
+  };
+  
+  cloudinary.config(cloudinaryConfig);
+  
 
-
- /* const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, './public/img/avatar');
+  
+  const storage = new CloudinaryStorage({
+    cloudinary: cloudinary, // Asegúrate de que 'cloudinary' esté definido y configurado correctamente
+    params: {
+      folder: 'avatar',
+      allowedFormats: ['.jpg', '.png'],
+      filename: function (req, file, cb) {
+        const uniqueFilename = `${Date.now()}-${file.originalname}`;
+        cb(null, uniqueFilename);
+      },
     },
-    filename: (req, file, cb) => {
-        let fileName = `${Date.now()}_img${path.extname(file.originalname)}`;
-        cb(null, fileName);
-
-    }
- })
- */
- const uploadFile = multer();
+  });
+  
+  const upload = multer({ storage: storage });
 
  const validateCreateForm = [
     body('userName').notEmpty().withMessage('Debes completar el campo de nombre'),
+    body('apellido').notEmpty().withMessage('Debes completar el campo de apellido'),
+    body('dni').notEmpty().isLength({min: 8}).withMessage('Debes completar el campo de apellido'),
     body('email')
         .notEmpty().withMessage('Debes completar con un email valido')
         .isEmail().withMessage('Debes escribir un formato de correo válido'),
-    body('password').isLength({min: 8}).notEmpty().withMessage('Debes ingresar una contraseña con 8 dígitos mínimo'),
-    body('avatar').custom((value, { req }) => {
-        let file = req.file;
-        let acceptedExtensions = [ '.jpg', '.png'];
-        
-
-        if (!file) {
-            throw new Error('Tienes que subir una imagen')
-        } else {
-            let fileExtensions = path.extname(file.originalname);
-            if (acceptedExtensions.includes(fileExtensions)) {
-                throw new Error(`Las extensiones de archivos permitidas son ${acceptedExtensions.join(',')}`)
-            }
-        }
-        
-        return true;
-    })
+    body('password').isLength({min: 8}).notEmpty().withMessage('Debes ingresar una contraseña con 8 dígitos mínimo')
 ];
 
 const validateLogin = [
@@ -57,11 +54,11 @@ const validateLogin = [
 
  router.get('/login', usersController.login);
 
- router.post('/login', /* validateLogin, */ usersController.processLogin);
+ router.post('/login',  validateLogin,  usersController.processLogin);
 
  router.get('/register', usersController.register);
 
- router.post('/register', uploadFile.single('avatar'), validateCreateForm, usersController.create);
+ router.post('/register', upload.single('avatar'), validateCreateForm, usersController.create);
 
  router.get('/perfil', usersController.perfil);
 

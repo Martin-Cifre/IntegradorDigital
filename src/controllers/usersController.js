@@ -4,186 +4,118 @@ const path = require('path');
 const bcryptjs = require('bcryptjs');
 const cloudinary = require('cloudinary').v2;
 const streamifier = require('streamifier');
+const { validationResult } = require('express-validator');
 const userModels = require('../modelos/usersModel');
 const db = require('../database/models');
 
-const { Console, error } = require('console');
-const { validationResult } = require('express-validator');
 
-cloudinary.config({
-    cloud_name: 'ddczp5dbb',
-    api_key: '745942551174111',
-    api_secret: 'Isu49y1h_cdXGXrPx5WgJ1SxA5w',
-    debug: true
-});
-
-const juegosFilePath = path.join(__dirname, '../data/datosJuegos.json');
-const usersFilePath = path.join(__dirname, '../data/usuarios.json');
-const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
-
-function findByField(fieldName, value) {
-
-    for (const user of users) {
-      if (user[fieldName] === value) {
-        return user; 
-      }
+/* function findByField(fieldName, value) {
+  for (const user of users) {
+    if (user[fieldName] === value) {
+      return user;
     }
-    
-    return null;
   }
-
-
+  return null;
+} */
 
 const controlador = {
-    index: (req,res) => {
-        const datosJuegos = JSON.parse(fs.readFileSync(juegosFilePath, "utf-8"));
-        res.render("home", {datosJuegos});
-    },
+  index: (req, res) => {
+    const datosJuegos = JSON.parse(fs.readFileSync(juegosFilePath, 'utf-8'));
+    res.render('home', { datosJuegos });
+  },
 
-    login: (req,res) => {
-        res.render("users/login");
-    },
-    processLogin: (req, res) => {
-        // Busca un usuario en función del campo "email" proporcionado en la solicitud POST (req.body.email)
-        let userToLogin = findByField('email', req.body.email);
-      
-        if (userToLogin) {
-          // Verifica la contraseña solo si se encontró un usuario
-          let correctPassword = bcryptjs.compareSync(req.body.userPassword, userToLogin.userPassword);
-      
-          if (correctPassword) {
-            delete userToLogin.userPassword;
-            req.session.userLogged = userToLogin;
-      
-            if (req.body.remember) {
-              res.cookie('email', req.body.email, { maxAge: (((1000 * 60) * 60) * 24) }); // cookie de 24 hs
-            }
-      
-            return res.redirect('perfil');
-          } else {
-            return res.render('users/login', {
-              errors: {
-                password: {
-                  msg: 'Contraseña incorrecta'
-                }
-              },
-              old: req.body
-            });
-          }
-        } else {
-          // Maneja el caso en el que no se encontró un usuario con el correo electrónico proporcionado
-          return res.render('users/login', {
-            errors: {
-              email: {
-                msg: 'El email con el que intenta ingresar no existe'
-              }
-            },
-            old: req.body
-          });
-        }
-    
-            
+  login: (req, res) => {
+    res.render('users/login');
+  },
 
-        /* let errors = validationResult(req); */
-
-       /*  if (errors.isEmpty()) { */
-            /* const usersData = fs.readFileSync(usersFilePath, 'utf-8');
-            let users = JSON.parse(usersData);
-            let usuarioALoguearse;
-            
-
-            for (let i = 0; i < users.length; i++) {
-                if (users[i].email === req.body.email) {
-                   let usuarioALoguearse = users[i];
-                    break;
-                }
-            }
-
-            let passwordCorrecto =  bcryptjs.compareSync(req.body.userPassword, usuarioALoguearse.userPassword) 
-            if  (passwordCorrecto){ 
-                delete usuarioALoguearse.password
-                req.session.usarioLogueado = usuarioALoguearse
-                return res.send('pasaste') 
-            } else {
-                return res.send('Password Incorrecto')
-            }  */
-                    
-
-             /* if (usuarioALoguearse === undefined) {
-                return res.render('users/login', {
-                    errors: [{ msg: 'Credenciales inválidas' }]
-                });
-            }
-
-            req.session.usuarioLogeado = usuarioALoguearse;
-            
-            return res.send('Inicio de sesión exitoso') /* res.redirect('/'); 
-        } else {
-            return res.render('users/login', { errors: errors.array() });
-        }  */
-    },
-
-    register: (req,res) => {
-        res.render("users/register");
-    },
-    create: async (req, res) => {
-
-      const imageBuffer = req.file.buffer;
-      const customFileName = "avatarUsuarios/Usuario1";
-
-      const stream = cloudinary.uploader.upload_stream({ resource_type: 'image', public_id: customFileName }, (error, result) => {
+  processLogin: async (req, res) => {
+    try {
+      const userToLogin = await db.Usuario.findOne({
+        where: { email: req.body.email },
       });
 
-      streamifier.createReadStream(imageBuffer).pipe(stream);
+      if (userToLogin) {
+        const correctPassword = bcryptjs.compareSync(
+          req.body.userPassword,
+          userToLogin.clave
+        );
 
-      res.send('listo')
+        if (correctPassword) {
+          delete userToLogin.dataValues.clave;
+          req.session.userLogged = userToLogin;
 
-        let users = [];
-        
-            const usersData = fs.readFileSync(usersFilePath, 'utf-8');
-                    users = JSON.parse(usersData);
-           
+          if (req.body.remember) {
+            res.cookie('email', req.body.email, {
+              maxAge: 1000 * 60 * 60 * 24, // 24 hours
+            });
+          }
+        }
+      }
 
-        idNuevo=0;
-
-        for (let s of users){
-			if (idNuevo<s.id){
-				idNuevo=s.id;
-			}
-		}
-
-		idNuevo++;
-
-        let user = {
-
-        id: idNuevo,
-        userName: req.body.userName,
-        userPassword: bcryptjs.hashSync(req.body.userPassword, 10),
-        email: req.body.email,
-        avatar: req.file ? req.file.filename : 'vacio.jpg'
-        };
-
-         users.push(user)
-
-         
-         fs.writeFileSync(usersFilePath, JSON.stringify(users,null,' '));
-
-        res.redirect('login')
-    
-    },
-    perfil: (req,res) => {
-        fs.readFile('usuarios.json', 'utf8', (err, data) => {
-            if (err) {
-                console.error('Error al leer el archivo JSON:', err);
-                return res.status(500).send('Error interno del servidor');
-            }
-    
-            const usuario = JSON.parse(data);
-    
-            
-            res.render('users/perfil', { usuario });
-        });
+      return res.render('users/perfil');
+    } catch (error) {
+      console.error('Error al procesar el inicio de sesión:', error);
+      return res.status(500).send('Error interno del servidor');
     }
-} 
+  },
+
+  register: (req, res) => {
+    res.render('users/register');
+  },
+
+  create: async (req, res) => {
+    try {
+      const oldUser = await db.Usuario.findOne({ where: { email: req.body.email } });
+
+      if (!oldUser) {
+        let imageUrl = null; // Variable para almacenar la URL de la imagen en Cloudinary
+
+        // Verifica si se cargó una imagen
+        if (req.file) {
+          // Carga la imagen en Cloudinary y obtén la URL
+          const result = await cloudinary.uploader.upload(req.file.path, {
+            resource_type: 'image',
+          });
+          imageUrl = result.secure_url;
+        }
+
+        await db.Usuario.create({
+          nombre: req.body.nombre,
+          apellido: req.body.apellido,
+          email: req.body.email,
+          clave: bcryptjs.hashSync(req.body.userPassword, 10),
+          dni: req.body.dni,
+          avatar: imageUrl,
+        });
+      
+
+      return res.render('users/login');
+    } else {
+      
+      return res.status(400).send('El usuario ya existe.');
+    }
+  } catch (error) {
+    console.error('Error al crear un nuevo usuario:', error);
+    res.status(500).send('Error interno del servidor');
+  }
+
+  },
+
+  perfil: async (req, res) => {
+    try {
+      const usuarioId = req.session.userLogged.id; // ID del usuario almacenado en la sesión
+      const usuario = await db.Usuario.findByPk(usuarioId);
+  
+      if (!usuario) {
+        return res.status(404).send('Usuario no encontrado');
+      }
+  
+      res.render('users/perfil', { usuario });
+    } catch (error) {
+      console.error('Error al cargar el perfil del usuario:', error);
+      return res.status(500).send('Error interno del servidor');
+    }
+  }
+};
 
 module.exports = controlador;

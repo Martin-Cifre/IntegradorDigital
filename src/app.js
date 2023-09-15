@@ -8,9 +8,6 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const app = express();
 
-/* const multer = require('multer');
-const upload = multer({ storage });  */
-
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.use(express.urlencoded({ extended: false}));

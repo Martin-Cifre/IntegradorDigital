@@ -3,7 +3,7 @@ const path = require('path');
 const cloudinary = require('cloudinary').v2;
 const streamifier = require('streamifier')
 const multer = require('multer');
-
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 cloudinary.config({
     cloud_name: 'ddczp5dbb',
     api_key: '745942551174111',
@@ -11,8 +11,18 @@ cloudinary.config({
     debug: true
 })
 
-const juegosFilePath = path.join(__dirname, '../data/datosJuegos.json');
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  folder: 'productos', 
+  allowedFormats: ['jpg', 'png'],
+  filename: function (req, file, cb) {
+    cb(undefined, 'productos');
+  },
+});
 
+const upload = multer({ storage: storage });
+
+const juegosFilePath = path.join(__dirname, '../data/datosJuegos.json');
 // Abrir json de  juegos
 
 
