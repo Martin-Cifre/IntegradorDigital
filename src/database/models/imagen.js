@@ -1,5 +1,5 @@
 function imagenData(sequelize, Datatypes) {
-  let a = "imagen";
+  let a = "Imagen";
 
   let campos = {
     id: { type: Datatypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -7,11 +7,11 @@ function imagenData(sequelize, Datatypes) {
     juego_id: { type: Datatypes.INTEGER },
   };
 
-  let config = { camelCase: false, timestamps: false };
+  let config = { camelCase: false, timestamps: false, tablename: "Imagen" };
 
-  const imagen = sequelize.define(a, campos, config);
+  const Imagen = sequelize.define(a, campos, config);
 
-  return imagen;
+  return Imagen;
 }
 
 module.exports = imagenData;

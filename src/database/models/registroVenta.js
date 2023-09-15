@@ -1,5 +1,5 @@
  function regvenData (sequelize, Datatypes) {
-  let a = "registroVenta";
+  let a = "RegistroVenta";
 
   let campos = {
     id: { type: Datatypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -8,7 +8,7 @@
     comprador_id: { type: Datatypes.INTEGER },
   };
 
-  let config = { camelCase: false, timestamps: false };
+  let config = { camelCase: false, timestamps: false, tablename: "RegistroVenta" };
 
   const registroVenta = sequelize.define(a, campos, config);
 

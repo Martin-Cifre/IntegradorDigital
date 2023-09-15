@@ -1,5 +1,5 @@
 function categoriaData(sequelize, Datatypes) {
-    let a = "categoria";
+    let a = "Categoria";
   
     let camposCategoria = {
       id: { type: Datatypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -7,11 +7,11 @@ function categoriaData(sequelize, Datatypes) {
       juego_id: { type: Datatypes.INTEGER },
     };
   
-    let config = { camelCase: false, timestamps: false };
+    let config = { camelCase: false, timestamps: false, tablename: "Categoria" };
   
-    const imagen = sequelize.define(a, camposCategoria, config);
+    const Categoria = sequelize.define(a, camposCategoria, config);
   
-    return imagen;
+    return Categoria;
   }
   
   module.exports = categoriaData;

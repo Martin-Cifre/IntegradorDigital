@@ -20,9 +20,9 @@ function usuarioData (sequelize, Datatypes) {
     
     let config = {camelCase: false, timestamps: false, tablename: "Usuario"};
 
-    const juegos = sequelize.define(a,campoUsuario,config)
+    const usuario = sequelize.define(a,campoUsuario,config)
 
-    return juegos
+    return usuario
 
 }
 
