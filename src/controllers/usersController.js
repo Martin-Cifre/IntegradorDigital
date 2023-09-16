@@ -26,9 +26,20 @@ cloudinary.config(cloudinaryConfig);
 } */
 
 const controlador = {
-  index: (req, res) => {
-    const datosJuegos = JSON.parse(fs.readFileSync(juegosFilePath, 'utf-8'));
-    res.render('home', { datosJuegos });
+  index: async (req, res) => {
+    try {
+      // Consulta los juegos desde la base de datos utilizando el modelo de juego
+      const juegos = await db.Juego.findAll({
+        include: [{ model: db.Imagen, as: 'imagenes' }], // Incluye las imágenes relacionadas
+        attributes: ['id', 'nombre', 'precio'], // Puedes seleccionar las columnas que deseas recuperar
+      });
+  
+      // Renderiza la vista 'home' con los juegos y sus imágenes obtenidos de la base de datos
+      res.render('home', { datosJuegos: juegos });
+    } catch (error) {
+      console.error('Error al obtener juegos desde la base de datos:', error);
+      res.status(500).json({ error: 'Hubo un error al obtener los juegos desde la base de datos.' });
+    }
   },
 
   login: (req, res) => {

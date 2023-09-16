@@ -7,11 +7,21 @@ function imagenData(sequelize, Datatypes) {
     juego_id: { type: Datatypes.INTEGER },
   };
 
-  let config = { camelCase: false, timestamps: false, tablename: "Imagen" };
+  
 
-  const Imagen = sequelize.define(a, campos, config);
+  let config = { camelCase: false, timestamps: false, tableName: "Imagen" };
 
-  return Imagen;
+  const imagen = sequelize.define(a, campos, config);
+
+  imagen.associate = function (modelos) {
+
+    imagen.belongsTo(modelos.Juego, {
+        as: "juegos",
+        foreignKey: "juego_id"
+    });
+};
+
+  return imagen;
 }
 
 module.exports = imagenData;

@@ -15,11 +15,19 @@
 
     }
 
+
     let config = { camelCase: false, timestamps: false, tablename: "Juego" };
 
-    const juegos = sequelize.define(a,campos,config)
+    const Juego = sequelize.define(a,campos,config)
 
-    return juegos
+    Juego.associate = function (modelos) {
+        Juego.hasMany(modelos.Imagen, {
+          as: 'imagenes',
+          foreignKey: 'juego_id', // Asegúrate de que la clave foránea sea la correcta
+        });
+      }
+
+    return Juego
 }
 
 module.exports = juegoData;
