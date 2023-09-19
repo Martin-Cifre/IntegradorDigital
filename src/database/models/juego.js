@@ -4,6 +4,7 @@
     let campos = {
         id:{type: Datatypes.INTEGER, primaryKey: true, autoIncrement: true},
         nombre: {type: Datatypes.STRING},
+        apellido: {type: Datatypes.STRING},
         fecha_alta: {type: Datatypes.DATE},
         fecha_baja: {type: Datatypes.DATE},
         descripcion: {type: Datatypes.STRING},
@@ -23,7 +24,7 @@
     Juego.associate = function (modelos) {
         Juego.hasMany(modelos.Imagen, {
           as: 'imagenes',
-          foreignKey: 'juego_id', // Asegúrate de que la clave foránea sea la correcta
+          foreignKey: 'juego_id', // Clave foranea 
         });
       }
 

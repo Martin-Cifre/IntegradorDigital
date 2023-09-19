@@ -27,11 +27,11 @@
          <br>
 
       <form action="/register" method="POST" enctype="multipart/form-data">
-        <label for="username">Nombre</label>
-        <input type="text" name="userName" id="userName"  value="<%= locals.oldData && oldData.userName ? oldData.userName : ' '%>" placeholder="Ingresa el Username">
-        <% if (locals.errors && errors.userName) { %>
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" id="nombre"  value="<%= locals.oldData && oldData.nombre ? oldData.nombre : ' '%>" placeholder="Ingresa el nombre">
+        <% if (locals.errors && errors.nombre) { %>
             <div class="text-danger">
-              <%= errors.userName.msg %>
+              <%= errors.nombre.msg %>
             </div>
             <% } %>
             <br>
