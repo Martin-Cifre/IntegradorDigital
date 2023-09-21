@@ -3,7 +3,7 @@ function imagenData(sequelize, Datatypes) {
 
   let campos = {
     id: { type: Datatypes.INTEGER, primaryKey: true, autoIncrement: true },
-    urlImagen: { type: Datatypes.STRING },
+    url_imagen: { type: Datatypes.STRING },
     juego_id: { type: Datatypes.INTEGER },
   };
 

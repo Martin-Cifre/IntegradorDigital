@@ -11,6 +11,13 @@ function categoriaData(sequelize, Datatypes) {
   
     const Categoria = sequelize.define(a, camposCategoria, config);
   
+    Categoria.associate = function (modelos) {
+      Categoria.hasMany(modelos.Juego, {
+        as: 'juegos',
+        foreignKey: 'categoria_id',
+      });
+    }
+
     return Categoria;
   }
   

@@ -1,18 +1,19 @@
 <main>
   <h3 class="letraTitulos">OFERTAS DE LA SEMANA</h3>
   <div id="articulo">
-    <% datosJuegos.forEach(juegoEncontrado => { %>
+    <% juegos.forEach(juegoEncontrado => { %>
     <article class="ofertaSemanal">
       <a class="linkText3" href="/product/detalle/<%= juegoEncontrado.id %>">
         <div class="etqVenta">
-          <img src="<%= juegoEncontrado.imagenes[0].urlImagen %>" class="card-img-top card-img" alt="...">
-          <!-- ^ Usa 'imagenes[0]' para acceder a la primera imagen relacionada (ajusta esto si hay múltiples imágenes) -->
+          <img src="<%= juegoEncontrado.imagenes[0].url_imagen %>" alt="<%= juegoEncontrado.nombre %>">
+          <!-- ^ Usa 'imagenes[0]' para acceder a la primera imagen relacionada -->
           <div class="card-body Caja-precio-titulo">
             <p class="titulo-del-precio"><%= juegoEncontrado.nombre %></p>
             <p class="precio">$<%= juegoEncontrado.precio %></p>
           </div>
+          <button type="button" class="btn btn-danger">Eliminar Juego</button>
         </div>
-        <button type="button" class="btn btn-danger">Eliminar Juego</button>
+        
       </a>
     </article>
     <% }) %>

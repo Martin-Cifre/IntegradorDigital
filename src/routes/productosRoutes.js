@@ -4,18 +4,30 @@ const productosController = require('../controllers/productosController.js');
  const router = express.Router();
  const multer = require('multer');
  const path = require ("path");
+ const cloudinary = require('cloudinary').v2;
+ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
- const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, path.join, '../../public/img')
-    },
-    filename: function (req, file, cb) {
-      const uniqueSuffix = Date.now()
-      cb(null, "games-" + uniqueSuffix + path.extname(file.originalname))
-    }
-  })
+  const cloudinaryConfig = {
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_KEY,
+    api_secret: process.env.CLOUDINARY_SECRET,
+  };
+
+  cloudinary.config(cloudinaryConfig);
   
-  const upload = multer({ storage: storage })
+  const storage = new CloudinaryStorage({
+    cloudinary: cloudinary, // Asegúrate de que 'cloudinary' esté definido y configurado correctamente
+    params: {
+      folder: 'productos',
+      allowedFormats: ['.jpg', '.png'],
+      filename: function (req, file, cb) {
+        const uniqueFilename = `${Date.now()}-${file.originalname}`;
+        cb(null, uniqueFilename);
+      },
+    },
+  });
+  
+  const upload = multer();
 //  router.get('/prueba', productosController.producto);
 
 router.get('/search', productosController.search);
@@ -23,12 +35,8 @@ router.get('/search', productosController.search);
  router.get('/detalle/:id', productosController.productosDetalle);
 
  router.get('/edit/:idProductoJuegos', productosController.edit)
- 
- router.put('/edit', productosController.edit)
 
- router.get('/alta', productosController.alta)
-
- router.post('/guardar', productosController.guardar)
+router.put('/update/:idProductoJuegos', productosController.update)
 
  router.get('/create', productosController.getCreateForm);
  

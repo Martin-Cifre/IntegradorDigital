@@ -4,7 +4,6 @@
     let campos = {
         id:{type: Datatypes.INTEGER, primaryKey: true, autoIncrement: true},
         nombre: {type: Datatypes.STRING},
-        apellido: {type: Datatypes.STRING},
         fecha_alta: {type: Datatypes.DATE},
         fecha_baja: {type: Datatypes.DATE},
         descripcion: {type: Datatypes.STRING},
@@ -22,11 +21,16 @@
     const Juego = sequelize.define(a,campos,config)
 
     Juego.associate = function (modelos) {
-        Juego.hasMany(modelos.Imagen, {
-          as: 'imagenes',
-          foreignKey: 'juego_id', // Clave foranea 
-        });
-      }
+      Juego.hasMany(modelos.Imagen, {
+        as: 'imagenes',
+        foreignKey: 'juego_id',
+      });
+
+      Juego.belongsTo(modelos.Categoria, {
+        as: "categoria",
+        foreignKey: "categoria_id"
+    });
+    }
 
     return Juego
 }
