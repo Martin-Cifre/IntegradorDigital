@@ -3,8 +3,7 @@ function categoriaData(sequelize, Datatypes) {
   
     let camposCategoria = {
       id: { type: Datatypes.INTEGER, primaryKey: true, autoIncrement: true },
-      urlImagen: { type: Datatypes.STRING },
-      juego_id: { type: Datatypes.INTEGER },
+      nombre: { type: Datatypes.INTEGER },
     };
   
     let config = { camelCase: false, timestamps: false, tablename: "Categoria" };
@@ -13,7 +12,7 @@ function categoriaData(sequelize, Datatypes) {
   
     Categoria.associate = function (modelos) {
       Categoria.hasMany(modelos.Juego, {
-        as: 'juegos',
+        as: 'juego',
         foreignKey: 'categoria_id',
       });
     }

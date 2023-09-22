@@ -5,27 +5,14 @@ const streamifier = require('streamifier')
 const multer = require('multer');
 const db = require ('../database/models')
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
-cloudinary.config({
-    cloud_name: 'ddczp5dbb',
-    api_key: '745942551174111',
-    api_secret: 'Isu49y1h_cdXGXrPx5WgJ1SxA5w',
-    debug: true
-})
 
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  folder: 'productos', 
-  allowedFormats: ['jpg', 'png'],
-  filename: function (req, file, cb) {
-    cb(undefined, 'productos');
-  },
-});
+const cloudinaryConfig = {
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET,
+};
 
-const upload = multer({ storage: storage });
-
-const juegosFilePath = path.join(__dirname, '../data/datosJuegos.json');
-// Abrir json de  juegos
-
+cloudinary.config(cloudinaryConfig);
 
 const controlador = {
   edit: async (req, res) => {
@@ -40,7 +27,7 @@ const controlador = {
       res.render("product/productosEditar", { productoEdit: productoEdit });
     } catch (error) {
       console.error(error);
-      res.status(500).send('Error interno del servidor'); // Manejo de errores
+      res.status(500).send('Error interno del servidor'); 
     }
   },
   update: async (req, res) => {
@@ -48,10 +35,10 @@ const controlador = {
       const productoEdit = await db.Juego.findByPk(req.params.idProductoJuegos);
 
       if (!productoEdit) {
-        return res.status(404).send('Producto no encontrado'); // Manejo de producto no encontrado
+        return res.status(404).send('Producto no encontrado'); 
       }
 
-      // Actualizar los campos del producto con los datos del formulario
+      
       productoEdit.nombre = req.body.nombre;
       productoEdit.genero = req.body.genero;
       productoEdit.precio = req.body.precio;
@@ -61,26 +48,57 @@ const controlador = {
       productoEdit.fecha_baja = req.body.fecha_baja;
       productoEdit.descuento = req.body.descuento;
 
-      // Guardar los cambios en la base de datos
+      // Guardar los cambios en la DB
       await productoEdit.save();
 
       res.redirect('product/details' + idProductoJuegos);
     } catch (error) {
       console.error(error);
-      res.status(500).send('Error interno del servidor'); // Manejo de errores
+      res.status(500).send('Error interno del servidor');
     }
   },
-  getCreateForm: (req, res) => {
-    res.render("product/create")
+  getCreateForm: async (req, res) => {
+
+     const categorias = await db.Categoria.findAll(); 
+
+    res.render("product/create", {categorias: categorias})
     
   },
   postCreateForm: async (req, res) => {
     try {
+      let imageBuffer;
+      let customFilename = "";
+    
+      if (!req.file) {
+        imageBuffer = "DefectProduct.jpg";
+      } else {
+        imageBuffer = req.file.buffer;
+        customFilename = Date.now() + '-producto';
+      }
+    
+      const folderName = 'productos';
+      const uploadPromise = new Promise((resolve, reject) => {
+        let stream = cloudinary.uploader.upload_stream({ folder: folderName, resource_type: 'image', public_id: customFilename }, (error, result) => {
+          if (error) {
+            console.error('Error upload:', error);
+            reject(error);
+          } else {
+            console.log('Upload ok:', result);
+            resolve(result);
+          }
+        });
+    
+        streamifier.createReadStream(imageBuffer).pipe(stream);
+      });
+
+      const uploadedImage = await uploadPromise;
+
+
       if (!req.file) {
         return res.status(400).send('Debe proporcionar una imagen');
       }
   
-      // Crear el juego en la base de datos
+      // Crear el juego en la DB
       const juego = await db.Juego.create({
         nombre: req.body.nombre,
         precio: req.body.precio,
@@ -89,17 +107,19 @@ const controlador = {
         fecha_alta: req.body.fecha_alta,
         fecha_baja: req.body.fecha_baja,
         descuento: req.body.descuento,
+        categoria_id: req.body.categoria_id
       });
   
-      // Crear y asociar imágenes al juego
+
+      // Crear y asocia la imagen al juego
       const imagen = await db.Imagen.create({
-        url_imagen: result.secure_url, // Reemplaza con la URL real de la imagen
-        juego_id: juego.id, // Asociar la imagen con el juego recién creado
+        url_imagen: req.file ? customFilename : imageBuffer, 
+        juego_id: juego.id, 
       });
 
       const categorias = await db.Categoria.findAll();
   
-      return res.render('product/create', { categorias: categorias });
+      return res.render('product/create', {categorias});
     } catch (error) {
       console.error('Error al crear un nuevo producto:', error);
       return res.status(500).send('Error interno del servidor');

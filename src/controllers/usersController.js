@@ -16,25 +16,16 @@ const cloudinaryConfig = {
 
 cloudinary.config(cloudinaryConfig);
 
-/* function findByField(fieldName, value) {
-  for (const user of users) {
-    if (user[fieldName] === value) {
-      return user;
-    }
-  }
-  return null;
-} */
 
 const controlador = {
   index: async (req, res) => {
     try {
-      // Consulta los juegos desde la base de datos con sus imágenes relacionadas
+      // Consulta los juegos desde la DB con sus imagenes relacionadas
       const juegos = await db.Juego.findAll({
         include: [{ model: db.Imagen, as: 'imagenes' }],
         attributes: ['id', 'nombre', 'precio'],
       });
 
-      // Renderiza la vista 'index' y pasa los juegos como datos
       res.render('home', { juegos });
     } catch (error) {
       console.error('Error al obtener juegos desde la base de datos:', error);
@@ -45,9 +36,7 @@ const controlador = {
   login: (req, res) => {
     res.render('users/login');
   },
-
-  // Modifica tu controlador processLogin
-processLogin: async (req, res) => {
+  processLogin: async (req, res) => {
   try {
     const userToLogin = await db.Usuario.findOne({
       where: { email: req.body.email },
@@ -71,10 +60,10 @@ processLogin: async (req, res) => {
       }
     }
 
-    // Aquí debes obtener la lista de usuarios de tu base de datos
+    //la lista de usuarios de la DB
     const usuarios = await db.Usuario.findAll();
 
-    return res.render('users/perfil', { usuarios, userLogged: req.session.userLogged });
+    return res.redirect('perfil');
   } catch (error) {
     console.error('Error al procesar el inicio de sesión:', error);
     return res.status(500).send('Error interno del servidor');
@@ -135,22 +124,23 @@ processLogin: async (req, res) => {
       res.status(500).send('Error interno del servidor');
     }
   },
-
   perfil: async (req, res) => {
-    try {
-      const usuarioId = req.session.userLogged.id; // ID del usuario almacenado en la sesión
+     try {
+     /*  // ID del usuario almacenado en la sesión
+      const usuarioId = req.session.userLogged.id;
+  
+      // Busca al usuario en la DB
       const usuario = await db.Usuario.findByPk(usuarioId);
   
+      // Verifica si el usuario no existe
       if (!usuario) {
         return res.status(404).send('Usuario no encontrado');
-      }
-  
-      // Pasa la variable 'usuario' a la vista 'perfil.ejs'
-      res.render('users/perfil', { usuario: usuario });
-    } catch (error) {
+      }  */
+      return res.render('users/perfil', { usuario: req.session.userLogged });
+     } catch (error) {
       console.error('Error al cargar el perfil del usuario:', error);
       return res.status(500).send('Error interno del servidor');
-    }
+    } 
   }
 };
 
