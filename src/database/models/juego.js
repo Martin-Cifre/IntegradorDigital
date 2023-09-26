@@ -16,13 +16,13 @@
     }
 
 
-    let config = { camelCase: false, timestamps: false, tableName: "Juego" };
+    let config = { camelCase: false, timestamps: false, tablename: "Juego" };
 
     const Juego = sequelize.define(a,campos,config)
 
     Juego.associate = function (modelos) {
       Juego.hasMany(modelos.Imagen, {
-        as: 'imagenes',
+        as: 'Imagen',
         foreignKey: 'juego_id',
       });
 

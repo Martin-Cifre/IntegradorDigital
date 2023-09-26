@@ -19,28 +19,26 @@
 
 </head>
 
-      <body>
-        <%- include('../partials/header') %>
-        
-        <div class="login-box-centrado">
-            <div class="login-box">
-        <form action="users/perfil" method="GET">
+<body>
+    <% include('../partials/header') %>
+    
+    <div class="login-box-centrado">
+        <div class="login-box">
             <h1>Perfil de Usuario</h1>
-        
-                <div class="profile-container">
-                    <img class="profile-picture" src="<%= usuario.avatar %>" alt=" Avatar de <%= usuario.nombre %>">
-                    <div class="profile-info">
-                        <h2><%= usuario.nombre %> <%= usuario.apellido %></h2>
-                        <p>Correo Electrónico: <%= usuario.email %></p>
-                    </div>
-                </div>
-        </form>
 
+            <div class="profile-container">
+                <img class="profile-picture" src="<%= usuario.avatar %>" alt="Avatar de <%= usuario.nombre %>">
+                <div class="profile-info">
+                    <h2><%= usuario.nombre %> <%= usuario.apellido %></h2>
+                    <p>Correo Electrónico: <%= usuario.email %></p>
+                </div>
+            </div>
         </div>
-        </div>
-        
-        <%- include('../partials/footer') %>
-    </body>
+    </div>
+    
+    <% include('../partials/footer') %>
+</body>
+
 
         <script src="js/addons/rating.js"></script>
         <script src="https://kit.fontawesome.com/06e87440fe.js" crossorigin="anonymous"></script>

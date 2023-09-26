@@ -113,7 +113,7 @@ const controlador = {
 
       // Crear y asocia la imagen al juego
       const imagen = await db.Imagen.create({
-        url_imagen: req.file ? customFilename : imageBuffer, 
+        url_imagen: req.file ? uploadedImage.secure_url : imageBuffer, 
         juego_id: juego.id, 
       });
 
