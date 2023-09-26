@@ -7,7 +7,7 @@ function plataformaData(sequelize, Datatypes) {
     imagen: { type: Datatypes.STRING },
   };
 
-  let config = { camelCase: false, timestamps: false, tablename: "Plataforma" };
+  let config = { camelCase: false, timestamps: false, tableName: "Plataforma" };
 
   const plataforma = sequelize.define(a, campos, config);
 

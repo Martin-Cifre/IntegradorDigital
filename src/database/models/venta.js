@@ -9,7 +9,7 @@ function ventaData (sequelize, Datatypes) {
         registro_venta_id: {type: Datatypes.INTEGER}
     }
     
-    let config = { camelCase: false, timestamps: false, tablename: "Venta" };
+    let config = { camelCase: false, timestamps: false, tableName: "Venta" };
 
     const venta = sequelize.define(a,campoVenta,config)
 

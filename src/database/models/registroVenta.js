@@ -8,7 +8,7 @@
     comprador_id: { type: Datatypes.INTEGER },
   };
 
-  let config = { camelCase: false, timestamps: false, tablename: "Registro_Venta" };
+  let config = { camelCase: false, timestamps: false, tableName: "Registro_Venta" };
 
   const registroVenta = sequelize.define(a, campos, config);
 

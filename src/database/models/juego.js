@@ -16,7 +16,7 @@
     }
 
 
-    let config = { camelCase: false, timestamps: false, tablename: "Juego" };
+    let config = { camelCase: false, timestamps: false, tableName: "Juego" };
 
     const Juego = sequelize.define(a,campos,config)
 

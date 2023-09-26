@@ -12,8 +12,6 @@ const productosController = require('../controllers/productosController.js');
 
 router.get('/search', productosController.search);
 
-router.get('/detalle/:id', productosController.productosDetalle);
-
 router.get('/edit/:idProductoJuegos', productosController.edit)
 
 router.put('/update/:idProductoJuegos', productosController.update)
@@ -21,5 +19,7 @@ router.put('/update/:idProductoJuegos', productosController.update)
 router.get('/create', productosController.getCreateForm);
  
 router.post('/create', upload.single('imagenJuego'), productosController.postCreateForm);
+
+router.get('/detalle/:id', productosController.productosDetalle);
 
 module.exports = router; 

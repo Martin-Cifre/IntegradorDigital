@@ -18,7 +18,7 @@ function usuarioData (sequelize, Datatypes) {
         
     }
     
-    let config = {camelCase: false, timestamps: false, tablename: "Usuarios"};
+    let config = {camelCase: false, timestamps: false, tableName: "Usuarios"};
 
     const usuario = sequelize.define(a,campoUsuario,config)
 
