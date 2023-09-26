@@ -5,7 +5,7 @@
  const path = require('path');
  const cloudinary = require('cloudinary').v2;
  const { CloudinaryStorage } = require('multer-storage-cloudinary');
-
+ const registerValidation = require ('../middlewares/registerValidation')
  const usersController = require('./../controllers/usersController.js');
   
 
@@ -43,32 +43,15 @@
     }
   };
 
- const validateCreateForm = [
-    body('userName').notEmpty().withMessage('Debes completar el campo de nombre'),
-    body('apellido').notEmpty().withMessage('Debes completar el campo de apellido'),
-    body('dni').notEmpty().isLength({min: 8}).withMessage('Debes completar el campo de apellido'),
-    body('email')
-        .notEmpty().withMessage('Debes completar con un email valido')
-        .isEmail().withMessage('Debes escribir un formato de correo válido'),
-    body('password').isLength({min: 8}).notEmpty().withMessage('Debes ingresar una contraseña con 8 dígitos mínimo')
-];
-
-const validateLogin = [
-    check('email')
-        .notEmpty().withMessage('Debes completar con un email valido')
-        .isEmail().withMessage('Debes escribir un formato de correo válido'),
-    check('password').isLength({min: 8}).notEmpty().withMessage('La contraseña que ingresaste es incorrecta')
-];
-
  router.get('/', usersController.index);
 
  router.get('/login', usersController.login);
 
- router.post('/login',  validateLogin,  usersController.processLogin);
+ router.post('/login',  usersController.processLogin);
 
  router.get('/register', usersController.register);
 
- router.post('/register', upload.single('avatar'), validateCreateForm, usersController.create);
+ router.post('/register', upload.single('avatar'), usersController.create);
 
  router.get('/perfil', isAuthenticated, usersController.perfil);
 
