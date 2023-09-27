@@ -6,7 +6,7 @@ function categoriaData(sequelize, Datatypes) {
       nombre: { type: Datatypes.INTEGER },
     };
   
-    let config = { camelCase: false, timestamps: false, tableName: "Categoria" };
+    let config = { camelCase: false, timestamps: false, tablename: "Categoria" };
   
     const Categoria = sequelize.define(a, camposCategoria, config);
   

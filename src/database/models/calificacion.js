@@ -9,7 +9,7 @@ function calificacionData(sequelize, Datatypes) {
     juego_id: { type: Datatypes.INTEGER },
   };
 
-  let config = { camelCase: false, timestamps: false, tableName: "Calificacion" };
+  let config = { camelCase: false, timestamps: false, tablename: "Calificacion" };
 
   const calificacion = sequelize.define(a, campos, config);
 

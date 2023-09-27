@@ -23,15 +23,16 @@
         <%- include('../partials/header') %>
         
         <div class="login-box-centrado">
-            <div class="login-box">
+            <div class="profile-box">
         <form action="users/perfil" method="GET">
-            <h1>Perfil de Usuario</h1>
+            <h1>PERFIL DE USUARIO</h1>
         
                 <div class="profile-container">
                     <img class="profile-picture" src="<%= usuario.avatar %>" alt=" Avatar de <%= usuario.nombre %>">
+                    <h2 class="profile-name"><%= usuario.nombre %> <%= usuario.apellido %></h2>
                     <div class="profile-info">
-                        <h2><%= usuario.nombre %> <%= usuario.apellido %></h2>
-                        <p>Correo Electrónico: <%= usuario.email %></p>
+                        <p><b>Correo Electrónico: </b><%= usuario.email %></p>
+                        <p><b>Fecha de inscripcion:</b> <%=usuario.fecha_alta %></p>
                     </div>
                 </div>
         </form>

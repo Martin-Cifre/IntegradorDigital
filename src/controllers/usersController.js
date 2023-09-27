@@ -8,6 +8,7 @@ const { validationResult } = require('express-validator');
 const userModels = require('../modelos/usersModel');
 const db = require('../database/models');
 
+
 const cloudinaryConfig = {
   cloud_name: process.env.CLOUDINARY_NAME,
   api_key: process.env.CLOUDINARY_KEY,
@@ -22,7 +23,7 @@ const controlador = {
     try {
       // Consulta los juegos desde la DB con sus imagenes relacionadas
       const juegos = await db.Juego.findAll({
-        include: [{ model: db.Imagen, as: 'imagenes' }],
+        include: [{ model: db.Imagen, as: 'Imagen' }],
         attributes: ['id', 'nombre', 'precio'],
       });
 

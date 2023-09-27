@@ -9,7 +9,7 @@ function imagenData(sequelize, Datatypes) {
 
   
 
-  let config = { camelCase: false, timestamps: false, tableName: "Imagen" };
+  let config = { camelCase: false, timestamps: false, tablename: "Imagen" };
 
   const imagen = sequelize.define(a, campos, config);
 
