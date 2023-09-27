@@ -129,16 +129,6 @@ const controlador = {
   },
   perfil: async (req, res) => {
      try {
-     /*  // ID del usuario almacenado en la sesión
-      const usuarioId = req.session.userLogged.id;
-  
-      // Busca al usuario en la DB
-      const usuario = await db.Usuario.findByPk(usuarioId);
-  
-      // Verifica si el usuario no existe
-      if (!usuario) {
-        return res.status(404).send('Usuario no encontrado');
-      }  */
       return res.render('users/perfil', { usuario: req.session.userLogged });
      } catch (error) {
       console.error('Error al cargar el perfil del usuario:', error);
