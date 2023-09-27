@@ -1,10 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 const cloudinary = require('cloudinary').v2;
-const streamifier = require('streamifier')
+const streamifier = require('streamifier');
 const multer = require('multer');
-const db = require ('../database/models')
+const db = require ('../database/models');
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const { validationResult } = require('express-validator');
 
 const cloudinaryConfig = {
   cloud_name: process.env.CLOUDINARY_NAME,
@@ -23,6 +24,9 @@ const controlador = {
       if (!productoEdit) {
         return res.status(404).render('not-found'); // Manejo de producto no encontrado
       }
+
+      
+
 
       res.render("product/productosEditar", { productoEdit: productoEdit });
     } catch (error) {
@@ -66,6 +70,12 @@ const controlador = {
   },
   postCreateForm: async (req, res) => {
     try {
+      const validProductCreat = validationResult(req);
+  
+      if (validProductCreat.errors.length>0) {
+        return res.render('product/create', { errors: validProductCreat.mapped() });
+      }
+
       let imageBuffer;
       let customFilename = "";
     
@@ -131,9 +141,11 @@ const controlador = {
       const juegoEncontrado = await db.Juego.findByPk(req.params.id, {
         include: [{ model: db.Imagen, as: 'imagenes' }], // Para incluir las imagenes
       });
+      
+      
 
       // Renderiza la vista 'detalle' con el juego y las imagenes 
-      res.render('product/details', { juegoEncontrado});
+      res.render('product/details', {juegoEncontrado});
     } catch (error) {
       console.error('Error al obtener el juego desde la base de datos:', error);
       res.status(500).json({ error: 'Hubo un error al obtener el juego desde la base de datos.' });

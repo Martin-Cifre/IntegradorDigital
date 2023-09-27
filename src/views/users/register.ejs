@@ -34,7 +34,7 @@
               <%= errors.nombre.msg %>
             </div>
             <% } %>
-            <br>
+              <br>
         <label for="apellido">Apellido</label>
         <input type="text" name="apellido" id="apellido"  value="<%= locals.oldData && oldData.apellido ? oldData.apellido : ' '%>" placeholder="Ingresa el apellido">
         <% if (locals.errors && errors.apellido) { %>
@@ -42,30 +42,30 @@
               <%= errors.apellido.msg %>
             </div>
             <% } %>
-            <br>
-            <label for="dni">DNI (ingresar sin punto ".")</label>
+              <br>
+          <label for="dni">DNI</label>
         <input type="text" name="dni" id="dni"  value="<%= locals.oldData && oldData.dni ? oldData.dni : ' '%>" placeholder="Ingresa el dni">
         <% if (locals.errors && errors.dni) { %>
-            <div class="text-danger">
-              <%= errors.dni.msg %>
-            </div>
-            <% } %>
+          <div class="error-message">
+            <h5><%= errors.dni.msg %></h5>
+          </div>
+      <% } %>
             <br>
         <label for="userPassword">Password</label>
         <input type="password" name="userPassword"  placeholder="Enter Password">
-        <% if (locals.errors && errors.password) { %>
-          <div class="text-danger">
-            <%= errors.password.msg %>
+        <% if (locals.errors && errors.userPassword) { %>
+          <div class="error-message">
+            <h5><%= errors.userPassword.msg %></h5>
           </div>
-          <% } %>
+      <% } %>
           <br>
         <label for="email">Email</label>
         <input type="email" name="email" id="email"  value="<%= locals.old && old.email ? old.email : '' %>" placeholder="Enter Email">
         <% if (locals.errors && errors.email) { %>
-          <div class="text-danger">
-            <%= errors.email.msg %>
+          <div class="error-message">
+            <h5><%= errors.email.msg %></h5>
           </div>
-          <% } %>
+      <% } %>
           <br>
         <label for="avatar" class="form-label">Imagen perfil</label>
         <input class="form-control" type="file" name="avatar" id="avatar">
