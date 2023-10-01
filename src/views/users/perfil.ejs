@@ -23,25 +23,25 @@
         <%- include('../partials/header') %>
         
         <div class="login-box-centrado">
-            <div class="profile-box">
+            <div class="login-box">
         <form action="users/perfil" method="GET">
-            <h1>PERFIL DE USUARIO</h1>
+            <h1>Perfil de Usuario</h1>
         
                 <div class="profile-container">
                     <img class="profile-picture" src="<%= usuario.avatar %>" alt=" Avatar de <%= usuario.nombre %>">
-                    <h2 class="profile-name"><%= usuario.nombre %> <%= usuario.apellido %></h2>
                     <div class="profile-info">
-                        <p><b>Correo Electrónico: </b><%= usuario.email %></p>
-                        <p><b>Fecha de inscripcion:</b> <%=usuario.fecha_alta %></p>
+                        <h2><%= usuario.nombre %> <%= usuario.apellido %></h2>
+                        <p>Correo Electrónico: <%= usuario.email %></p>
                     </div>
                 </div>
         </form>
 
         </div>
-        </div>
-        
-        <%- include('../partials/footer') %>
-    </body>
+    </div>
+    
+    <% include('../partials/footer') %>
+</body>
+
 
         <script src="js/addons/rating.js"></script>
         <script src="https://kit.fontawesome.com/06e87440fe.js" crossorigin="anonymous"></script>

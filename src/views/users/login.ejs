@@ -29,22 +29,27 @@
       <form action="/login" method="POST">
         <div class="login-text">
           <label for="email">Email</label>
-          <input type="text" name="email" placeholder="Enter Email">
-          <% if (locals.errors && errors.email) { %>
-            <div class="text-danger">
-              <%= errors.email.msg %>
-            </div>
+            <input type="text" name="email" placeholder="Enter Email">
+            <% if (locals && locals.errors) { %>
+              <% if (locals.errors[0].param == 'email') { %>
+              <div class="error-message">
+                <h3><%= locals.errors[0].msg %></h3>
+              </div>
             <% } %>
+          <% } %>
             <br>
-          <label for="password">Password</label>
-          <input type="password" name="userPassword" placeholder="Enter Password">
-          <% if (locals.errors && errors.password) { %>
-            <div class="text-danger">
-              <%= errors.password.msg %>
-            </div>
+
+            <label for="password">Password</label>
+            <input type="password" name="userPassword" placeholder="Enter Password">
+            <% if (locals && locals.errors) { %>
+              <% if (locals.errors[0].param == 'userPassword') { %>
+              <div class="error-message">
+                <h3><%= locals.errors[0].msg %></h3>
+              </div>
             <% } %>
+          <% } %>
             <br>
-          <input type="submit" value="Log in">
+            <input type="submit" value="Log in">
       </div>
         <div>
           <input type="checkbox" class="form-check-input checkBox center" id="exampleCheck1">
