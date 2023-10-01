@@ -4,8 +4,9 @@ const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const usersController = require('../controllers/usersController');
-const isAuthenticated = require('../middlewares/isAuthenticated'); // Añade el middleware de autenticación si lo tienes
-const validateLoginForm = require('../middlewares/loginValidation')
+const isAuthenticated = require('../middlewares/isAuthenticated'); 
+const validateLoginForm = require('../middlewares/loginValidation');
+const validateCreateForm = require('../middlewares/registerValidation')
 
 // Configuración de Cloudinary y Multer
 const cloudinaryConfig = {
@@ -36,7 +37,7 @@ router.post('/login', validateLoginForm, usersController.processLogin);
 
 router.get('/register', usersController.register);
 
-router.post('/register', upload.single('avatar'), usersController.create);
+router.post('/register', upload.single('avatar'), validateCreateForm, usersController.create);
 
 router.get('/perfil', isAuthenticated, usersController.perfil);
 

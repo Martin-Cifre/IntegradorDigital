@@ -27,12 +27,27 @@
           <form action="/product/create" method="POST" enctype="multipart/form-data">
               <label for="nombre">Name Game</label>
               <input type="text" name="nombre" placeholder="Name Game">
+              <% if (locals.errors && errors.nombre) { %>
+                <div class="error-message">
+                  <h5><%= errors.nombre.msg %></h5>
+                </div>
+            <% } %>
               
               <label for="precio">Price</label>
               <input type="text" name="precio" placeholder="precio">
+              <% if (locals.errors && errors.precio) { %>
+                <div class="error-message">
+                  <h5><%= errors.precio.msg %></h5>
+                </div>
+            <% } %>
               
               <label for="descripcion">Descripcion</label>
               <input type="text" name="descripcion" placeholder="Descripcion">
+              <% if (locals.errors && errors.descripcion) { %>
+                <div class="error-message">
+                  <h5><%= errors.descripcion.msg %></h5>
+                </div>
+            <% } %>
               
               <label for="rating">Rating</label>
               <input type="text" name="rating" placeholder="Rating">

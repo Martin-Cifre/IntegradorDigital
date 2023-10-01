@@ -30,29 +30,25 @@
         <div class="login-text">
           <label for="email">Email</label>
             <input type="text" name="email" placeholder="Enter Email">
-            <% if (locals && locals.errors) { %>
-              <% if (locals.errors[0].param == 'email') { %>
+            <% if (locals.errors && errors.email) { %>
               <div class="error-message">
-                <h3><%= locals.errors[0].msg %></h3>
+                <h5><%= errors.email.msg %></h5>
               </div>
-            <% } %>
           <% } %>
             <br>
 
             <label for="password">Password</label>
             <input type="password" name="userPassword" placeholder="Enter Password">
-            <% if (locals && locals.errors) { %>
-              <% if (locals.errors[0].param == 'userPassword') { %>
+            <% if (locals.errors && errors.userPassword) { %>
               <div class="error-message">
-                <h3><%= locals.errors[0].msg %></h3>
+                <h5><%= errors.userPassword.msg %></h5>
               </div>
-            <% } %>
           <% } %>
             <br>
             <input type="submit" value="Log in">
       </div>
         <div>
-          <input type="checkbox" class="form-check-input checkBox center" id="exampleCheck1">
+          <input type="checkbox" class="form-check-input checkBox center" id="remember" name="remember">
           <label class="form-check-label center" for="exampleCheck1">Recuerdame</label>
         </div>
         <a href="#">Lost your Password?</a><br>

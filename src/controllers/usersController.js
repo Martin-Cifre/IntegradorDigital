@@ -39,9 +39,12 @@ const controlador = {
   },
   processLogin: async (req, res) => {
     try {
-      let errors = validationResult(req);
+      const validacion = validationResult(req);
   
-      if (errors.isEmpty()) {
+      if (validacion.errors.length>0) {
+        return res.render('users/login', { errors: validacion.mapped() });
+      }
+  
         const userToLogin = await db.Usuario.findOne({
           where: { email: req.body.email },
         });
@@ -58,9 +61,9 @@ const controlador = {
   
             if (req.body.remember) {
               res.cookie('email', req.body.email, {
-                maxAge: 1000 * 60 * 60 * 24, // 24 horas
+                maxAge: 1000 * 60 * 60 * 24, 
               });
-            }
+            
           }
         }
   
@@ -71,8 +74,8 @@ const controlador = {
         res.render('users/login', { errors: errors.array() });
       }
     } catch (error) {
-      console.error("An error occurred:", error);
-      res.status(500).send("Internal Server Error");
+      console.error("Ocurrio un error:", error);
+      res.status(500).send("Error interno en el servidor");
     }
   },  
   register: (req, res) => {
@@ -80,6 +83,12 @@ const controlador = {
 },
   create: async (req, res) => {
     try {
+      const validRegister = validationResult(req);
+  
+      if (validRegister.errors.length>0) {
+        return res.render('users/register', { errors: validRegister.mapped() });
+      }
+
       let imageBuffer;
       let customFilename = "";
     
@@ -117,7 +126,7 @@ const controlador = {
           email: req.body.email,
           clave: bcryptjs.hashSync(req.body.userPassword, 10),
           dni: req.body.dni,
-          avatar: req.file ? uploadedImage.secure_url : imageBuffer, // Usa la URL de Cloudinary si está disponible
+          avatar: req.file ? uploadedImage.secure_url : imageBuffer, 
         });
         return res.render('users/login');
       } else {
