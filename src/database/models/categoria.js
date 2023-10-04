@@ -12,7 +12,7 @@ function categoriaData(sequelize, Datatypes) {
   
     Categoria.associate = function (modelos) {
       Categoria.hasMany(modelos.Juego, {
-        as: 'juego',
+        as: 'categoria',
         foreignKey: 'categoria_id',
       });
     }

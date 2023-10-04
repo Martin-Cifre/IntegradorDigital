@@ -139,13 +139,15 @@ const controlador = {
     try {
       // obtengo el juego 
       const juegoEncontrado = await db.Juego.findByPk(req.params.id, {
-        include: [{ model: db.Imagen, as: 'imagenes' }], // Para incluir las imagenes
+        include: [{ model: db.Imagen, as: 'Imagen' }], // Para incluir las imagenes
       });
-      
-      
+
+      const categoriaEncontrada = await db.Juego.findByPk(req.params.id, {
+        include: [{ model: db.Categoria, as: 'categoria'}], // Para incluir las imagenes
+      });  
 
       // Renderiza la vista 'detalle' con el juego y las imagenes 
-      res.render('product/details', {juegoEncontrado});
+      res.render('product/details', {juegoEncontrado, categoriaEncontrada});
     } catch (error) {
       console.error('Error al obtener el juego desde la base de datos:', error);
       res.status(500).json({ error: 'Hubo un error al obtener el juego desde la base de datos.' });
@@ -159,6 +161,9 @@ const controlador = {
     const resultadoJuegos = datosJuegos.filter(juego => juego.nombre.toLowerCase().includes(buscarJuego));
     
     res.render('resultadoJuego', { resultadoJuegos: resultadoJuegos });
+  },
+  carritoCompra: (req, res) => {
+    res.render('product/carrito')
   }
 };
 

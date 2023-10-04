@@ -34,11 +34,11 @@
         <div class="generos">
             <i class="letraTitulos2">Generos: </i>
             <i class="letraTitulos2">
-                <p class="card-text"><%= juegoEncontrado.genero  %></p>
+                <p class="card-text">  <%= categoriaEncontrada.categoria.nombre  %></p>
             </i>
         </div>
     </div>
- 
+        <br>
         <section class="etqVentaCompra">
             <div id="carouselExampleIndicators" class="carousel slide ">
                 <div class="carousel-indicators">
@@ -48,13 +48,13 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="<%= juegoEncontrado.imagenes[1].url_imagen %>" alt="<%= juegoEncontrado.nombre %>">
+                        <img src="<%= juegoEncontrado.Imagen[1].url_imagen %>" alt="<%= juegoEncontrado.nombre %>">
                     </div>
                     <div class="carousel-item">
-                        <img src="<%= juegoEncontrado.imagenes[2].url_imagen %>" alt="<%= juegoEncontrado.nombre %>">
+                        <img src="<%= juegoEncontrado.Imagen[2].url_imagen %>" alt="<%= juegoEncontrado.nombre %>">
                     </div>
                     <div class="carousel-item">
-                        <img src="<%= juegoEncontrado.imagenes[3].url_imagen %>" alt="<%= juegoEncontrado.nombre %>">
+                        <img src="<%= juegoEncontrado.Imagen[3].url_imagen %>" alt="<%= juegoEncontrado.nombre %>">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -66,7 +66,7 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-            <div class="centrado"> <button type="button" class="btn btn-light botonCompra2">COMPRAR</button>  </div>
+            <div class="centrado"> <button type="button" class="btn btn-light botonCompra2">COMPRAR</button>  </div> <!-- de aca a carrito -->
         </section>
         <div class="textoVenta">
         <p class="card-text"><%= juegoEncontrado.descripcion  %></p>

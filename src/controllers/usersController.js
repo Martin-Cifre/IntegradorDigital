@@ -81,8 +81,10 @@ const controlador = {
     res.render('users/register');
 },
   create: async (req, res) => {
-    try {
+    try {      
       const validRegister = validationResult(req);
+      console.log('AAAAAAAAAAAA' + req.body.nombre);
+      console.log(validRegister.errors);
   
       if (validRegister.errors.length>0) {
         return res.render('users/register', { errors: validRegister.mapped() });

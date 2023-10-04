@@ -28,18 +28,18 @@
 
       <form action="/register" method="POST" enctype="multipart/form-data">
         <label for="nombre">Nombre</label>
-        <input type="text" name="nombre" id="nombre"  value="<%= locals.oldData && oldData.nombre ? oldData.nombre : ' '%>" placeholder="Ingresa el nombre">
+        <input type="text" name="nombre" id="nombre"  value="<%= locals.oldData && oldData.nombre ? oldData.nombre : ''%>" placeholder="Ingresa el nombre">
         <% if (locals.errors && errors.nombre) { %>
-            <div class="text-danger">
-              <%= errors.nombre.msg %>
+            <div class="error-message">
+              <h5><%= errors.nombre.msg %></h5>
             </div>
             <% } %>
               <br>
         <label for="apellido">Apellido</label>
-        <input type="text" name="apellido" id="apellido"  value="<%= locals.oldData && oldData.apellido ? oldData.apellido : ' '%>" placeholder="Ingresa el apellido">
+        <input type="text" name="apellido" id="apellido"  value="<%= locals.oldData && oldData.apellido ? oldData.apellido : ''%>" placeholder="Ingresa el apellido">
         <% if (locals.errors && errors.apellido) { %>
-            <div class="text-danger">
-              <%= errors.apellido.msg %>
+            <div class="error-message">
+              <h5><%= errors.apellido.msg %></h5>
             </div>
             <% } %>
               <br>

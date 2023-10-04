@@ -45,7 +45,7 @@ router.get('/perfil', isAuthenticated, usersController.perfil);
 
 
  /*
- router.get('/carritoCompra', productosController.carritoCompra);
+ 
 
  router.post('/newGame')
 

@@ -16,9 +16,9 @@ function imagenData(sequelize, Datatypes) {
   imagen.associate = function (modelos) {
 
     imagen.belongsTo(modelos.Juego, {
-        as: "juegos",
-        foreignKey: "juego_id"
-    });
+      as: "Imagen", 
+      foreignKey: "juego_id"
+  });
 };
 
   return imagen;

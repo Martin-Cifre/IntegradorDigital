@@ -6,9 +6,10 @@ const validateCreateForm = [
   body('apellido')
     .notEmpty().withMessage('Debes completar el campo de apellido'),
   body('dni')
-      .notEmpty().isLength({min: 8}).withMessage('Debes completar el campo sin los "."'),
+    .notEmpty().isLength({min: 8}).withMessage('Debes completar el campo sin los "."'),
   body('userPassword')
-      .isLength({min: 8}).notEmpty().withMessage('Debes ingresar una contraseña con 8 dígitos mínimo'),
+    .notEmpty().withMessage('Debes ingresar una contraseña')
+    .isLength({min: 8}).withMessage('Debes ingresar una contraseña con 8 dígitos mínimo'),
   body('email')
       .notEmpty().withMessage('Debes completar con un email valido')
       .isEmail().withMessage('Debes escribir un formato de correo válido'),

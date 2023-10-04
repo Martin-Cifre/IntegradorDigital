@@ -22,4 +22,6 @@ router.post('/create', upload.single('imagenJuego'), productosController.postCre
 
 router.get('/detalle/:id', productosController.productosDetalle);
 
+router.get('/carrito', productosController.carritoCompra);
+
 module.exports = router; 
