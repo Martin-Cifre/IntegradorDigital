@@ -8,6 +8,7 @@ const db = require('../database/models');
 const { validationResult } = require('express-validator');
 
 
+
 const cloudinaryConfig = {
   cloud_name: process.env.CLOUDINARY_NAME,
   api_key: process.env.CLOUDINARY_KEY,

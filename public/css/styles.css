@@ -378,25 +378,49 @@ p {
 
 /* PERFIL */
 
+.profile-box {
+    
+    padding: 2vw;
+    border-radius: 5%;
+    width: 40vw;
+    color: #fff;
+    background-color: black;
+  }
+
 .profile-container {
   max-width: 600px;
   margin: 30px auto;
   padding: 20px;
-  background-color: #fff;
+  background-color: #edd359;
   border-radius: 5px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 .profile-picture {
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
+  border-style: solid;
+  border-color: black;
+  box-shadow: 10px 5px #2f2d2f;
   object-fit: cover;
   margin: 0 auto 20px;
   display: block;
 }
+
+.profile-name {
+  margin-top: 25px;
+  justify-content: right;
+  text-align: left;
+  font-family: 'Geologica', sans-serif;
+  text-transform: uppercase;
+  font-size: 2vw;
+  color: #2f2d2f;
+}
+
 .profile-info {
-  color: #000;
-  text-align: center;
+  margin-top: 50px;
+  color: #2f2d2f;
+  text-align: right;
 }
 
 /* PRUEBA */
@@ -450,14 +474,14 @@ p {
 
   .login-box {
     margin-top: 8vw;
-    width: 50vw;
+    width: 70vw;
   }
 
   .ofertaSemanal {
     display: flex;
     justify-content: space-around;
     font-family: 'Ubuntu', sans-serif;
-    font-size: 20px;
+    font-size: 20px !important;
     padding: 2vw;
     transition: 1.5s;
   }
