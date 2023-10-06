@@ -361,6 +361,7 @@ p {
 
 .etqVentaCompra {
   z-index: 1;
+  height: auto;
   width: auto;
   box-shadow: 0 0 10px 10px #edd359;
 }
@@ -376,6 +377,10 @@ p {
   font-size: 14px;
 }
 
+.tamanoSS {
+  width: 50px;
+
+}
 /* PERFIL */
 
 .profile-box {
