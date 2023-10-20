@@ -25,10 +25,10 @@ const controlador = {
         return res.status(404).render('not-found'); // Manejo de producto no encontrado
       }
 
-      
+      const usuarioLogueado = req.session.userLogged ? true : false;
 
 
-      res.render("product/productosEditar", { productoEdit: productoEdit });
+      res.render("product/productosEditar", { productoEdit: productoEdit, usuarioLogueado });
     } catch (error) {
       console.error(error);
       res.status(500).send('Error interno del servidor'); 
@@ -162,9 +162,74 @@ const controlador = {
     
     res.render('resultadoJuego', { resultadoJuegos: resultadoJuegos });
   },
-  carritoCompra: (req, res) => {
-    res.render('product/carrito')
-  }
+  carritoCompra: async (req, res) => {
+    try {
+      // Obtén el carrito del usuario desde la sesión
+      const cart = req.session.cart || [];
+  
+      // Obtén información adicional de los productos en el carrito
+      const productosEnCarrito = await Promise.all(cart.map(async (item) => {
+        const product = await Juego.findByPk(item.productoId); // Obtén información adicional del producto desde la base de datos
+  
+        // Obtener las imágenes asociadas al producto
+        const imagenes = await Imagen.findAll({ where: { juego_id: product.id } });
+  
+        return {
+          Juego: {
+            nombre: product.nombre, // Nombre del juego
+          },
+          monto_unidad: product.precio, // Precio por unidad
+          cantidad: item.cantidad, // Cantidad de unidades en el carrito
+          Imagen: imagenes, // Imágenes del juego
+        };
+      }));
+  
+      let total = 0;
+      // Calcular el total de la compra
+      productosEnCarrito.forEach((product) => {
+        total += product.monto_unidad * product.cantidad;
+      });
+
+      console.log('Productos en el carrito:', productosEnCarrito);
+      console.log('Total de la compra:', total);
+  
+      res.render('carrito', { productosEnCarrito, total });
+    } catch (error) {
+      console.error(error);
+      return res.redirect('/carrito');
+    }
+  },
+  // Controlador para agregar productos al carrito
+  agregarAlCarrito: async (req, res) => {
+    try {
+      // Obtén el ID del producto desde la URL
+      const productoId = req.params.idProductoJuegos;
+      const cantidad = req.body.cantidad; // Obtén la cantidad del producto del formulario
+  
+      // Obtén el carrito del usuario desde la sesión
+      const cart = req.session.cart || [];
+  
+      // Verifica si el producto ya está en el carrito
+      const existingProduct = cart.find((item) => item.productoId === productoId);
+  
+      if (existingProduct) {
+        // Si el producto ya está en el carrito, actualiza la cantidad
+        existingProduct.cantidad += parseInt(cantidad);
+      } else {
+        // Si el producto no está en el carrito, agrégalo
+        cart.push({ productoId, cantidad: parseInt(cantidad) });
+      }
+  
+      // Actualiza el carrito en la sesión del usuario
+      req.session.cart = cart;
+  
+      // Redirige al usuario nuevamente a la vista del carrito
+      return res.redirect('/carrito');
+    } catch (error) {
+      console.error(error);
+      return res.redirect('/carrito');
+    }
+  },
 };
 
 module.exports = controlador;

@@ -1,24 +1,33 @@
 <%- include('../partials/head') %>
-
 <body>
     <%- include('../partials/header') %>
     
     <h3 class="letraTitulos">TU CARRITO</h3>
     <h5 class="letraTitulos">ITEMS</h5>
 
-    <ul id="product-list">
-        <% for (let product of products) { %>
-            <li data-id="<%= product.id %>">
-                <%= product.nombre %> - $<%= product.precio %>
-                <button class="add-to-cart-button" data-juego-id="<%= product.id %>">Agregar al carrito</button>
-            </li>
+    <!-- Contenedor para mostrar los productos en el carrito -->
+    <div id="cart-container">
+        <!-- Mostrar mensaje si el carrito está vacío -->
+        <% if (productosEnCarrito.length === 0) { %>
+            <p>El carrito está vacío. Agrega productos desde la tienda.</p>
+        <% } else { %>
+            <!-- Aquí se mostrarán los productos en el carrito -->
+            <ul>
+                <% productosEnCarrito.forEach((product) => { %>
+                    <li>
+                        <%= product.Juego.nombre %> - $<%= product.monto_unidad %> x <%= product.cantidad %>
+                    </li>
+                <% }); %>
+            </ul>
         <% } %>
-    </ul>
+    </div>
 
-    <p>Total: $<span id="total">0</span></p>
+    <!-- Mostrar el total de la compra -->
+    <p>Total: $<%= total %></p>
+
+    <!-- Aquí puedes agregar más interacción de usuario si es necesario, como botones para finalizar la compra o eliminar productos del carrito. -->
 
     <%- include('../partials/footer') %>
-
-    <script src="../../../public/scripts/cart.js"></script>
 </body>
+<script src="public/scripts/cart.js"></script>
 </html>

@@ -21,7 +21,7 @@ cloudinary.config(cloudinaryConfig);
 const controlador = {
   index: async (req, res) => {
     try {
-      // Consulta los juegos desde la DB con sus imagenes relacionadas
+      // Consulta los juegos desde la DB con sus imágenes relacionadas
       const juegos = await db.Juego.findAll({
         include: [{ model: db.Imagen, as: 'Imagen' }],
         attributes: ['id', 'nombre', 'precio'],
@@ -41,40 +41,44 @@ const controlador = {
     try {
       const validacion = validationResult(req);
   
-      if (validacion.errors.length>0) {
+      if (validacion.errors.length > 0) {
         return res.render('users/login', { errors: validacion.mapped() });
       }
   
-        const userToLogin = await db.Usuario.findOne({
-          where: { email: req.body.email },
-        });
+      const userToLogin = await db.Usuario.findOne({
+        where: { email: req.body.email },
+      });
   
-        if (userToLogin) {
-          const correctPassword = bcryptjs.compareSync(
-            req.body.userPassword,
-            userToLogin.clave
-          );
+      if (userToLogin) {
+        const correctPassword = bcryptjs.compareSync(
+          req.body.userPassword,
+          userToLogin.clave
+        );
   
-          if (correctPassword) {
-            delete userToLogin.dataValues.clave;
-            req.session.userLogged = userToLogin;
+        if (correctPassword) {
+          delete userToLogin.dataValues.clave;
+          req.session.userLogged = userToLogin;
   
-            if (req.body.remember) {
-              res.cookie('email', req.body.email, {
-                maxAge: 1000 * 60 * 60 * 24, 
-              });
-            
+          if (req.body.remember) {
+            res.cookie('email', req.body.email, {
+              maxAge: 10 * 24 * 60 * 60 * 1000,
+            });
           }
+  
+          const usuarios = await db.Usuario.findAll();
+  
+          return res.redirect('perfil');
+        } else {
+          // Aquí podrías agregar un mensaje de contraseña incorrecta si lo deseas
+          res.render('users/login',  { errors: { userPassword: { msg: 'Contraseña incorrecta' } }});
         }
-  
-        const usuarios = await db.Usuario.findAll();
-  
-        return res.redirect('perfil');
       } else {
-        res.render('users/login', { errors: errors.array() });
+        
+        res.render('users/login',  { errors: { email: {  msg: 'Usuario no encontrado' } } });
+
       }
     } catch (error) {
-      console.error("Ocurrio un error:", error);
+      console.error("Ocurrió un error:", error);
       res.status(500).send("Error interno en el servidor");
     }
   },  

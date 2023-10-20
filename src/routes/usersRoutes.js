@@ -41,15 +41,4 @@ router.post('/register', upload.single('avatar'), validateCreateForm, usersContr
 
 router.get('/perfil', isAuthenticated, usersController.perfil);
 
-
-
-
- /*
- 
-
- router.post('/newGame')
-
- router.get('/:idProducto', );
- */
-
  module.exports = router;

@@ -5,7 +5,7 @@ const validateLoginForm = [
     .notEmpty().withMessage('Debes completar con un email valido')
     .isEmail().withMessage('Debes escribir un formato de correo válido'),
   body('userPassword')
-    .notEmpty().withMessage('La contraseña que ingresaste es incorrecta'),
+    .notEmpty().withMessage('Debes ingresar una contraseña'),
 ];
 
 module.exports = validateLoginForm;

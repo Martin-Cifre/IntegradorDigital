@@ -6,9 +6,9 @@ const productosController = require('../controllers/productosController.js');
  const path = require ("path");
  const cloudinary = require('cloudinary').v2;
  const { CloudinaryStorage } = require('multer-storage-cloudinary');
+ const isAuthenticated = require('../middlewares/isAuthenticated'); 
   
   const upload = multer();
-//  router.get('/prueba', productosController.producto);
 
 router.get('/search', productosController.search);
 
@@ -22,6 +22,11 @@ router.post('/create', upload.single('imagenJuego'), productosController.postCre
 
 router.get('/detalle/:id', productosController.productosDetalle);
 
-router.get('/carrito', productosController.carritoCompra);
+router.get('/carrito',  isAuthenticated,  productosController.carritoCompra);
+
+router.post('/carrito/agregar/:idProductoJuegos', isAuthenticated, productosController.agregarAlCarrito);
+
+/* router.post('/carrito',  isAuthenticated, productosController.carritoMuestraDeProducto); */ 
+
 
 module.exports = router; 

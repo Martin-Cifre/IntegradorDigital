@@ -1,5 +1,6 @@
 const usersRoutes = require('./routes/usersRoutes.js')
 const productosRoutes = require('./routes/productosRoutes.js')
+const apiRoutes = require('./routes/apiRoutes.js')
 
 const express = require('express');
 const cookieParser = require('cookie-parser');
@@ -14,10 +15,6 @@ app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
 app.use(cookieParser());
 
-/* app.use('*', function(req,res){
-    res.send("Ruta Erronea");
-}); */
-
 app.set('view engine', 'ejs');
 app.set('views', './src/views');
 
@@ -27,6 +24,7 @@ app.use(session ({secret: 'secreto_Quest!!!!', resave: false, saveUninitialized:
 app.use('/', usersRoutes);
 app.use('/product', productosRoutes);
 app.use('/user', usersRoutes);
+app.use('/api', apiRoutes)
 
 app.use((req,res,next) => {
     res.status(404).render('not-found');
