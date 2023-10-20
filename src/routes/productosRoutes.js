@@ -10,15 +10,17 @@ const productosController = require('../controllers/productosController.js');
   
   const upload = multer();
 
-router.get('/search', productosController.search);
+/* router.post('/search', productosController.search); */
 
 router.get('/edit/:idProductoJuegos', productosController.edit)
 
 router.put('/update/:idProductoJuegos', productosController.update)
 
+router.delete('/eliminar/:id', productosController.eliminarProducto);
+
 router.get('/create', productosController.getCreateForm);
  
-router.post('/create', upload.single('imagenJuego'), productosController.postCreateForm);
+router.post('/create', upload.array('imagenJuego', 4), productosController.postCreateForm);
 
 router.get('/detalle/:id', productosController.productosDetalle);
 

@@ -8,7 +8,7 @@ function usuarioData (sequelize, Datatypes) {
         email: {type: Datatypes.STRING},
         clave: {type: Datatypes.STRING},
         avatar: {type: Datatypes.STRING, allowNull: true},
-        rol: {type: Datatypes.ENUM('Creador','Admin','Usuario')},
+        rol: {type: Datatypes.ENUM('Usuario','Admin','Creador')},
         puntos: {type: Datatypes.STRING},
         dni: {type: Datatypes.STRING},
         fecha_alta: {type: Datatypes.DATE},

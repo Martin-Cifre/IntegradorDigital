@@ -21,18 +21,19 @@ cloudinary.config(cloudinaryConfig);
 const controlador = {
   index: async (req, res) => {
     try {
-      // Consulta los juegos desde la DB con sus imágenes relacionadas
-      const juegos = await db.Juego.findAll({
-        include: [{ model: db.Imagen, as: 'Imagen' }],
-        attributes: ['id', 'nombre', 'precio'],
-      });
+        const juegos = await db.Juego.findAll({
+            include: [{ model: db.Imagen, as: 'Imagen' }],
+            attributes: ['id', 'nombre', 'precio'],
+        });
 
-      res.render('home', { juegos });
+        const usuarioActual = req.session.userLogged;
+
+        res.render('home', { juegos, usuarioActual });
     } catch (error) {
-      console.error('Error al obtener juegos desde la base de datos:', error);
-      res.status(500).json({ error: 'Hubo un error al obtener los juegos desde la base de datos.' });
+        console.error('Error al obtener juegos desde la base de datos:', error);
+        res.status(500).json({ error: 'Hubo un error al obtener los juegos desde la base de datos.' });
     }
-  },
+},
   login: (req, res) => {
     res.locals.errors = null;
     res.render('users/login');

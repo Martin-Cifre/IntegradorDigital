@@ -7,9 +7,9 @@
         </a>
         </div>
         <div class="searchbar">
-          <form action="/usersRoutes/search" method="GET">
-          <input  placeholder='🔍︎' class="searchbar" name="search">
-          </form>
+          <form action="/product/detalle/:id" method="POST">
+            <input placeholder='🔍︎' class="searchbar" name="search">
+        </form>
         </div>
         <div>
           <a href="/product/carrito" class="black-link">
@@ -30,3 +30,5 @@
       </div>
     </div>
   </header>
+
+  <script> src="/public/scripts/search.js" </script>

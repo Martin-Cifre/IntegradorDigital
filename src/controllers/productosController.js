@@ -61,6 +61,9 @@ const controlador = {
       res.status(500).send('Error interno del servidor');
     }
   },
+  eliminarProducto: (req, res) => {
+    console.log('se borro')
+},
   getCreateForm: async (req, res) => {
 
      const categorias = await db.Categoria.findAll(); 
@@ -70,45 +73,48 @@ const controlador = {
   },
   postCreateForm: async (req, res) => {
     try {
-      const validProductCreat = validationResult(req);
+      const validProductCreate = validationResult(req);
   
-      if (validProductCreat.errors.length>0) {
-        return res.render('product/create', { errors: validProductCreat.mapped() });
-      }
-
-      let imageBuffer;
-      let customFilename = "";
-    
-      if (!req.file) {
-        imageBuffer = "DefectProduct.jpg";
-      } else {
-        imageBuffer = req.file.buffer;
-        customFilename = Date.now() + '-producto';
-      }
-    
-      const folderName = 'productos';
-      const uploadPromise = new Promise((resolve, reject) => {
-        let stream = cloudinary.uploader.upload_stream({ folder: folderName, resource_type: 'image', public_id: customFilename }, (error, result) => {
-          if (error) {
-            console.error('Error upload:', error);
-            reject(error);
-          } else {
-            console.log('Upload ok:', result);
-            resolve(result);
-          }
-        });
-    
-        streamifier.createReadStream(imageBuffer).pipe(stream);
-      });
-
-      const uploadedImage = await uploadPromise;
-
-
-      if (!req.file) {
-        return res.status(400).send('Debe proporcionar una imagen');
+      if (validProductCreate.errors.length > 0) {
+        return res.render('product/create', { errors: validProductCreate.mapped() });
       }
   
-      // Crear el juego en la DB
+      const imagePromises = []; // Almacenaremos las promesas para subir todas las imágenes
+  
+      if (req.files && req.files.length > 0) {
+        for (let i = 0; i < req.files.length; i++) {
+          const imageBuffer = req.files[i].buffer;
+          const customFilename = Date.now() + '-producto-' + i;
+          const folderName = 'productos';
+  
+          const uploadPromise = new Promise((resolve, reject) => {
+            let stream = cloudinary.uploader.upload_stream(
+              {
+                folder: folderName,
+                resource_type: 'image',
+                public_id: customFilename,
+              },
+              (error, result) => {
+                if (error) {
+                  console.error('Error upload:', error);
+                  reject(error);
+                } else {
+                  console.log('Upload ok:', result);
+                  resolve(result);
+                }
+              }
+            );
+  
+            streamifier.createReadStream(imageBuffer).pipe(stream);
+          });
+  
+          imagePromises.push(uploadPromise);
+        }
+      }
+  
+      const uploadedImages = await Promise.all(imagePromises);
+  
+      /* Crear el juego en la DB */
       const juego = await db.Juego.create({
         nombre: req.body.nombre,
         precio: req.body.precio,
@@ -117,19 +123,23 @@ const controlador = {
         fecha_alta: req.body.fecha_alta,
         fecha_baja: req.body.fecha_baja,
         descuento: req.body.descuento,
-        categoria_id: req.body.categoria_id
+        categoria_id: req.body.categoria_id,
       });
   
-
-      // Crear y asocia la imagen al juego
-      const imagen = await db.Imagen.create({
-        url_imagen: req.file ? uploadedImage.secure_url : imageBuffer, 
-        juego_id: juego.id, 
-      });
-
-      const categorias = await db.Categoria.findAll();
+      /* Crear y asociar las imágenes al juego */
+      const imagenes = await Promise.all(
+        uploadedImages.map((uploadedImage) =>
+          db.Imagen.create({
+            url_imagen: uploadedImage.secure_url,
+            juego_id: juego.id,
+          })
+        )
+      );
   
-      return res.render('product/create', {categorias});
+      const categorías = await db.Categoria.findAll();
+  
+      // Redirigir a la página principal después de crear el juego
+      return res.redirect('/');
     } catch (error) {
       console.error('Error al crear un nuevo producto:', error);
       return res.status(500).send('Error interno del servidor');
@@ -137,7 +147,7 @@ const controlador = {
   },
   productosDetalle: async (req, res) => {
     try {
-      // obtengo el juego 
+       /* obtengo el juego */ 
       const juegoEncontrado = await db.Juego.findByPk(req.params.id, {
         include: [{ model: db.Imagen, as: 'Imagen' }], // Para incluir las imagenes
       });
@@ -146,22 +156,32 @@ const controlador = {
         include: [{ model: db.Categoria, as: 'categoria'}], // Para incluir las imagenes
       });  
 
-      // Renderiza la vista 'detalle' con el juego y las imagenes 
+      /*  Renderiza la vista 'detalle' con el juego y las imagenes  */
       res.render('product/details', {juegoEncontrado, categoriaEncontrada});
     } catch (error) {
       console.error('Error al obtener el juego desde la base de datos:', error);
       res.status(500).json({ error: 'Hubo un error al obtener el juego desde la base de datos.' });
     }
   },
-  search: (req, res) => {
-    const buscarJuego = req.query.search.toLowerCase();
-  
-    const datosJuegos = JSON.parse(fs.readFileSync(juegosFilePath, "utf-8"));
-    
-    const resultadoJuegos = datosJuegos.filter(juego => juego.nombre.toLowerCase().includes(buscarJuego));
-    
-    res.render('resultadoJuego', { resultadoJuegos: resultadoJuegos });
-  },
+  /* search: async (req, res) => {
+    const searchTerm = req.query.searchTerm; // Obtiene el término de búsqueda de la URL
+
+    try {
+        // Realiza una búsqueda en la base de datos para encontrar el juego basado en el término de búsqueda
+        const juego = await Juego.findOne({ where: { nombre: searchTerm } });
+
+        if (juego) {
+            // Redirige al usuario a la vista de detalle del producto con el ID del juego encontrado
+            res.redirect(`/product/detalle/${juego.id}`);
+        } else {
+            // Maneja el caso en el que el juego no se encontró
+            res.redirect('/')
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error de servidor');
+    }
+}, */
   carritoCompra: async (req, res) => {
     try {
       // Obtén el carrito del usuario desde la sesión
@@ -176,11 +196,11 @@ const controlador = {
   
         return {
           Juego: {
-            nombre: product.nombre, // Nombre del juego
+            nombre: product.nombre, 
           },
-          monto_unidad: product.precio, // Precio por unidad
-          cantidad: item.cantidad, // Cantidad de unidades en el carrito
-          Imagen: imagenes, // Imágenes del juego
+          monto_unidad: product.precio, 
+          cantidad: item.cantidad, 
+          Imagen: imagenes, 
         };
       }));
   

@@ -1,20 +1,24 @@
 <main>
-  <h3 class="letraTitulos">OFERTAS DE LA SEMANA</h3>
-  <div id="articulo">
-    <% juegos.forEach(juegoEncontrado => { %>
-    <article class="ofertaSemanal">
-      <a class="linkText3" href="/product/detalle/<%= juegoEncontrado.id %>">
-        <div class="etqVenta">
-          <img src="<%= juegoEncontrado.Imagen[0].url_imagen %>" alt="<%= juegoEncontrado.nombre %>">
-          <div class="card-body Caja-precio-titulo">
-            <p class="titulo-del-precio"><%= juegoEncontrado.nombre %></p>
-            <p class="precio">$<%= juegoEncontrado.precio %></p>
-          </div>
-          <button type="button" class="btn btn-danger">Eliminar Juego</button>
-        </div>
-        
-      </a>
-    </article>
-    <% }) %>
-  </div>
-</main>
+    <h3 class="letraTitulos">OFERTAS DE LA SEMANA</h3>
+    <div id="articulo">
+        <% juegos.forEach(juegoEncontrado => { %>
+        <article class="ofertaSemanal">
+            <a class="linkText3" href="/product/detalle/<%= juegoEncontrado.id %>">
+                <div class="etqVenta">
+                    <img src="<%= juegoEncontrado.Imagen[0].url_imagen %>" alt="<%= juegoEncontrado.nombre %>">
+                    <div class="card-body Caja-precio-titulo">
+                        <p class="titulo-del-precio"><%= juegoEncontrado.nombre %></p>
+                        <p class="precio">$<%= juegoEncontrado.precio %></p>
+                        <% if (usuarioActual && usuarioActual.rol === 'Creador') { %>
+                            <form action="/product/eliminar/<%= juegoEncontrado.id %>? method=DELETE" method="post">
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        <% } %>
+                    </div>
+                </div>
+            </a>
+        </article>
+        <% }) %>
+    </div>
+  </main>
+  
