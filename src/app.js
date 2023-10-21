@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const methodOverride = require('method-override');
 const session = require('express-session');
+const cors = require('cors')
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../public')));
@@ -20,6 +21,8 @@ app.set('views', './src/views');
 
 app.use(methodOverride('_method'));
 app.use(session ({secret: 'secreto_Quest!!!!', resave: false, saveUninitialized: true}));
+
+app.use(cors())
 
 app.use('/', usersRoutes);
 app.use('/product', productosRoutes);
