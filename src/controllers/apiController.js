@@ -112,16 +112,47 @@ const apiController = {
       res.status(500).json({ error: 'Error al obtener categorías' });
     }
   },
-  obtenerCategoriasConLosProductos: async (req, res) => {
+  obtenerCategoriasConProductos: async (req, res) => {
     try {
-      const categorias = await Categoria.findAll();
-      
-
+      const categorias = await Categoria.findAll({
+        include: [
+          {
+            model: Juego,
+            as: 'Juego', // Asegúrate de usar el alias definido en tu modelo de Categoría
+          },
+        ],
+      });
+  
+      const response = categorias.map((categoria) => ({
+        id: categoria.id,
+        nombre: categoria.nombre,
+        juegos: categoria.Juego.map((juego) => ({
+          id: juego.id,
+          nombre: juego.nombre,
+          // Agrega otros campos del juego que desees mostrar
+        })),
+      }));
+  
       res.json(response);
     } catch (error) {
-      res.status(500).json({ error: 'Error al obtener categorias con productos'})
+      res.status(500).json({ error: 'Error al obtener categorías con productos' });
     }
   }
 };
 
 module.exports = apiController;
+
+/* try { */
+      /* const categorias = await Categoria.findAll(); */
+
+/* concerts: async (req, res) => {
+        db.Concierto.findAll({include:[{association:"Generos"},{association:"User"},{association:"Sector"}]})
+        .then(conciertos=>{
+          res.json({conciertos});
+        });
+      }, */
+
+     /*  res.json(response);
+    } catch (error) {
+      res.status(500).json({ error: 'Error al obtener categorias con productos'})
+    } */

@@ -19,3 +19,8 @@ Lo unico que no pudismos hacer es resolver el inconveniente de la vista del "HOM
 - Se pudo resolver las validaciones, ya que no estan mas dentro de las carpetas routes. Ahora estan ubicadas en la carpeta "middleware".
 - Se hizo las validaciones para el LOGIN, REGISTER, CREACION DE PRODUCTOS y solamente falto para EDITAR PRODUCTO.
 - Al principio sinceramente fue algo complejo llevar a cabo el sprint hasta que con ayuda de los profes y playground lo pudimos realizar.
+
+"sprint 8"
+- Pudimos crear las rutas con facilidad para las Apis y conectarlas con el Dashboard creado utilizando React.
+- A la hora de crear los controladores para mostrar los distintos modelos de la base de datos en un Json, fue un poco complejo al principio, pero con ayuda del grupo y profesores pudimos llevarlo adelante.
+- Quedamos satisfechos con los resultados logrados!! :D
