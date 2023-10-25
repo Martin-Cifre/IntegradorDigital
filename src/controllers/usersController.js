@@ -8,6 +8,7 @@ const db = require('../database/models');
 const { validationResult } = require('express-validator');
 
 
+
 const cloudinaryConfig = {
   cloud_name: process.env.CLOUDINARY_NAME,
   api_key: process.env.CLOUDINARY_KEY,
@@ -20,96 +21,88 @@ cloudinary.config(cloudinaryConfig);
 const controlador = {
   index: async (req, res) => {
     try {
-      const juegos = await db.Juego.findAll({
-        include: [{ model: db.Imagen, as: 'Imagen' }],
-        attributes: ['id', 'nombre', 'precio'],
-      });
+        const juegos = await db.Juego.findAll({
+            include: [{ model: db.Imagen, as: 'Imagen' }],
+            attributes: ['id', 'nombre', 'precio'],
+        });
+        const usuarioActual = req.session.userLogged;
 
-      const usuarioActual = req.session.userLogged;
-
-      res.render('home', { usuarioActual, juegos });
+        res.render('home', { usuarioActual, juegos });
     } catch (error) {
-      console.error('Error al obtener juegos desde la base de datos:', error);
-      res.status(500).json({ error: 'Hubo un error al obtener los juegos desde la base de datos.' });
+        console.error('Error al obtener juegos desde la base de datos:', error);
+        res.status(500).json({ error: 'Hubo un error al obtener los juegos desde la base de datos.' });
     }
-  },
+},
   login: (req, res) => {
     res.locals.errors = null;
-    const usuarioActual = req.session.userLogged;
-    res.render('users/login', { usuarioActual });
+    res.render('users/login');
   },
   processLogin: async (req, res) => {
     try {
       const validacion = validationResult(req);
-
+  
       if (validacion.errors.length > 0) {
-        const usuarioActual = req.session.userLogged;
-        return res.render('users/login', { errors: validacion.mapped(), usuarioActual });
+        return res.render('users/login', { errors: validacion.mapped() });
       }
-
+  
       const userToLogin = await db.Usuario.findOne({
         where: { email: req.body.email },
       });
-
+  
       if (userToLogin) {
         const correctPassword = bcryptjs.compareSync(
           req.body.userPassword,
           userToLogin.clave
         );
-
+  
         if (correctPassword) {
           delete userToLogin.dataValues.clave;
           req.session.userLogged = userToLogin;
-
+  
           if (req.body.remember) {
             res.cookie('email', req.body.email, {
               maxAge: 10 * 24 * 60 * 60 * 1000,
             });
           }
-
+  
           const usuarios = await db.Usuario.findAll();
-
-          const usuarioActual = req.session.userLogged;
-
-          return res.render('users/perfil', { usuarioActual });
+  
+          return res.redirect('perfil');
         } else {
           // Aquí podrías agregar un mensaje de contraseña incorrecta si lo deseas
-          res.render('users/login', { errors: { userPassword: { msg: 'Contraseña incorrecta' } } });
+          res.render('users/login',  { errors: { userPassword: { msg: 'Contraseña incorrecta' } }});
         }
       } else {
-
-        res.render('users/login', { errors: { email: { msg: 'Usuario no encontrado' } } });
+        
+        res.render('users/login',  { errors: { email: {  msg: 'Usuario no encontrado' } } });
 
       }
     } catch (error) {
       console.error("Ocurrió un error:", error);
       res.status(500).send("Error interno en el servidor");
     }
-  },
+  },  
   register: (req, res) => {
-    const usuarioActual = req.session.userLogged;
-
-    res.render('users/register', { usuarioActual });
-  },
+    res.render('users/register');
+},
   create: async (req, res) => {
-    try {
+    try {      
       const validRegister = validationResult(req);
-
-      if (validRegister.errors.length > 0) {
-        const usuarioActual = req.session.userLogged;
-        return res.render('users/register', { errors: validRegister.mapped(), usuarioActual });
+  
+      if (validRegister.errors.length>0) {
+        return res.render('users/register', { errors: validRegister.mapped() });
       }
 
       let imageBuffer;
       let customFilename = "";
-
+    
       if (!req.file) {
         imageBuffer = "DefectAvatar.jpg";
       } else {
         imageBuffer = req.file.buffer;
         customFilename = Date.now() + '-avatarUser';
       }
-
+    
       const folderName = 'avatar';
       const uploadPromise = new Promise((resolve, reject) => {
         let stream = cloudinary.uploader.upload_stream({ folder: folderName, resource_type: 'image', public_id: customFilename }, (error, result) => {
@@ -121,16 +114,16 @@ const controlador = {
             resolve(result);
           }
         });
-
+    
         streamifier.createReadStream(imageBuffer).pipe(stream);
       });
-
+    
       const uploadedImage = await uploadPromise;
-
+    
       const oldUser = await db.Usuario.findOne({ where: { email: req.body.email } });
-
+    
       if (!oldUser) {
-
+    
         const newUser = await db.Usuario.create({
           nombre: req.body.nombre,
           apellido: req.body.apellido,
@@ -140,10 +133,7 @@ const controlador = {
           avatar: req.file ? uploadedImage.secure_url : imageBuffer,
           rol: 'Usuario',
         });
-
-        const usuarioActual = req.session.userLogged;
-
-        return res.render('users/login', { usuarioActual });
+        return res.render('users/login');
       } else {
         return res.status(400).send('El usuario ya existe.');
       }
@@ -152,9 +142,13 @@ const controlador = {
       res.status(500).send('Error interno del servidor');
     }
   },
-  perfil: (req, res) => {
-    const usuarioActual = req.session.userLogged;
-    return res.render('users/perfil', { usuarioActual });
+  perfil: async (req, res) => {
+     try {
+      return res.render('users/perfil', { usuario: req.session.userLogged });
+     } catch (error) {
+      console.error('Error al cargar el perfil del usuario:', error);
+      return res.status(500).send('Error interno del servidor');
+    } 
   }
 };
 

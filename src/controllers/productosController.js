@@ -91,7 +91,8 @@ const controlador = {
       const validProductCreate = validationResult(req);
   
       if (validProductCreate.errors.length > 0) {
-        return res.render('product/create', { errors: validProductCreate.mapped() });
+        const usuarioActual = req.session.userLogged;
+        return res.render('product/create', { errors: validProductCreate.mapped(),  usuarioActual  });
       }
   
       const imagePromises = []; // Almacenaremos las promesas para subir todas las imágenes
