@@ -76,7 +76,7 @@
             </div>
 
             <div class="center">
-                <form action="/carrito/agregar/<%= juegoEncontrado.id %>" method="POST">
+                <form action="/cart/agregarCarrito" method="POST">
                     <!-- Puedes incluir campos ocultos para enviar información sobre el juego, como su ID, nombre y precio -->
                     <input type="hidden" name="idProductoJuegos" value="<%= juegoEncontrado.id %>">
                     <input type="hidden" name="nombreJuego" value="<%= juegoEncontrado.nombre %>">
@@ -90,6 +90,7 @@
                         </form>
                         <% } %>
 
+                        
                             <button type="submit">Agregar al carrito</button>
                 </form>
             </div>

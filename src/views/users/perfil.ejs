@@ -9,12 +9,12 @@
             <h1 class="center">Perfil de Usuario</h1>
         
                 <div class="profile-container">
-                    <img class="profile-picture" src="<%= usuario.avatar %>" alt=" Avatar de <%= usuario.nombre %>">
+                    <img class="profile-picture" src="<%= usuarioActual.avatar %>" alt=" Avatar de <%= usuarioActual.nombre %>">
                     <div class="profile-info">
-                        <h2><%= usuario.nombre %> <%= usuario.apellido %></h2>
-                        <h4 class="center">Rol: <%= usuario.rol %></h4>
+                        <h2><%= usuarioActual.nombre %> <%= usuarioActual.apellido %></h2>
+                        <h4 class="center">Rol: <%= usuarioActual.rol %></h4>
                         <br>
-                        <h4 class="center">Correo Electrónico: <%= usuario.email %></h4>
+                        <h4 class="center">Correo Electrónico: <%= usuarioActual.email %></h4>
                     </div>
                 </div>
         </form>
