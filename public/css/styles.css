@@ -360,6 +360,21 @@ p {
 
 }
 
+.paddingboton {
+  padding: 0 0 3rem;
+}
+
+
+.agregarCarrito{
+  height: 3.1rem;
+  width: 12.5rem;
+  background-color: #edd359;
+  font-family: 'segoe UI' !important;
+  font-weight: bold !important;
+  font-size: 1.2rem !important;
+  
+}
+
 .textoVenta{
   padding: 3vw;
   font-family: Segoe Ui;
