@@ -41,6 +41,24 @@ header {
   padding-right: 1.2vw;
 }
 
+/* HEADER */
+ 
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #2f2d2f;
+  height: 7vw;
+  z-index: 1000; /* Agrega un valor alto al índice z para asegurarte de que esté por encima del contenido */
+}
+
+.content {
+  margin-top: 8vw; /* Ajusta el margen superior para evitar que el contenido se solape con el encabezado fijo */
+} 
+
+/* HEADER */
+
 /* TIENDA USADOS DESCUENTOS ONLINE */
 section{
   padding-top: 8px;
@@ -74,6 +92,7 @@ section{
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 10rem;
   padding: 5vw;
 }
 
@@ -429,6 +448,60 @@ p {
 }
 
 /* PRUEBA */
+
+/* BOTON */
+.user-menu-dropdown .menu li {
+  border-bottom: 1px solid #ccc; 
+  padding: 5px 0; 
+}
+
+
+.user-menu-dropdown .menu li:last-child {
+  border-bottom: none; 
+}
+
+.user-menu-dropdown {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.user-menu-dropdown .menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 0.2rem;
+  display: none;
+  position: absolute;
+  top: 100%; /* Muestra el menú debajo del icono de usuario */
+  left: 0;
+  background: #fff; /* Fondo del menú */
+  border: 1px solid #ccc; /* Borde del menú */
+  padding: 10px; /* Espacio interior del menú */
+  transition: opacity 0.3s, visibility 0.3s; /* Efecto de transición */
+  opacity: 0;
+  visibility: hidden;
+  border-radius: 1rem;
+}
+
+.user-menu-dropdown:hover .menu {
+  display: block;
+  opacity: 1; /* Muestra el menú con transparencia */
+  visibility: visible;
+}
+
+.menu li {
+  display: block; /* Los elementos del menú aparecen uno debajo del otro */
+  margin-bottom: 10px; /* Espacio entre elementos del menú */
+}
+
+/* Agregar estilos de color para los enlaces cuando se pasa el mouse */
+.black-link:hover {
+  color: #007bff; /* Cambia el color al pasar el mouse por encima de los enlaces */
+}
+
+/* BOTON */
+
 
 
 

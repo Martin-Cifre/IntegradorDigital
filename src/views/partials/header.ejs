@@ -1,34 +1,43 @@
 <header>
-    <div>
-      <div id="inicio">
-        <div>
-          <a href="/" class="black-link">
+  <div>
+    <div id="inicio">
+      <div>
+        <a href="/" class="black-link">
           <img class="imagenInicio" src="/img/LogoGQS.png" alt="logo de imagen">
         </a>
-        </div>
-        <div class="searchbar">
-          <form action="/product/detalle/:id" method="POST">
-            <input placeholder='🔍︎' class="searchbar" name="search">
+      </div>
+      <div class="searchbar">
+        <form action="/product/detalle/:id" method="POST">
+          <input placeholder='🔍︎' class="searchbar" name="search">
         </form>
-        </div>
-        <div>
-          <a href="/product/carrito" class="black-link">
+      </div>
+      <div>
+        <a href="/product/carrito" class="black-link">
           <i class="fa-solid fa-cart-arrow-down fa-2xl logos-search" style="color: #ffffff;"></i>
-          </a>
-          <a href="/login" class="black-link">
-          <i class="fa-solid fa-user fa-2xl logos-search" style="color: #ffffff;"></i>
-          </a>
+        </a>
+        <div class="user-menu-dropdown">
+            <i class="fa-solid fa-user fa-2xl logos-search" style="color: #ffffff;"></i>
+          <ul class="menu center">
+            <li><a href="/register" class="black-link">Register</a></li>
+            <li><a href="/login" class="black-link">Login</a></li>
+            <li><a href="/perfil" class="black-link">Perfil</a></li>
+            <% if (usuarioActual && usuarioActual.rol === 'Creador') { %>
+              <li><a href="/product/create" class="black-link">Crear Producto</a></li>
+              <li><a href="http://localhost:5173/" class="black-link">Dashboard</a></li>
+            <% } %>
+          </ul>
         </div>
       </div>
     </div>
-    <div class="opciones">
-      <div class="posicion">
-        <div class="palabras">TIENDAS</div>
-        <div class="palabras">USADOS</div>
-        <div class="palabras">DESCUENTOS</div>
-        <div class="palabras">ONLINE</div>
-      </div>
+  </div>
+  <div class="opciones">
+    <div class="posicion">
+      <div class="palabras">TIENDAS</div>
+      <div class="palabras">USADOS</div>
+      <div class="palabras">DESCUENTOS</div>
+      <div class="palabras">ONLINE</div>
     </div>
-  </header>
+  </div>
+</header>
 
-  <script> src="/public/scripts/search.js" </script>
+<script> src = "/public/scripts/icono.js" </script>

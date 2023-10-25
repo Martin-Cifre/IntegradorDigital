@@ -27,8 +27,10 @@ const controlador = {
 
       const usuarioLogueado = req.session.userLogged ? true : false;
 
+      const usuarioActual = req.session.userLogged;
 
-      res.render("product/productosEditar", { productoEdit: productoEdit, usuarioLogueado });
+
+      res.render("product/productosEditar", { productoEdit: productoEdit, usuarioLogueado, usuarioActual });
     } catch (error) {
       console.error(error);
       res.status(500).send('Error interno del servidor'); 
@@ -55,20 +57,33 @@ const controlador = {
       // Guardar los cambios en la DB
       await productoEdit.save();
 
-      res.redirect('product/details' + idProductoJuegos);
+      const usuarioActual = req.session.userLogged;
+
+      res.redirect('product/details' + idProductoJuegos, usuarioActual);
     } catch (error) {
       console.error(error);
       res.status(500).send('Error interno del servidor');
     }
   },
-  eliminarProducto: (req, res) => {
-    console.log('se borro')
+   eliminarProducto: async (req, res) => {
+    try {
+      const juego = await db.Juego.findByPk(req.params.id);
+   
+      await juego.destroy();
+
+      return res.redirect('/', { juego });
+  } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: 'Error al eliminar el juego' });
+  }
 },
   getCreateForm: async (req, res) => {
 
      const categorias = await db.Categoria.findAll(); 
 
-    res.render("product/create", {categorias: categorias})
+     const usuarioActual = req.session.userLogged;
+
+    res.render("product/create", {categorias: categorias, usuarioActual})
     
   },
   postCreateForm: async (req, res) => {
@@ -149,39 +164,32 @@ const controlador = {
     try {
        /* obtengo el juego */ 
       const juegoEncontrado = await db.Juego.findByPk(req.params.id, {
-        include: [{ model: db.Imagen, as: 'Imagen' }], // Para incluir las imagenes
+        include: [{ model: db.Imagen, as: 'Imagen' }], 
       });
 
       const categoriaEncontrada = await db.Juego.findByPk(req.params.id, {
-        include: [{ model: db.Categoria, as: 'categoria'}], // Para incluir las imagenes
+        include: [{ model: db.Categoria, as: 'categoria'}], 
       });  
 
+      const usuarioActual = req.session.userLogged;
+
       /*  Renderiza la vista 'detalle' con el juego y las imagenes  */
-      res.render('product/details', {juegoEncontrado, categoriaEncontrada});
+      res.render('product/details', {juegoEncontrado, categoriaEncontrada, usuarioActual});
     } catch (error) {
       console.error('Error al obtener el juego desde la base de datos:', error);
       res.status(500).json({ error: 'Hubo un error al obtener el juego desde la base de datos.' });
     }
   },
-  /* search: async (req, res) => {
-    const searchTerm = req.query.searchTerm; // Obtiene el término de búsqueda de la URL
+   search: async (req, res) => {
+    
 
     try {
-        // Realiza una búsqueda en la base de datos para encontrar el juego basado en el término de búsqueda
-        const juego = await Juego.findOne({ where: { nombre: searchTerm } });
-
-        if (juego) {
-            // Redirige al usuario a la vista de detalle del producto con el ID del juego encontrado
-            res.redirect(`/product/detalle/${juego.id}`);
-        } else {
-            // Maneja el caso en el que el juego no se encontró
-            res.redirect('/')
-        }
+       
     } catch (error) {
         console.error(error);
         res.status(500).send('Error de servidor');
     }
-}, */
+}, 
   carritoCompra: async (req, res) => {
     try {
       // Obtén el carrito del usuario desde la sesión

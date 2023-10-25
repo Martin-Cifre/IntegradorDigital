@@ -1,4 +1,4 @@
-  <%- include('../partials/head') %>
+<%- include('../partials/head') %>
 
 <body>
 
@@ -15,7 +15,9 @@
             <div class="error-message">
               <h5><%= errors.nombre.msg %></h5>
             </div>
-        <% } %>
+          <% } %>
+        </div> 
+
         <div class="form-group">
           <label for="descripcion">Descripción:</label>
           <textarea class="form-control" id="descripcion" name="descripcion" rows="4" required><%= productoEdit.descripcion %></textarea>
@@ -23,7 +25,9 @@
             <div class="error-message">
               <h5><%= errors.nombre.msg %></h5>
             </div>
-        <% } %>
+          <% } %>
+        </div> 
+
         <div class="form-group">
           <label for="precio">Precio:</label>
           <input type="number" class="form-control" id="precio" name="precio" value="<%= productoEdit.precio %>" required>
@@ -31,7 +35,9 @@
             <div class="error-message">
               <h5><%= errors.nombre.msg %></h5>
             </div>
-        <% } %>
+          <% } %>
+        </div> 
+
         <div class="form-group">
           <label for="rating">Rating:</label>
           <input type="number" class="form-control" id="rating" name="rating" value="<%= productoEdit.rating %>" required>
@@ -39,19 +45,24 @@
             <div class="error-message">
               <h5><%= errors.nombre.msg %></h5>
             </div>
-        <% } %>
+          <% } %>
+        </div> 
+
         <div class="form-group">
           <label for="fecha_alta">Fecha de Alta:</label>
           <input type="date" class="form-control" id="fecha_alta" name="fecha_alta" value="<%= productoEdit.fecha_alta %>" required>
-        </div>
+        </div> 
+
         <div class="form-group">
           <label for="fecha_baja">Fecha de Baja:</label>
           <input type="date" class="form-control" id="fecha_baja" name="fecha_baja" value="<%= productoEdit.fecha_baja %>" required>
-        </div>
+        </div> 
+
         <div class="form-group">
           <label for="descuento">Descuento:</label>
           <input type="number" class="form-control" id="descuento" name="descuento" value="<%= productoEdit.descuento %>" required>
-        </div>
+        </div> 
+
         <input type="hidden" name="_method" value="PUT">
         <button type="submit" class="btn btn-primary">Guardar Cambios</button>
       </form>
@@ -61,6 +72,3 @@
   <%- include('../partials/footer') %>
 
 </body>
-
-
-</html>

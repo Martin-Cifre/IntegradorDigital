@@ -29,7 +29,7 @@ const storage = new CloudinaryStorage({
 const upload = multer();
 
 // Rutas
-router.get('/', usersController.index);
+router.get('/',  usersController.index);
 
 router.get('/login', usersController.login);
 

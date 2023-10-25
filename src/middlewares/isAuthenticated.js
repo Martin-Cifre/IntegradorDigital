@@ -7,6 +7,3 @@ module.exports = (req, res, next) => {
       res.redirect('/login'); // Puedes cambiar la ruta de redirección según tus necesidades
     }
   };
-
-
-  

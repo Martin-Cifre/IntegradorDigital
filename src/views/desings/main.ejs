@@ -9,11 +9,6 @@
                     <div class="card-body Caja-precio-titulo">
                         <p class="titulo-del-precio"><%= juegoEncontrado.nombre %></p>
                         <p class="precio">$<%= juegoEncontrado.precio %></p>
-                        <% if (usuarioActual && usuarioActual.rol === 'Creador') { %>
-                            <form action="/product/eliminar/<%= juegoEncontrado.id %>? method=DELETE" method="post">
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
-                        <% } %>
                     </div>
                 </div>
             </a>

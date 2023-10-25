@@ -12,6 +12,7 @@ const apiController = {
           apellido: usuario.apellido,
           email: usuario.email,
           avatar: usuario.avatar,
+          rol: usuario.rol,
           dni: usuario.dni,
           fecha_alta: usuario.fecha_alta,
         })),

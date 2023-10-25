@@ -1,84 +1,110 @@
-    <%- include('../partials/head') %>
+<%- include('../partials/head') %>
 
-<body>
-    <%- include('../partials/header') %>
-    
-    <div class="conteiner">
-        <div class="productoVenta">
-            <div class="tituloVenta">
-                <p class="letraTitulos3"><%= juegoEncontrado.nombre %></p>
-            </div>
-            <div class="tituloVenta2">
-                <div class="rating">
-                    <img src="http://martincifre.alwaysdata.net/estrellitas.png">
-                    <p class="letraTitulos numeroRating"><%= juegoEncontrado.rating  %></p>
-                </div>
-        <div class="generos">
-            <i class="letraTitulos2">Generos: </i>
-            <i class="letraTitulos2">
-                <p class="card-text">  <%= categoriaEncontrada.categoria.nombre  %></p>
-            </i>
-        </div>
-    </div>
-        <br>
+    <body>
+        <%- include('../partials/header') %>
+
+            <div class="conteiner">
+                <div class="productoVenta">
+                    <div class="tituloVenta">
+                        <p class="letraTitulos3">
+                            <%= juegoEncontrado.nombre %>
+                        </p>
+                    </div>
+                    <div class="tituloVenta2">
+                        <div class="rating">
+                            <img src="http://martincifre.alwaysdata.net/estrellitas.png">
+                            <p class="letraTitulos numeroRating">
+                                <%= juegoEncontrado.rating %>
+                            </p>
+                        </div>
+                        <div class="generos">
+                            <i class="letraTitulos2">Generos: </i>
+                            <i class="letraTitulos2">
+                                <p class="card-text">
+                                    <%= categoriaEncontrada.categoria.nombre %>
+                                </p>
+                            </i>
+                        </div>
+                    </div>
+                    <br>
 
                     <div id="carouselExampleIndicators" class="carousel slide">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="<%= juegoEncontrado.Imagen[1].url_imagen %>" class="d-block w-100"
+                                    alt="<%= juegoEncontrado.nombre %>">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="<%= juegoEncontrado.Imagen[2].url_imagen %>" class="d-block w-100"
+                                    alt="<%= juegoEncontrado.nombre %>">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="<%= juegoEncontrado.Imagen[3].url_imagen %>" class="d-block w-100"
+                                    alt="<%= juegoEncontrado.nombre %>">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+
+
+
+
+                    <div class="textoVenta">
+                        <p class="card-text">
+                            <%= juegoEncontrado.descripcion %>
+                        </p>
+                    </div>
+                    </p>
+                </div>
             </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                <img src="<%= juegoEncontrado.Imagen[1].url_imagen %>" class="d-block w-100" alt="<%= juegoEncontrado.nombre %>">
-                </div>
-                <div class="carousel-item">
-                <img src="<%= juegoEncontrado.Imagen[2].url_imagen %>" class="d-block w-100" alt="<%= juegoEncontrado.nombre %>">
-                </div>
-                <div class="carousel-item">
-                <img src="<%= juegoEncontrado.Imagen[3].url_imagen %>" class="d-block w-100" alt="<%= juegoEncontrado.nombre %>">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
 
-        
+            <div class="center">
+                <form action="/carrito/agregar/<%= juegoEncontrado.id %>" method="POST">
+                    <!-- Puedes incluir campos ocultos para enviar información sobre el juego, como su ID, nombre y precio -->
+                    <input type="hidden" name="idProductoJuegos" value="<%= juegoEncontrado.id %>">
+                    <input type="hidden" name="nombreJuego" value="<%= juegoEncontrado.nombre %>">
+                    <input type="hidden" name="precioJuego" value="<%= juegoEncontrado.precio %>">
+
+                    <% if (usuarioActual && usuarioActual.rol==='Creador' ) { %>
+                        <a href="/product/edit/<%= juegoEncontrado.id %>" class="btn btn-primary">Editar</a>
+                        <form action="/product/eliminar/<%= juegoEncontrado.id %>" method="DELETE">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                        <% } %>
+
+                            <button type="submit">Agregar al carrito</button>
+                </form>
+            </div>
 
 
-        <div class="textoVenta">
-        <p class="card-text"><%= juegoEncontrado.descripcion  %></p>
-        </div>
-         </p>    
-        </div>
-        </div>
-        
-        <div class="center">
-            <form action="/carrito/agregar/<%= juegoEncontrado.id %>" method="POST">
-                <!-- Puedes incluir campos ocultos para enviar información sobre el juego, como su ID, nombre y precio -->
-                <input type="hidden" name="idProductoJuegos" value="<%= juegoEncontrado.id %>">
-                <input type="hidden" name="nombreJuego" value="<%= juegoEncontrado.nombre %>">
-                <input type="hidden" name="precioJuego" value="<%= juegoEncontrado.precio %>">
-                
-                <button type="submit">Agregar al carrito</button>
-            </form>
-        </div>
-        
-        
-    
-    <%- include('../partials/footer') %>
 
-<script src="https://kit.fontawesome.com/06e87440fe.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-<script src="/public/scripts/cart.js"></script>
-<script src="/public/scripts/button_cart.js"></script>
+            <%- include('../partials/footer') %>
 
-</body>
-</html>
+                <script src="https://kit.fontawesome.com/06e87440fe.js" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+                    crossorigin="anonymous"></script>
+                <script src="/public/scripts/cart.js"></script>
+                <script src="/public/scripts/button_cart.js"></script>
 
+    </body>
+
+    </html>

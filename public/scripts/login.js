@@ -10,4 +10,4 @@
       enlacePerfil.href = "/login";  // Reemplaza con la URL de inicio de sesión real
     }
   });
-   */
+ */

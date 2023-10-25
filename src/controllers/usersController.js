@@ -28,7 +28,7 @@ const controlador = {
 
         const usuarioActual = req.session.userLogged;
 
-        res.render('home', { juegos, usuarioActual });
+        res.render('home', { usuarioActual, juegos });
     } catch (error) {
         console.error('Error al obtener juegos desde la base de datos:', error);
         res.status(500).json({ error: 'Hubo un error al obtener los juegos desde la base de datos.' });
@@ -36,7 +36,9 @@ const controlador = {
 },
   login: (req, res) => {
     res.locals.errors = null;
-    res.render('users/login');
+    const usuarioActual = req.session.userLogged;
+
+    res.render('users/login', {usuarioActual} );
   },
   processLogin: async (req, res) => {
     try {
@@ -84,13 +86,14 @@ const controlador = {
     }
   },  
   register: (req, res) => {
-    res.render('users/register');
+
+    const usuarioActual = req.session.userLogged;
+
+    res.render('users/register', { usuarioActual });
 },
   create: async (req, res) => {
     try {      
       const validRegister = validationResult(req);
-      console.log('AAAAAAAAAAAA' + req.body.nombre);
-      console.log(validRegister.errors);
   
       if (validRegister.errors.length>0) {
         return res.render('users/register', { errors: validRegister.mapped() });
@@ -133,9 +136,13 @@ const controlador = {
           email: req.body.email,
           clave: bcryptjs.hashSync(req.body.userPassword, 10),
           dni: req.body.dni,
-          avatar: req.file ? uploadedImage.secure_url : imageBuffer, 
+          avatar: req.file ? uploadedImage.secure_url : imageBuffer,
+          rol: 'Usuario',
         });
-        return res.render('users/login');
+
+        const usuarioActual = req.session.userLogged;
+
+        return res.render('users/login', { usuarioActual});
       } else {
         return res.status(400).send('El usuario ya existe.');
       }
@@ -146,7 +153,11 @@ const controlador = {
   },
   perfil: async (req, res) => {
      try {
-      return res.render('users/perfil', { usuario: req.session.userLogged });
+      const usuarioActual = req.session.userLogged;
+
+      return res.render('users/perfil', { usuario: req.session.userLogged, usuarioActual });
+
+      
      } catch (error) {
       console.error('Error al cargar el perfil del usuario:', error);
       return res.status(500).send('Error interno del servidor');
