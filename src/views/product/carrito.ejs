@@ -8,14 +8,15 @@
     <!-- Contenedor para mostrar los productos en el carrito -->
     <div id="cart-container">
         <!-- Mostrar mensaje si el carrito está vacío -->
+        <% total = 0 %>
         <% if (productosEnCarrito.length === 0) { %>
             <p>El carrito está vacío. Agrega productos desde la tienda.</p>
         <% } else { %>
             <!-- Aquí se mostrarán los productos en el carrito -->
             <ul>
-                <% productosEnCarrito.forEach((product) => { %>
+                <% productosEnCarrito.forEach((product) => {  total += (product.monto_unidad * product.cantidad)%>
                     <li>
-                        <%= product.Juego.nombre %> - $<%= product.monto_unidad %> x <%= product.cantidad %>
+                        <%= product.nombre %> - $<%= product.monto_unidad %> x <%= product.cantidad %>
                     </li>
                 <% }); %>
             </ul>

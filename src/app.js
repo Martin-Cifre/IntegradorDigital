@@ -1,7 +1,7 @@
 const usersRoutes = require('./routes/usersRoutes.js')
 const productosRoutes = require('./routes/productosRoutes.js')
 const apiRoutes = require('./routes/apiRoutes.js')
-/* const checkoutRouter = require('./routes/checkoutRouter.js') */
+const checkoutRouter = require('./routes/checkoutRouter.js') 
 
 const express = require('express');
 const cookieParser = require('cookie-parser');
@@ -29,7 +29,7 @@ app.use('/', usersRoutes);
 app.use('/product', productosRoutes);
 app.use('/user', usersRoutes);
 app.use('/api', apiRoutes)
-/* app.use('/cart', checkoutRouter ) */
+app.use('/cart', checkoutRouter ) 
 
 app.use((req,res,next) => {
     res.status(404).render('not-found');
