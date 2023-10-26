@@ -16,7 +16,7 @@
             <ul>
                 <% productosEnCarrito.forEach((product) => {  total += (product.monto_unidad * product.cantidad)%>
                     <li>
-                        <%= product.nombre %> - $<%= product.monto_unidad %> x <%= product.cantidad %>
+                      <%= product.nombre %> - $<%= product.monto_unidad %> x <%= product.cantidad %>
                     </li>
                 <% }); %>
             </ul>
@@ -29,6 +29,9 @@
     <!-- Aquí puedes agregar más interacción de usuario si es necesario, como botones para finalizar la compra o eliminar productos del carrito. -->
 
     <%- include('../partials/footer') %>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
 </body>
+
 <script src="public/scripts/cart.js"></script>
 </html>
