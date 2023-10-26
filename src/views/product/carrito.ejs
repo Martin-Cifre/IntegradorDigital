@@ -1,9 +1,10 @@
 <%- include('../partials/head') %>
 <body>
     <%- include('../partials/header') %>
-    
-    <h3 class="letraTitulos">TU CARRITO</h3>
-    <h5 class="letraTitulos">ITEMS</h5>
+    <div class="tituloCarrito">
+    <h2 class="letraTitulos">CARRITO DE COMPRAS</h2>
+    <h10 class="letraTitulos">ITEMS</h10>
+    </div>
 
     <!-- Contenedor para mostrar los productos en el carrito -->
     <div id="cart-container">
@@ -15,7 +16,7 @@
             <!-- Aquí se mostrarán los productos en el carrito -->
             <ul>
                 <% productosEnCarrito.forEach((product) => {  total += (product.monto_unidad * product.cantidad)%>
-                    <li>
+                    <li class="productoCarrito">
                       <%= product.nombre %> - $<%= product.monto_unidad %> x <%= product.cantidad %>
                     </li>
                 <% }); %>
@@ -24,7 +25,8 @@
     </div>
 
     <!-- Mostrar el total de la compra -->
-    <p>Total: $<%= total %></p>
+    <p class="totalCarrito">Total: $<%= total %></p>
+    <button type="button" class="botonCarrito">COMPRAR</button>
 
     <!-- Aquí puedes agregar más interacción de usuario si es necesario, como botones para finalizar la compra o eliminar productos del carrito. -->
 
