@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const Swal = require('sweetalert2');
 const checkoutController = require('../controllers/checkoutController.js');
 const isAuthenticated = require('../middlewares/isAuthenticated'); 
 

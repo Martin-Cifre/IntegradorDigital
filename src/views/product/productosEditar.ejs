@@ -7,7 +7,7 @@
   <div class="login-box-centrado">
     <div class="login-box">
       <h2>Editar Producto</h2>
-      <form method="POST" action="/productosRoutes/edit/<%= productoEdit.id %>">
+      <form method="post" action="/product/edit/<%= productoEdit.id %>/?_method=PUTH">
         <div class="form-group">
           <label for="nombre">Nombre:</label>
           <input type="text" class="form-control" id="nombre" name="nombre" value="<%= productoEdit.nombre %>" required>

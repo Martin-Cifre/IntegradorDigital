@@ -37,6 +37,7 @@ const checkoutController = {
   vaciarCarro: async (req, res) => {
     const usuarioActual = req.session.userLogged
     req.session.cart = [];
+
     res.render('product/carrito',{productosEnCarrito: req.session.cart, usuarioActual:usuarioActual});
   }
     

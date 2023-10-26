@@ -26,13 +26,27 @@
 
     <!-- Mostrar el total de la compra -->
     <p class="totalCarrito">Total: $<%= total %></p>
-    <button type="button" class="botonCarrito">COMPRAR</button>
+    <button type="button" class="botonCarrito" id="comprarBtn">COMPRAR</button>
 
     <!-- Aquí puedes agregar más interacción de usuario si es necesario, como botones para finalizar la compra o eliminar productos del carrito. -->
 
     <%- include('../partials/footer') %>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const comprarBtn = document.getElementById('comprarBtn');
+          
+          comprarBtn.addEventListener('click', function () {
+            Swal.fire({
+              title: '¡Compra realizada con éxito!',
+              text: 'Gracias por tu compra. Tu pedido ha sido procesado.',
+              icon: 'success',
+              confirmButtonText: 'OK'
+            });
+          });
+        });
+        </script>
 </body>
 
 <script src="public/scripts/cart.js"></script>

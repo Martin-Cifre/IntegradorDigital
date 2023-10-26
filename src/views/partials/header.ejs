@@ -21,7 +21,8 @@
             <li><a href="/register" class="black-link">Register</a></li>
             <li><a href="/login" class="black-link">Login</a></li>
             <li><a href="/perfil" class="black-link">Perfil</a></li>
-             <% if (usuarioActual && usuarioActual.rol==='Creador') { %> 
+            <li><a href="/logout" class="black-link">Cerrar session</a></li>
+             <% if (usuarioActual && usuarioActual.rol === 'Creador') { %> 
               <li><a href="/product/create" class="black-link">Crear Producto</a></li>
               <li><a href="http://localhost:5173/" class="black-link">Dashboard</a></li>
            <% } %> 

@@ -35,6 +35,8 @@ router.get('/login', usersController.login);
 
 router.post('/login', validateLoginForm, usersController.processLogin);
 
+router.get('/logout', isAuthenticated, usersController.logoutController);
+
 router.get('/register', usersController.register);
 
 router.post('/register', upload.single('avatar'), validateCreateForm, usersController.create);
