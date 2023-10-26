@@ -57,6 +57,41 @@ header {
   margin-top: 8vw; /* Ajusta el margen superior para evitar que el contenido se solape con el encabezado fijo */
 } 
 
+/* CARRITO */
+
+.tituloCarrito {
+margin-top: 10rem;
+}
+
+.productoCarrito {
+  color: #edd359;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  margin-bottom: 5rem;
+  padding: 0 25rem 0 10rem;
+  list-style: none;
+
+}
+
+.totalCarrito {
+  color: #edd359;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  padding: 0 0rem 0rem 80rem;
+  
+}
+
+.botonCarrito {
+    margin-left: 80rem;
+  margin-bottom: 5rem;
+  width: 15rem;
+  height: 4rem;
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: #fff;
+  border-radius: 0.5rem;
+}
+
 /* HEADER */
 
 /* TIENDA USADOS DESCUENTOS ONLINE */
