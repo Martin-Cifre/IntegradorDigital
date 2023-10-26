@@ -27,10 +27,8 @@ const controlador = {
 
       const usuarioLogueado = req.session.userLogged ? true : false;
 
-      const usuarioActual = req.session.userLogged;
 
-
-      res.render("product/productosEditar", { productoEdit: productoEdit, usuarioLogueado, usuarioActual });
+      res.render("product/productosEditar", { productoEdit: productoEdit, usuarioLogueado });
     } catch (error) {
       console.error(error);
       res.status(500).send('Error interno del servidor'); 
@@ -57,21 +55,24 @@ const controlador = {
       // Guardar los cambios en la DB
       await productoEdit.save();
 
-      const usuarioActual = req.session.userLogged;
-
-      res.redirect('product/details' + idProductoJuegos, usuarioActual);
+      res.redirect('product/details' + idProductoJuegos);
     } catch (error) {
       console.error(error);
       res.status(500).send('Error interno del servidor');
     }
   },
    eliminarProducto: async (req, res) => {
+    console.log('VOY A ELIMINAR')
     try {
-      const juego = await db.Juego.findByPk(req.params.id);
-   
-      await juego.destroy();
+      await db.Juego.destroy({ where: {id: req.params.id} });
 
-      return res.redirect('/', { juego });
+      const juegos = await db.Juego.findAll({
+        include: [{ model: db.Imagen, as: 'Imagen' }],
+        attributes: ['id', 'nombre', 'precio'],
+    });
+
+      const usuarioActual = req.session.userLogged
+      return res.render('home', { juegos, usuarioActual });
   } catch (error) {
       console.error(error);
       return res.status(500).json({ message: 'Error al eliminar el juego' });
@@ -81,8 +82,7 @@ const controlador = {
 
      const categorias = await db.Categoria.findAll(); 
 
-     const usuarioActual = req.session.userLogged;
-
+     const usuarioActual = req.session.userLogged
     res.render("product/create", {categorias: categorias, usuarioActual})
     
   },
@@ -91,8 +91,8 @@ const controlador = {
       const validProductCreate = validationResult(req);
   
       if (validProductCreate.errors.length > 0) {
-        const usuarioActual = req.session.userLogged;
-        return res.render('product/create', { errors: validProductCreate.mapped(),  usuarioActual  });
+        const usuarioActual = req.session.userLogged
+        return res.render('product/create', { errors: validProductCreate.mapped(), usuarioActual });
       }
   
       const imagePromises = []; // Almacenaremos las promesas para subir todas las imágenes
@@ -153,9 +153,15 @@ const controlador = {
       );
   
       const categorías = await db.Categoria.findAll();
-  
+
+      const juegos = await db.Juego.findAll({
+        include: [{ model: db.Imagen, as: 'Imagen' }],
+        attributes: ['id', 'nombre', 'precio'],
+    });
+
+      const usuarioActual = req.session.userLogged
       // Redirigir a la página principal después de crear el juego
-      return res.redirect('/');
+      return res.render('home', { juegos, usuarioActual: usuarioActual });
     } catch (error) {
       console.error('Error al crear un nuevo producto:', error);
       return res.status(500).send('Error interno del servidor');
@@ -172,10 +178,8 @@ const controlador = {
         include: [{ model: db.Categoria, as: 'categoria'}], 
       });  
 
-      const usuarioActual = req.session.userLogged;
-
-      /*  Renderiza la vista 'detalle' con el juego y las imagenes  */
-      res.render('product/details', {juegoEncontrado, categoriaEncontrada, usuarioActual});
+      const usuarioActual = req.session.userLogged
+      res.render('product/details', {juegoEncontrado, categoriaEncontrada, usuarioActual: usuarioActual });
     } catch (error) {
       console.error('Error al obtener el juego desde la base de datos:', error);
       res.status(500).json({ error: 'Hubo un error al obtener el juego desde la base de datos.' });

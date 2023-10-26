@@ -10,8 +10,6 @@ const productosController = require('../controllers/productosController.js');
   
   const upload = multer();
 
-/* router.post('/search', productosController.search); */
-
 router.get('/edit/:idProductoJuegos', productosController.edit)
 
 router.put('/update/:idProductoJuegos', productosController.update)

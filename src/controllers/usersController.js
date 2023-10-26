@@ -25,9 +25,8 @@ const controlador = {
             include: [{ model: db.Imagen, as: 'Imagen' }],
             attributes: ['id', 'nombre', 'precio'],
         });
-        const usuarioActual = req.session.userLogged;
-
-        res.render('home', { usuarioActual, juegos });
+        const usuarioActual = req.session.userLogged
+        res.render('home', { juegos, usuarioActual: usuarioActual });
     } catch (error) {
         console.error('Error al obtener juegos desde la base de datos:', error);
         res.status(500).json({ error: 'Hubo un error al obtener los juegos desde la base de datos.' });
@@ -35,14 +34,16 @@ const controlador = {
 },
   login: (req, res) => {
     res.locals.errors = null;
-    res.render('users/login');
+    const usuarioActual = req.session.userLogged
+    res.render('users/login', {usuarioActual});
   },
   processLogin: async (req, res) => {
     try {
       const validacion = validationResult(req);
   
       if (validacion.errors.length > 0) {
-        return res.render('users/login', { errors: validacion.mapped() });
+        const usuarioActual = req.session.userLogged
+        return res.render('users/login', { errors: validacion.mapped(), usuarioActual });
       }
   
       const userToLogin = await db.Usuario.findOne({
@@ -66,8 +67,9 @@ const controlador = {
           }
   
           const usuarios = await db.Usuario.findAll();
-  
-          return res.redirect('perfil');
+          console.log(req.session)
+          const usuarioActual = req.session.userLogged
+          return res.render('users/perfil', {usuarioActual});
         } else {
           // Aquí podrías agregar un mensaje de contraseña incorrecta si lo deseas
           res.render('users/login',  { errors: { userPassword: { msg: 'Contraseña incorrecta' } }});
@@ -83,14 +85,16 @@ const controlador = {
     }
   },  
   register: (req, res) => {
-    res.render('users/register');
+    const usuarioActual = req.session.userLogged
+    res.render('users/register', {usuarioActual: usuarioActual});
 },
   create: async (req, res) => {
     try {      
       const validRegister = validationResult(req);
   
       if (validRegister.errors.length>0) {
-        return res.render('users/register', { errors: validRegister.mapped() });
+          const usuarioActual = req.session.userLogged
+        return res.render('users/register', { errors: validRegister.mapped(), usuarioActual: usuarioActual });
       }
 
       let imageBuffer;
@@ -133,7 +137,10 @@ const controlador = {
           avatar: req.file ? uploadedImage.secure_url : imageBuffer,
           rol: 'Usuario',
         });
-        return res.render('users/login');
+
+        const usuarioActual = req.session.userLogged
+
+        return res.render('users/login', {usuarioActual: usuarioActual});
       } else {
         return res.status(400).send('El usuario ya existe.');
       }
@@ -144,7 +151,8 @@ const controlador = {
   },
   perfil: async (req, res) => {
      try {
-      return res.render('users/perfil', { usuario: req.session.userLogged });
+      const usuarioActual = req.session.userLogged
+      return res.render('users/perfil', { usuario: req.session.userLogged, usuarioActual: usuarioActual });
      } catch (error) {
       console.error('Error al cargar el perfil del usuario:', error);
       return res.status(500).send('Error interno del servidor');
