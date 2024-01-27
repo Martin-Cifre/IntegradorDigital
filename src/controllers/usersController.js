@@ -26,7 +26,7 @@ const controlador = {
             attributes: ['id', 'nombre', 'precio'],
         });
         const usuarioActual = req.session.userLogged
-        res.render('home', { juegos, usuarioActual: usuarioActual });
+        res.render('home', { juegos: juegos, usuarioActual: usuarioActual });
     } catch (error) {
         console.error('Error al obtener juegos desde la base de datos:', error);
         res.status(500).json({ error: 'Hubo un error al obtener los juegos desde la base de datos.' });
@@ -43,7 +43,7 @@ const controlador = {
   
       if (validacion.errors.length > 0) {
         const usuarioActual = req.session.userLogged
-        return res.render('users/login', { errors: validacion.mapped(), usuarioActual });
+        return res.render('users/login', { errors: validacion.mapped(), usuarioActual: usuarioActual });
       }
   
       const userToLogin = await db.Usuario.findOne({
@@ -83,6 +83,14 @@ const controlador = {
       console.error("Ocurrió un error:", error);
       res.status(500).send("Error interno en el servidor");
     }
+  },
+  logoutController: (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        console.error('Error al cerrar la sesión:', err);
+      }
+      res.redirect('/login'); // Redirige al usuario a la página de inicio de sesión
+    });
   },  
   register: (req, res) => {
     const usuarioActual = req.session.userLogged

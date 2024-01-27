@@ -38,6 +38,7 @@
     "popper.js": "^1.16.1",
     "sequelize": "^6.32.1",
     "sequelize-cli": "^6.6.1",
-    "streamifier": "^0.1.1"
+    "streamifier": "^0.1.1",
+    "sweetalert2": "^11.7.32"
   }
 }

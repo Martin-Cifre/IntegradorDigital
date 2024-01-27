@@ -1,7 +1,7 @@
 const checkoutController = {
   agregarCarrito: async (req, res) => {
     console.log(req.body);
-    const { precioJuego, nombreJuego,idProductoJuegos } = req.body;
+    const {imagenJuego, precioJuego, nombreJuego,idProductoJuegos } = req.body;
     
 
     if (!req.session.cart) {
@@ -31,13 +31,14 @@ const checkoutController = {
     const usuarioActual = req.session.userLogged
     console.log(req.session)
 
-    res.render('product/carrito',{productosEnCarrito: req.session.cart,usuarioActual:usuarioActual});
+    res.render('product/carrito',{productosEnCarrito: req.session.cart, usuarioActual:usuarioActual});
 
   },
   vaciarCarro: async (req, res) => {
     const usuarioActual = req.session.userLogged
     req.session.cart = [];
-    res.render('product/carrito',{productosEnCarrito: req.session.cart,usuarioActual:usuarioActual});
+
+    res.render('product/carrito',{productosEnCarrito: req.session.cart, usuarioActual:usuarioActual});
   }
     
   }
